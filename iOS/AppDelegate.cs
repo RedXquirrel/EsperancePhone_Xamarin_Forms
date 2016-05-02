@@ -10,6 +10,7 @@ using Microsoft.WindowsAzure.MobileServices;
 using System.Threading.Tasks;
 using esperancephone.Helpers;
 using esperancephone.Interfaces;
+using esperancephone.Ioc;
 
 namespace esperancephone.iOS
 {
@@ -60,7 +61,7 @@ namespace esperancephone.iOS
             //SQLitePCL.CurrentPlatform.Init();
             Debug.WriteLine($"INFORMATION (AppDelegate1): UserId = {Settings.UserId}");
             EsperancePhoneFormsApplication.Init(this);
-            LoadApplication (new EsperancePhoneFormsApplication());
+            LoadApplication (new EsperancePhoneFormsApplication(new AppSetup()));
 
 			return base.FinishedLaunching (app, options);
 		}

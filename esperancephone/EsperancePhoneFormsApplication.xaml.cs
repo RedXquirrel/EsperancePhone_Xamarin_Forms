@@ -4,8 +4,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac;
 using esperancephone.Helpers;
 using esperancephone.Interfaces;
+using esperancephone.Ioc;
 using esperancephone.Pages;
 using Xamarin.Forms;
 
@@ -21,11 +23,19 @@ namespace esperancephone
             Authenticator = authenticator;
         }
 
-        public EsperancePhoneFormsApplication()
+        public EsperancePhoneFormsApplication(AppSetup setup)
         {
             InitializeComponent();
 
-            Debug.WriteLine($"INFORMATION (EsperancePhoneFormsApplication): UserId = {Settings.UserId}");
+            AppContainer.Container = setup.CreateContainer();
+
+            using (var scope = AppContainer.Container.BeginLifetimeScope())
+            {
+                var service = AppContainer.Container.Resolve <ISettingsService>();
+                service.ApplicationName = "Esperance Phone";
+            }
+
+                Debug.WriteLine($"INFORMATION (EsperancePhoneFormsApplication): UserId = {Settings.UserId}");
 
             Authenticated = !string.IsNullOrEmpty(Settings.UserId);
 

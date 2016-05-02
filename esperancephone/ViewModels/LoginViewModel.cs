@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Com.Xamtastic.Patterns.SmallestMvvm;
+using esperancephone.Interfaces;
 using esperancephone.Localisation;
 using Xamarin.Forms;
 
@@ -29,6 +30,11 @@ namespace esperancephone.ViewModels
         }
 
         public LoginViewModel()
+        {
+            
+        }
+
+        public LoginViewModel(ISettingsService settingsService) : base(settingsService)
         {
             this.Title = AppResources.LoginPageTitle;
             this.GoogleButtonText = AppResources.GoogleLoginButtonText;

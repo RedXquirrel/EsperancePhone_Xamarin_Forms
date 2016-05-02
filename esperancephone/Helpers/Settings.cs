@@ -20,12 +20,27 @@ namespace esperancephone.Helpers
         }
 
         #region Setting Constants
+        private const string ApplicationNameKey = "applicationname_key";
+        private static readonly string ApplicationNameDefault = string.Empty;
+
         private const string UserIdKey = "sip_key";
         private static readonly string UserIdDefault = string.Empty;
 
         private const string MobileServiceAuthenticationTokenKey = "mobileserviceauthenticationtoken_key";
         private static readonly string MobileServiceAuthenticationTokenDefault = string.Empty;
         #endregion
+
+        public static string ApplicationName
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault<string>(ApplicationNameKey, ApplicationNameDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue<string>(ApplicationNameKey, value);
+            }
+        }
 
         public static string UserId
         {
