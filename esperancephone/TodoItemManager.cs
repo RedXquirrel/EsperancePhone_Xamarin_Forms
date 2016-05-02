@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using esperancephone.Helpers;
 using Microsoft.WindowsAzure.MobileServices;
 
 #if OFFLINE_SYNC_ENABLED
@@ -49,6 +50,21 @@ namespace esperancephone
 #endif
         }
 
+        private void CreateCurrentUser()
+        {
+            if (this.client.CurrentUser != null)
+            {
+                Settings.MobileServiceAuthenticationToken = this.client.CurrentUser.MobileServiceAuthenticationToken;
+            }
+
+            if (this.client.CurrentUser == null && !string.IsNullOrEmpty(Settings.UserId) &&
+                !string.IsNullOrEmpty(Settings.MobileServiceAuthenticationToken))
+            {
+                this.client.CurrentUser = new MobileServiceUser(Settings.UserId);
+                this.client.CurrentUser.MobileServiceAuthenticationToken = Settings.MobileServiceAuthenticationToken;
+            }
+        }
+
         public static TodoItemManager DefaultManager
         {
             get
@@ -73,6 +89,7 @@ namespace esperancephone
 
         public async Task<ObservableCollection<TodoItem>> GetTodoItemsAsync(bool syncItems = false)
         {
+            CreateCurrentUser();
             try
             {
 #if OFFLINE_SYNC_ENABLED

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using esperancephone.Helpers;
 using Xamarin.Forms;
 
 namespace esperancephone
@@ -13,6 +15,8 @@ namespace esperancephone
         public TodoList()
         {
             InitializeComponent();
+
+            Debug.WriteLine($"INFORMATION: UserId = {Settings.UserId}");
 
             manager = TodoItemManager.DefaultManager;
 
@@ -48,8 +52,8 @@ namespace esperancephone
 
         async void loginButton_Clicked(object sender, EventArgs e)
         {
-            if (App.Authenticator != null)
-                authenticated = await App.Authenticator.Authenticate();
+            if (EsperancePhoneFormsApplication.Authenticator != null)
+                authenticated = await EsperancePhoneFormsApplication.Authenticator.Authenticate();
 
             // Set syncItems to true in order to synchronize the data on startup when running in offline mode
             if (authenticated == true)
@@ -61,7 +65,7 @@ namespace esperancephone
             base.OnAppearing();
 
             // Set syncItems to true in order to synchronize the data on startup when running in offline mode
-            if (authenticated == true)
+            if (EsperancePhoneFormsApplication.Authenticated)
                 await RefreshItems(true, syncItems: false);
         }
 

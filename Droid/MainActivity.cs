@@ -10,6 +10,7 @@ using Android.OS;
 
 using Microsoft.WindowsAzure.MobileServices;
 using System.Threading.Tasks;
+using esperancephone.Interfaces;
 
 namespace esperancephone.Droid
 {
@@ -57,8 +58,8 @@ namespace esperancephone.Droid
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
 			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
-            App.Init((IAuthenticate)this);
-            LoadApplication (new App ());
+            EsperancePhoneFormsApplication.Init((IAuthenticate)this);
+            LoadApplication (new EsperancePhoneFormsApplication());
 		}
 	}
 }

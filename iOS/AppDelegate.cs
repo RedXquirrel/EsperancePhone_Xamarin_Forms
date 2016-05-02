@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 using Foundation;
@@ -7,6 +8,8 @@ using UIKit;
 
 using Microsoft.WindowsAzure.MobileServices;
 using System.Threading.Tasks;
+using esperancephone.Helpers;
+using esperancephone.Interfaces;
 
 namespace esperancephone.iOS
 {
@@ -21,6 +24,7 @@ namespace esperancephone.iOS
             var success = false;
             try
             {
+                Debug.WriteLine($"INFORMATION (AppDelegate): UserId = {Settings.UserId}");
                 // Sign in with Facebook login using a server-managed flow.
                 if (user == null)
                 {
@@ -30,6 +34,9 @@ namespace esperancephone.iOS
                     {
                         UIAlertView avAlert = new UIAlertView("Authentication", "You are now logged in " + user.UserId, null, "OK", null);
                         avAlert.Show();
+
+                        Settings.UserId = user.UserId;
+                        
                     }
                 }
 
@@ -51,8 +58,9 @@ namespace esperancephone.iOS
             // IMPORTANT: uncomment this code to enable sync on Xamarin.iOS
             // For more information, see: http://go.microsoft.com/fwlink/?LinkId=620342
             //SQLitePCL.CurrentPlatform.Init();
-            App.Init(this);
-            LoadApplication (new App ());
+            Debug.WriteLine($"INFORMATION (AppDelegate1): UserId = {Settings.UserId}");
+            EsperancePhoneFormsApplication.Init(this);
+            LoadApplication (new EsperancePhoneFormsApplication());
 
 			return base.FinishedLaunching (app, options);
 		}
