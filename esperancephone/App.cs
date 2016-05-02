@@ -1,12 +1,25 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
 namespace esperancephone
 {
-	public class App : Application
+    public interface IAuthenticate
+    {
+        Task<bool> Authenticate();
+    };
+
+    public class App : Application
 	{
-		public App ()
+        public static IAuthenticate Authenticator { get; private set; }
+
+        public static void Init(IAuthenticate authenticator)
+        {
+            Authenticator = authenticator;
+        }
+
+        public App ()
 		{
 			// The root page of your application
 			MainPage = new TodoList();

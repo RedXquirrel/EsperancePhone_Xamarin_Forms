@@ -6,6 +6,8 @@ namespace esperancephone
 {
     public partial class TodoList : ContentPage
     {
+        bool authenticated = false;
+
         TodoItemManager manager;
 
         public TodoList()
@@ -13,6 +15,21 @@ namespace esperancephone
             InitializeComponent();
 
             manager = TodoItemManager.DefaultManager;
+
+            var loginButton = new Button
+            {
+                Text = "Login",
+                TextColor = Xamarin.Forms.Color.Black,
+                BackgroundColor = Xamarin.Forms.Color.Lime,
+            };
+            loginButton.Clicked += loginButton_Clicked;
+
+            Xamarin.Forms.StackLayout bp = buttonsPanel as StackLayout;
+            Xamarin.Forms.StackLayout bpParentStack = bp.Parent.Parent as StackLayout;
+
+            bpParentStack.Padding = new Xamarin.Forms.Thickness(10, 30, 10, 20);
+            bp.Orientation = StackOrientation.Vertical;
+            bp.Children.Add(loginButton);
 
             // OnPlatform<T> doesn't currently support the "Windows" target platform, so we have this check here.
             if (manager.IsOfflineEnabled &&
@@ -29,12 +46,23 @@ namespace esperancephone
             }
         }
 
+        async void loginButton_Clicked(object sender, EventArgs e)
+        {
+            if (App.Authenticator != null)
+                authenticated = await App.Authenticator.Authenticate();
+
+            // Set syncItems to true in order to synchronize the data on startup when running in offline mode
+            if (authenticated == true)
+                await RefreshItems(true, syncItems: false);
+        }
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
 
             // Set syncItems to true in order to synchronize the data on startup when running in offline mode
-            await RefreshItems(true, syncItems: false);
+            if (authenticated == true)
+                await RefreshItems(true, syncItems: false);
         }
 
         // Data methods
