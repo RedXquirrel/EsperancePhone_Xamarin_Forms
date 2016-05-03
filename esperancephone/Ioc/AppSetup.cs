@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using esperancephone.Interfaces;
+using esperancephone.Managers;
 using esperancephone.Services;
 using esperancephone.ViewModels;
 
@@ -21,6 +22,7 @@ namespace esperancephone.Ioc
 
         protected virtual void RegisterDependencies(ContainerBuilder containerBuilder)
         {
+            containerBuilder.RegisterInstance(new EsperancePhoneApiManager()).As<IEsperancePhoneApiManager>();
             containerBuilder.RegisterInstance(new SettingsService()).As<ISettingsService>();
             containerBuilder.RegisterType<LoginViewModel>().SingleInstance();
         }

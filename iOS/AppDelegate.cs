@@ -8,6 +8,7 @@ using UIKit;
 
 using Microsoft.WindowsAzure.MobileServices;
 using System.Threading.Tasks;
+using Autofac;
 using esperancephone.Helpers;
 using esperancephone.Interfaces;
 using esperancephone.Ioc;
@@ -29,8 +30,14 @@ namespace esperancephone.iOS
                 // Sign in with Facebook login using a server-managed flow.
                 if (user == null)
                 {
-                    user = await TodoItemManager.DefaultManager.CurrentClient.LoginAsync(UIApplication.SharedApplication.KeyWindow.RootViewController,
-                        MobileServiceAuthenticationProvider.Google);
+                    using (var scope = AppContainer.Container.BeginLifetimeScope())
+                    {
+                        var apiManager = AppContainer.Container.Resolve<IEsperancePhoneApiManager>();
+                        user = await apiManager.CurrentClient.LoginAsync(UIApplication.SharedApplication.KeyWindow.RootViewController, MobileServiceAuthenticationProvider.Google);
+                    }
+
+                    //user = await TodoItemManager.DefaultManager.CurrentClient.LoginAsync(UIApplication.SharedApplication.KeyWindow.RootViewController,MobileServiceAuthenticationProvider.Google);
+
                     if (user != null)
                     {
                         UIAlertView avAlert = new UIAlertView("Authentication", "You are now logged in " + user.UserId, null, "OK", null);

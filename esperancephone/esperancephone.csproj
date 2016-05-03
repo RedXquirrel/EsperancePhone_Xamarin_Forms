@@ -34,8 +34,10 @@
     <Compile Include="EsperancePhoneFormsApplication.xaml.cs">
       <DependentUpon>EsperancePhoneFormsApplication.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\MobileServiceClientExtensions.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Interfaces\IAuthenticate.cs" />
+    <Compile Include="Interfaces\IEsperancePhoneApiManager.cs" />
     <Compile Include="Interfaces\ISettingsService.cs" />
     <Compile Include="Ioc\AppContainer.cs" />
     <Compile Include="Ioc\AppSetup.cs" />
@@ -44,6 +46,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Managers\EsperancePhoneApiManager.cs" />
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
