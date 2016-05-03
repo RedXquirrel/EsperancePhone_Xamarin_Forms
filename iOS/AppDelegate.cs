@@ -34,6 +34,7 @@ namespace esperancephone.iOS
                     {
                         var apiManager = AppContainer.Container.Resolve<IEsperancePhoneApiManager>();
                         user = await apiManager.CurrentClient.LoginAsync(UIApplication.SharedApplication.KeyWindow.RootViewController, MobileServiceAuthenticationProvider.Google);
+                        Settings.MobileServiceAuthenticationToken = user.MobileServiceAuthenticationToken;
                     }
 
                     //user = await TodoItemManager.DefaultManager.CurrentClient.LoginAsync(UIApplication.SharedApplication.KeyWindow.RootViewController,MobileServiceAuthenticationProvider.Google);

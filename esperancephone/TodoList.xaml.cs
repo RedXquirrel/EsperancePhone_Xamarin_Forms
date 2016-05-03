@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Autofac;
 using esperancephone.Helpers;
+using esperancephone.Interfaces;
+using esperancephone.Ioc;
 using Xamarin.Forms;
 
 namespace esperancephone
@@ -10,11 +13,19 @@ namespace esperancephone
     {
         bool authenticated = false;
 
+        private IEsperancePhoneApiManager _apiManager;
         TodoItemManager manager;
 
         public TodoList()
         {
             InitializeComponent();
+
+            using (var scope = AppContainer.Container.BeginLifetimeScope())
+            {
+                _apiManager = AppContainer.Container.Resolve<IEsperancePhoneApiManager>();
+            }
+
+            if(_apiManager != null) Debug.WriteLine($"INFORMATION: IEsperancePhoneApiManager loaded into TodoList ContentPage.");
 
             Debug.WriteLine($"INFORMATION: UserId = {Settings.UserId}");
 
@@ -36,8 +47,22 @@ namespace esperancephone
             bp.Children.Add(loginButton);
 
             // OnPlatform<T> doesn't currently support the "Windows" target platform, so we have this check here.
-            if (manager.IsOfflineEnabled &&
-                (Device.OS == TargetPlatform.Windows || Device.OS == TargetPlatform.WinPhone))
+            //if (manager.IsOfflineEnabled &&
+            //    (Device.OS == TargetPlatform.Windows || Device.OS == TargetPlatform.WinPhone))
+            //{
+            //    var syncButton = new Button
+            //    {
+            //        Text = "Sync items",
+            //        HeightRequest = 30
+            //    };
+            //    syncButton.Clicked += OnSyncItems;
+
+            //    buttonsPanel.Children.Add(syncButton);
+            //}
+            if (_apiManager != null 
+                && (_apiManager.IsOfflineEnabled 
+                && (Device.OS == TargetPlatform.Windows 
+                    || Device.OS == TargetPlatform.WinPhone)))
             {
                 var syncButton = new Button
                 {
@@ -158,7 +183,8 @@ namespace esperancephone
         {
             using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
             {
-                todoList.ItemsSource = await manager.GetTodoItemsAsync(syncItems);
+                //todoList.ItemsSource = await manager.GetTodoItemsAsync(syncItems);
+                todoList.ItemsSource = await _apiManager.GetTodoItemsAsync(syncItems);
             }
         }
 

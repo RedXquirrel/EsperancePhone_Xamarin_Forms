@@ -1,4 +1,6 @@
 // Helpers/Settings.cs
+
+using System.Diagnostics;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 
@@ -46,6 +48,7 @@ namespace esperancephone.Helpers
         {
             get
             {
+                Debug.WriteLine($"INFORMATION: UserId = {AppSettings.GetValueOrDefault<string>(UserIdKey, UserIdDefault)}");
                 return AppSettings.GetValueOrDefault<string>(UserIdKey, UserIdDefault);
             }
             set
@@ -58,6 +61,7 @@ namespace esperancephone.Helpers
         {
             get
             {
+                Debug.WriteLine($"INFORMATION: MobileServiceAuthenticationToken = {AppSettings.GetValueOrDefault<string>(MobileServiceAuthenticationTokenKey, MobileServiceAuthenticationTokenDefault)}");
                 return AppSettings.GetValueOrDefault<string>(MobileServiceAuthenticationTokenKey, MobileServiceAuthenticationTokenDefault);
             }
             set
