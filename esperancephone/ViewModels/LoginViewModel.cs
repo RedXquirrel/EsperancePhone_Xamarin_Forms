@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Autofac;
 using Com.Xamtastic.Patterns.SmallestMvvm;
 using esperancephone.Interfaces;
+using esperancephone.Ioc;
 using esperancephone.Localisation;
+using esperancephone.Pages;
 using Xamarin.Forms;
 
 namespace esperancephone.ViewModels
@@ -46,7 +49,7 @@ namespace esperancephone.ViewModels
                 // Set syncItems to true in order to synchronize the data on startup when running in offline mode
                 if (EsperancePhoneFormsApplication.Authenticated == true)
                 {
-                    await this.Navigator.PushAsync(new TodoList(), true);
+                    await this.Navigator.PushAsync(new MainPhonePage(), true);
                 }
             }));
         }

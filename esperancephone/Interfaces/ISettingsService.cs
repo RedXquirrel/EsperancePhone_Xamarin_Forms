@@ -9,5 +9,7 @@ namespace esperancephone.Interfaces
     public interface ISettingsService
     {
         string ApplicationName { get; set; }
+        string UserId { get; set; }
+        string MobileServiceAuthenticationToken { get; set; }
     }
 }

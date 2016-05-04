@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using esperancephone.Extensions;
 using esperancephone.Helpers;
 using esperancephone.Interfaces;
 using Microsoft.WindowsAzure.MobileServices;
@@ -44,7 +45,7 @@ namespace esperancephone.Managers
 #endif
         }
 
-        private void CreateCurrentUser()
+        private async void CreateCurrentUser()
         {
             if (this._currentClient.CurrentUser != null)
             {
@@ -57,10 +58,24 @@ namespace esperancephone.Managers
                 this._currentClient.CurrentUser = new MobileServiceUser(Settings.UserId);
                 this._currentClient.CurrentUser.MobileServiceAuthenticationToken = Settings.MobileServiceAuthenticationToken;
             }
+
+        }
+
+        public async Task SaveTaskAsync(TodoItem item)
+        {
+            if (item.Id == null)
+            {
+                await todoTable.InsertAsync(item);
+            }
+            else
+            {
+                await todoTable.UpdateAsync(item);
+            }
         }
 
         public async Task<ObservableCollection<TodoItem>> GetTodoItemsAsync(bool syncItems = false)
         {
+            Debug.WriteLine($"JWT: {this.todoTable.MobileServiceClient.CurrentUser.MobileServiceAuthenticationToken.GetJWT()}");
             //CreateCurrentUser();
             try
             {

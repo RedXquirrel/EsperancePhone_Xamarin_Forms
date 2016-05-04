@@ -41,7 +41,13 @@ namespace esperancephone
 
             if (Authenticated)
             {
-                MainPage = new NavigationPage(new TodoList());
+                MainPage = new NavigationPage(new MainPhonePage());
+
+                using (var scope = AppContainer.Container.BeginLifetimeScope())
+                {
+                    var service = AppContainer.Container.Resolve<INavigationService>();
+                    service.RootNavigation = MainPage.Navigation;
+                }
             }
             else
             {

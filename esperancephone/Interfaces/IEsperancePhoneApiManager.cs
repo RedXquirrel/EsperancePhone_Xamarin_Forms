@@ -10,5 +10,8 @@ namespace esperancephone.Interfaces
         bool IsOfflineEnabled { get; }
 
         Task<ObservableCollection<TodoItem>> GetTodoItemsAsync(bool syncItems = false);
+        Task SaveTaskAsync(TodoItem item);
+
+
     }
 }

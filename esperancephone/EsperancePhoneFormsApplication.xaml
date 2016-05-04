@@ -1,6 +1,91 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="esperancephone.EsperancePhoneFormsApplication">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+             x:Class="esperancephone.EsperancePhoneFormsApplication"
+             xmlns:pages="clr-namespace:esperancephone.Pages;assembly=esperancephone"
+             xmlns:local="clr-namespace:esperancephone;assembly=esperancephone"
+             xmlns:views="clr-namespace:esperancephone.Views;assembly=esperancephone">
+<Application.Resources>
+  <ResourceDictionary>
+
+    <x:Double x:Key="StandardTitleFontSizeDoublePhone">18</x:Double>
+    <x:Double x:Key="StandardTitleFontSizeDoubleTablet">40</x:Double>
+    <x:Double x:Key="StandardTitleFontSizeDoubleDesktop">60</x:Double>
+
+    <x:Int32 x:Key="StandardTitleFontSizeIntPhone">18</x:Int32>
+    <x:Int32 x:Key="StandardTitleFontSizeIntTablet">18</x:Int32>
+    <x:Int32 x:Key="StandardTitleFontSizeIntDesktop">18</x:Int32>
+
+    <Color x:Key="CaptainXamtasticBrandRedColor">#c60c30</Color>
+    <Color x:Key="PaperviewBrandBlueColor">#002f5f</Color>
+
+    <Color x:Key="StandardBackgroundColorPhone">Aqua</Color>
+    <Color x:Key="StandardBackgroundColorTablet">Green</Color>
+    <Color x:Key="StandardBackgroundColorDesktop">Blue</Color>
+
+    <ControlTemplate x:Key="StandardMasterDetailNavigationTemplate">
+      <StackLayout BackgroundColor="{StaticResource CaptainXamtasticBrandRedColor}">
+        <Grid Padding="5">
+          <views:Hamburger HorizontalOptions="Start" IconColor="White" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.MasterDetailCommand, Mode=TwoWay}" />
+          <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.Title}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+        </Grid>
+        <ContentPresenter HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+      </StackLayout>
+    </ControlTemplate>
+
+    <Style TargetType="local:TodoList" x:Key="ToDoListPageStandardMasterDetailNavigationStyle">
+      <Style.Setters>
+        <Setter Property="ControlTemplate" Value="{StaticResource StandardMasterDetailNavigationTemplate}" />
+      </Style.Setters>
+    </Style>
+
+    <Style TargetType="pages:DiallerPage" x:Key="DiallerPageStandardMasterDetailNavigationStyle">
+      <Style.Setters>
+        <Setter Property="ControlTemplate" Value="{StaticResource StandardMasterDetailNavigationTemplate}" />
+      </Style.Setters>
+    </Style>
+ 
+    <Style TargetType="pages:PersonancePage" x:Key="PersonancePageStandardMasterDetailNavigationStyle">
+      <Style.Setters>
+        <Setter Property="ControlTemplate" Value="{StaticResource StandardMasterDetailNavigationTemplate}" />
+      </Style.Setters>
+    </Style>
+
+    <Style TargetType="pages:FaqPage" x:Key="FaqPageStandardMasterDetailNavigationStyle">
+      <Style.Setters>
+        <Setter Property="ControlTemplate" Value="{StaticResource StandardMasterDetailNavigationTemplate}" />
+      </Style.Setters>
+    </Style>
+
+    <Style TargetType="pages:ContactUsPage" x:Key="ContactUsPageStandardMasterDetailNavigationStyle">
+      <Style.Setters>
+        <Setter Property="ControlTemplate" Value="{StaticResource StandardMasterDetailNavigationTemplate}" />
+      </Style.Setters>
+    </Style>
+
+    <Style TargetType="pages:AboutCaptainXamtasticPage" x:Key="AboutCaptainXamtasticPageStandardMasterDetailNavigationStyle">
+      <Style.Setters>
+        <Setter Property="ControlTemplate" Value="{StaticResource StandardMasterDetailNavigationTemplate}" />
+      </Style.Setters>
+    </Style>
+
+
+    <Style TargetType="ContentView" x:Key="ContentViewStandardMasterDetailNavigationStyle">
+      <Style.Setters>
+        <Setter Property="ControlTemplate" Value="{StaticResource StandardMasterDetailNavigationTemplate}" />
+      </Style.Setters>
+    </Style>
+
+    <ControlTemplate x:Key="BorderTemplate">
+      <StackLayout VerticalOptions="Fill" BackgroundColor="Gray">
+        <BoxView HeightRequest="30" Color="Red" HorizontalOptions="Fill" />
+        <BoxView HeightRequest="30" Color="Green" HorizontalOptions="Fill" />
+        <BoxView HeightRequest="30" Color="Blue" HorizontalOptions="Fill" />
+        <ContentPresenter />
+        <BoxView HeightRequest="30" Color="Yellow" HorizontalOptions="Fill" />
+      </StackLayout>
+    </ControlTemplate>
+ 
+  </ResourceDictionary>
+</Application.Resources>
 </Application>

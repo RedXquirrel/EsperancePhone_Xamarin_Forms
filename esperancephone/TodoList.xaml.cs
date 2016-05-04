@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Autofac;
+using esperancephone.Extensions;
 using esperancephone.Helpers;
 using esperancephone.Interfaces;
 using esperancephone.Ioc;
@@ -14,7 +15,6 @@ namespace esperancephone
         bool authenticated = false;
 
         private IEsperancePhoneApiManager _apiManager;
-        TodoItemManager manager;
 
         public TodoList()
         {
@@ -28,8 +28,6 @@ namespace esperancephone
             if(_apiManager != null) Debug.WriteLine($"INFORMATION: IEsperancePhoneApiManager loaded into TodoList ContentPage.");
 
             Debug.WriteLine($"INFORMATION: UserId = {Settings.UserId}");
-
-            manager = TodoItemManager.DefaultManager;
 
             var loginButton = new Button
             {
@@ -97,15 +95,15 @@ namespace esperancephone
         // Data methods
         async Task AddItem(TodoItem item)
         {
-            await manager.SaveTaskAsync(item);
-            todoList.ItemsSource = await manager.GetTodoItemsAsync();
+            await _apiManager.SaveTaskAsync(item);
+            todoList.ItemsSource = await _apiManager.GetTodoItemsAsync();
         }
 
         async Task CompleteItem(TodoItem item)
         {
             item.Done = true;
-            await manager.SaveTaskAsync(item);
-            todoList.ItemsSource = await manager.GetTodoItemsAsync();
+            await _apiManager.SaveTaskAsync(item);
+            todoList.ItemsSource = await _apiManager.GetTodoItemsAsync();
         }
 
         public async void OnAdd(object sender, EventArgs e)
@@ -183,7 +181,8 @@ namespace esperancephone
         {
             using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
             {
-                //todoList.ItemsSource = await manager.GetTodoItemsAsync(syncItems);
+                var isExpired = _apiManager.CurrentClient.CurrentUser.MobileServiceAuthenticationToken.IsTokenExpired();
+                Debug.WriteLine($"INFORMATION: TODOLIST MobileServiceAuthenticationToken IsExpired: {isExpired.ToString()}");
                 todoList.ItemsSource = await _apiManager.GetTodoItemsAsync(syncItems);
             }
         }

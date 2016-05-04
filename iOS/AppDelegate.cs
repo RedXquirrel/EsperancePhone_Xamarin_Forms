@@ -27,7 +27,7 @@ namespace esperancephone.iOS
             try
             {
                 Debug.WriteLine($"INFORMATION (AppDelegate): UserId = {Settings.UserId}");
-                // Sign in with Facebook login using a server-managed flow.
+                Debug.WriteLine($"INFORMATION (AppDelegate): Authentication Token = {Settings.MobileServiceAuthenticationToken}");
                 if (user == null)
                 {
                     using (var scope = AppContainer.Container.BeginLifetimeScope())
@@ -35,9 +35,10 @@ namespace esperancephone.iOS
                         var apiManager = AppContainer.Container.Resolve<IEsperancePhoneApiManager>();
                         user = await apiManager.CurrentClient.LoginAsync(UIApplication.SharedApplication.KeyWindow.RootViewController, MobileServiceAuthenticationProvider.Google);
                         Settings.MobileServiceAuthenticationToken = user.MobileServiceAuthenticationToken;
-                    }
 
-                    //user = await TodoItemManager.DefaultManager.CurrentClient.LoginAsync(UIApplication.SharedApplication.KeyWindow.RootViewController,MobileServiceAuthenticationProvider.Google);
+                        var oauthMeJson = await apiManager.CurrentClient.InvokeApiAsync("/.auth/me");
+                        Debug.WriteLine($"INFORMATION: /.auth/me is: {oauthMeJson}");
+                    }
 
                     if (user != null)
                     {
@@ -48,7 +49,8 @@ namespace esperancephone.iOS
                         
                     }
                 }
-
+                Debug.WriteLine($"INFORMATION (AppDelegate): UserId = {Settings.UserId}");
+                Debug.WriteLine($"INFORMATION (AppDelegate): Authentication Token = {Settings.MobileServiceAuthenticationToken}");
                 success = true;
             }
             catch (Exception ex)

@@ -25,7 +25,7 @@ namespace esperancephone.Pages
                 this.BindingContext = AppContainer.Container.Resolve<LoginViewModel>();
             }
 
-                Debug.WriteLine($"INFORMATION: ViewModelType is {this.BindingContext.GetType().Name}");
+            Debug.WriteLine($"INFORMATION: ViewModelType is {this.BindingContext.GetType().Name}");
 
             ((StandardViewModel) this.BindingContext).Navigator = (INavigation) this.Navigation;
         }

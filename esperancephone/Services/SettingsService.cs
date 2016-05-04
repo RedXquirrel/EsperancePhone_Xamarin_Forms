@@ -15,5 +15,17 @@ namespace esperancephone.Services
             get { return Settings.ApplicationName; }
             set { Settings.ApplicationName = value; }
         }
+
+        public string UserId
+        {
+            get { return Settings.UserId; }
+            set { Settings.UserId = value; }
+        }
+
+        public string MobileServiceAuthenticationToken
+        {
+            get { return Settings.MobileServiceAuthenticationToken; }
+            set { Settings.MobileServiceAuthenticationToken = value; }
+        }
     }
 }
