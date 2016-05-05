@@ -30,7 +30,11 @@ namespace esperancephone.Droid
             var success = false;
             try
             {
-                // Sign in with Facebook login using a server-managed flow.
+                // ToDo: Replace following deprecated ('obseleted') class.
+                Android.Webkit.CookieSyncManager.CreateInstance(Android.App.Application.Context);
+                Android.Webkit.CookieManager.Instance.RemoveAllCookie();
+
+                // Sign in with Google login using a server-managed flow.
                 user = await TodoItemManager.DefaultManager.CurrentClient.LoginAsync(this,
                     MobileServiceAuthenticationProvider.Google);
                 CreateAndShowDialog(string.Format("you are now logged in - {0}",
