@@ -33,6 +33,12 @@ namespace esperancephone.iOS
                     using (var scope = AppContainer.Container.BeginLifetimeScope())
                     {
                         var apiManager = AppContainer.Container.Resolve<IEsperancePhoneApiManager>();
+                        var store = NSHttpCookieStorage.SharedStorage;
+                        var cookies = store.Cookies;
+                        foreach (NSHttpCookie cookie in cookies)
+                        {
+                            store.DeleteCookie(cookie);
+                        }
                         user = await apiManager.CurrentClient.LoginAsync(UIApplication.SharedApplication.KeyWindow.RootViewController, MobileServiceAuthenticationProvider.Google);
                         Settings.MobileServiceAuthenticationToken = user.MobileServiceAuthenticationToken;
 
