@@ -5,6 +5,7 @@
              xmlns:pages="clr-namespace:esperancephone.Pages;assembly=esperancephone"
              xmlns:local="clr-namespace:esperancephone;assembly=esperancephone"
              MasterBehavior="Popover"
+             BackgroundColor="{StaticResource CaptainXamtasticBrandRedColor}"
                   >
   <MasterDetailPage.Master>
     <pages:MainIndexMasterPage x:Name="masterPhonePage" Title="Index" />

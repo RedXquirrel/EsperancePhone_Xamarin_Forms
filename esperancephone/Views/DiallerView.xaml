@@ -5,8 +5,8 @@
              BackgroundColor="Transparent" 
              >
   <RelativeLayout x:Name="DigitsPaneRelativeLayout" Opacity="0.3" BackgroundColor="Transparent"></RelativeLayout>
-  <RelativeLayout x:Name="DialPaneRelativeLayout" BackgroundColor="Gray">
-    <RelativeLayout x:Name="DialPadRelativeLayout" BackgroundColor="White" />
+  <RelativeLayout x:Name="DialPaneRelativeLayout">
+    <RelativeLayout x:Name="DialPadRelativeLayout" />
   </RelativeLayout>
-  <RelativeLayout x:Name="OptionsPaneRelativeLayout" BackgroundColor="Transparent"></RelativeLayout>
+  <RelativeLayout x:Name="OptionsPaneRelativeLayout"></RelativeLayout>
 </RelativeLayout>

@@ -18,6 +18,8 @@
 
     <Color x:Key="CaptainXamtasticBrandRedColor">#c60c30</Color>
     <Color x:Key="PaperviewBrandBlueColor">#002f5f</Color>
+    
+    <Color x:Key="DiallerButtonTextColor">White</Color>
 
     <Color x:Key="StandardBackgroundColorPhone">Aqua</Color>
     <Color x:Key="StandardBackgroundColorTablet">Green</Color>
