@@ -14,7 +14,7 @@
     <BoxView Grid.Column="0" Grid.Row="0" Color="Transparent" Opacity="0.8" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
     <Label Text="{Binding IconKey}" FontSize="Large" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" Grid.Column="0" Grid.Row="0" x:Name="IconLabel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
     <StackLayout  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Fill">
-      <Label Text="{Binding Title}" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" VerticalOptions="Center" HorizontalOptions="Start" />
+      <Label Text="{Binding Title}" FontAttributes="Bold" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" VerticalOptions="Center" HorizontalOptions="Start" />
       <Label Text="{Binding SubTitle}" FontAttributes="Italic" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" FontSize="Micro" VerticalOptions="Center" HorizontalOptions="EndAndExpand" />
       <BoxView WidthRequest="5" />
     </StackLayout>
