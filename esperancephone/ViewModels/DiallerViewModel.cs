@@ -10,7 +10,7 @@ namespace esperancephone.ViewModels
     {
         public DiallerViewModel()
         {
-            this.Title = "Dialler Page";
+            this.Title = "Esperance Dialler";
         }
     }
 }

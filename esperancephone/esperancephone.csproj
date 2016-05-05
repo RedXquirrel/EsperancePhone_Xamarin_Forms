@@ -104,6 +104,12 @@
     <Compile Include="ViewModels\MasterPageIndexItemViewModel.cs" />
     <Compile Include="ViewModels\PersonanceViewModel.cs" />
     <Compile Include="ViewModels\StandardViewModel.cs" />
+    <Compile Include="Views\DiallerButtonView.xaml.cs">
+      <DependentUpon>DiallerButtonView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DiallerView.xaml.cs">
+      <DependentUpon>DiallerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Hamburger.xaml.cs">
       <DependentUpon>Hamburger.xaml</DependentUpon>
     </Compile>
@@ -246,6 +252,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\AboutCaptainXamtasticPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DiallerButtonView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DiallerView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
