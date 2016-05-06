@@ -37,7 +37,7 @@ namespace esperancephone.DataSources
         {
             List<MasterDetailItemGroupDataSource> Groups = new List<MasterDetailItemGroupDataSource>
             {
-                new MasterDetailItemGroupDataSource("Phone", "1", "Make your call especially personant")
+                new MasterDetailItemGroupDataSource("Phone", "1", "Make your calls especially personant")
                 {
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf098", Title = "Dialler", PageType = typeof(DiallerPage) },
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf06e", Title = "Personance", PageType = typeof(PersonancePage) },

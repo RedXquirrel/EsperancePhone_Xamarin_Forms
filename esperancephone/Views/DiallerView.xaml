@@ -4,9 +4,16 @@
              x:Class="esperancephone.Views.DiallerView"
              BackgroundColor="Transparent" 
              >
-  <RelativeLayout x:Name="DigitsPaneRelativeLayout" Opacity="0.3" BackgroundColor="Transparent"></RelativeLayout>
+  <Grid x:Name="DigitsPaneRelativeLayout" Padding="30,10,30,0" IsVisible="{Binding KeyStack, Converter={StaticResource HasKeyStackConverter}}">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <Label x:Name="KeyStackLabel" FontSize="Large" FontAttributes="Bold" TextColor="White" Grid.Column="1" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+  </Grid>
   <RelativeLayout x:Name="DialPaneRelativeLayout">
-    <RelativeLayout x:Name="DialPadRelativeLayout" />
+  <RelativeLayout x:Name="DialPadRelativeLayout" />
   </RelativeLayout>
   <RelativeLayout x:Name="OptionsPaneRelativeLayout"></RelativeLayout>
 </RelativeLayout>

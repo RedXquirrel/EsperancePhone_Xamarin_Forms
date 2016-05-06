@@ -26,6 +26,7 @@ namespace esperancephone.Ioc
             containerBuilder.RegisterInstance(new EsperancePhoneApiManager()).As<IEsperancePhoneApiManager>();
             containerBuilder.RegisterInstance(new SettingsService()).As<ISettingsService>();
             containerBuilder.RegisterInstance(new NavigationService()).As<INavigationService>();
+            containerBuilder.RegisterInstance(new DiallerService()).As<IDiallerService>();
             containerBuilder.RegisterType<LoginViewModel>().SingleInstance();
             containerBuilder.RegisterType<DiallerViewModel>().SingleInstance();
             containerBuilder.RegisterType<PersonanceViewModel>().SingleInstance();

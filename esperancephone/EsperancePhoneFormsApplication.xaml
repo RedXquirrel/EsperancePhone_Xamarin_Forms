@@ -4,9 +4,13 @@
              x:Class="esperancephone.EsperancePhoneFormsApplication"
              xmlns:pages="clr-namespace:esperancephone.Pages;assembly=esperancephone"
              xmlns:local="clr-namespace:esperancephone;assembly=esperancephone"
-             xmlns:views="clr-namespace:esperancephone.Views;assembly=esperancephone">
+             xmlns:views="clr-namespace:esperancephone.Views;assembly=esperancephone"
+             xmlns:converters="clr-namespace:esperancephone.Converters;assembly=esperancephone"
+             >
 <Application.Resources>
   <ResourceDictionary>
+    
+    <converters:HasKeyStackConverter x:Key="HasKeyStackConverter" />
 
     <x:Double x:Key="StandardTitleFontSizeDoublePhone">18</x:Double>
     <x:Double x:Key="StandardTitleFontSizeDoubleTablet">40</x:Double>

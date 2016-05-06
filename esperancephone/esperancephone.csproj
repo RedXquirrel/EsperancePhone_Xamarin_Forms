@@ -33,6 +33,7 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Converters\HasKeyStackConverter.cs" />
     <Compile Include="DataSources\MasterDetailItemGroupDataSource.cs" />
     <Compile Include="DataTemplates\CustomCells\FunctionCell.xaml.cs">
       <DependentUpon>FunctionCell.xaml</DependentUpon>
@@ -47,6 +48,7 @@
     <Compile Include="Extensions\MobileServiceClientExtensions.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Interfaces\IAuthenticate.cs" />
+    <Compile Include="Interfaces\IDiallerService.cs" />
     <Compile Include="Interfaces\IEsperancePhoneApiManager.cs" />
     <Compile Include="Interfaces\INavigationService.cs" />
     <Compile Include="Interfaces\ISettingsService.cs" />
@@ -58,6 +60,7 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Managers\EsperancePhoneApiManager.cs" />
+    <Compile Include="Models\Keys.cs" />
     <Compile Include="Pages\AboutCaptainXamtasticPage.xaml.cs">
       <DependentUpon>AboutCaptainXamtasticPage.xaml</DependentUpon>
     </Compile>
@@ -86,6 +89,7 @@
       <DependentUpon>PersonancePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DiallerService.cs" />
     <Compile Include="Services\MasterPageIndexService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\SettingsService.cs" />

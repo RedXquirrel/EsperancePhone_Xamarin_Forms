@@ -10,7 +10,11 @@
   </ContentPage.Padding>  
 <Grid BackgroundColor="Transparent">
   <RelativeLayout>
-    <views:DiallerView IsVisible="True" />
+    <views:DiallerView 
+      KeyPressedCommand="{Binding KeyPressedCommand}" 
+      KeyStack="{Binding KeyStack, Mode=TwoWay}" 
+      PopCommand="{Binding PopCommand}"
+      IsVisible="True" />
   </RelativeLayout>
 </Grid>
 </ContentPage>
