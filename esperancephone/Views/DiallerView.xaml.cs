@@ -12,6 +12,8 @@ namespace esperancephone.Views
 {
     public partial class DiallerView : RelativeLayout
     {
+        public Page HostPage { get; set; }
+
         private static readonly List<DiallerButtonView> Keys = new List<DiallerButtonView>();
 
         private static double _margin;
@@ -249,14 +251,58 @@ namespace esperancephone.Views
             }
         }
 
-        private void AddContact(View arg1, object arg2)
+        private async void AddContact(View arg1, object arg2)
         {
-            _addContactLabel.TextColor = Color.Lime;
+            TapLabelAnimation(_addContactLabel);
+
+            var action = await HostPage.DisplayActionSheet("Creating contact with Especial Personance", "Cancel", null, "Create New Contact", "Add to Existing Contact");
+            Debug.WriteLine("Action: " + action);
+            await HostPage.DisplayAlert("Not Implemented", $"You selected {action}", "OK");
         }
 
         private void PopItem(View s, object e)
         {
+            TapLabelAnimation(_popItemLabel);
             this.PopCommand?.Execute(null);
+        }
+
+        private double _tapLabelAnimationFontSizeCache;
+
+        private void TapLabelAnimation(Label label)
+        {
+            _tapLabelAnimationFontSizeCache = label.FontSize;
+            this.Animate(
+                name: "TapLabelAnimation",
+                animation: new Xamarin.Forms.Animation((val) =>
+                {
+                    label.FontSize = _tapLabelAnimationFontSizeCache - 4;
+                }),
+                easing: Easing.CubicOut,
+                length: 250,
+                finished: (val, b) =>
+                {
+                    ResetAnimation(label);
+                },
+                repeat: () => { return false; }
+                );
+        }
+
+        private void ResetAnimation(Label label)
+        {
+            this.Animate(
+                name: "TapLabelResetAnimation",
+                animation: new Xamarin.Forms.Animation((val) =>
+                {
+                    label.FontSize = _tapLabelAnimationFontSizeCache;
+                }),
+                easing: Easing.CubicIn,
+                length: 250,
+                finished: (val, b) =>
+                {
+                    //TappedCommand?.Execute(null);
+                },
+                repeat: () => { return false; }
+                );
         }
     }
 }
