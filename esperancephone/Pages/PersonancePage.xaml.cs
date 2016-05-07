@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using esperancephone.Interfaces;
 using esperancephone.Ioc;
 using esperancephone.ViewModels;
 using Xamarin.Forms;
@@ -19,12 +20,12 @@ namespace esperancephone.Pages
 
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
-                this.BindingContext = AppContainer.Container.Resolve<PersonanceViewModel>();
+                this.BindingContext = scope.Resolve<PersonanceViewModel>();
+
+                Debug.WriteLine($"INFORMATION: ViewModelType is {this.BindingContext.GetType().Name}");
+
+                ((StandardViewModel)this.BindingContext).Navigator = (INavigation)this.Navigation;
             }
-
-            Debug.WriteLine($"INFORMATION: ViewModelType is {this.BindingContext.GetType().Name}");
-
-            ((StandardViewModel)this.BindingContext).Navigator = (INavigation)this.Navigation;
         }
     }
 }

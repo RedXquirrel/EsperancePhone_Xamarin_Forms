@@ -10,6 +10,7 @@
 <Application.Resources>
   <ResourceDictionary>
     
+    <converters:BindingContextConverter x:Key="BindingContextConverter" />
     <converters:HasKeyStackConverter x:Key="HasKeyStackConverter" />
 
     <x:Double x:Key="StandardTitleFontSizeDoublePhone">18</x:Double>
@@ -39,6 +40,16 @@
       </StackLayout>
     </ControlTemplate>
 
+    <ControlTemplate x:Key="StandardModalNavigationTemplate">
+      <StackLayout BackgroundColor="{StaticResource CaptainXamtasticBrandRedColor}">
+        <Grid Padding="5">
+          <views:Hamburger IconCharacter="{TemplateBinding BindingContext.CloseIconCharacter}" HorizontalOptions="End" IconColor="White" TappedCommand="{TemplateBinding BindingContext.CloseCommand, Mode=TwoWay}" />
+          <Label Text="{TemplateBinding BindingContext.Title}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+        </Grid>
+        <ContentPresenter HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+      </StackLayout>
+    </ControlTemplate>
+
     <Style TargetType="local:TodoList" x:Key="ToDoListPageStandardMasterDetailNavigationStyle">
       <Style.Setters>
         <Setter Property="ControlTemplate" Value="{StaticResource StandardMasterDetailNavigationTemplate}" />
@@ -56,6 +67,12 @@
         <Setter Property="ControlTemplate" Value="{StaticResource StandardMasterDetailNavigationTemplate}" />
       </Style.Setters>
     </Style>
+
+    <Style TargetType="pages:SelectPersonancePage" x:Key="SelectPersonancePageModalNavigationStyle">
+      <Style.Setters>
+        <Setter Property="ControlTemplate" Value="{StaticResource StandardModalNavigationTemplate}" />
+      </Style.Setters>
+    </Style>    
 
     <Style TargetType="pages:FaqPage" x:Key="FaqPageStandardMasterDetailNavigationStyle">
       <Style.Setters>

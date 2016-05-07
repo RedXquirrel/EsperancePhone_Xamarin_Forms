@@ -5,7 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Autofac;
+using esperancephone.Interfaces;
+using esperancephone.Ioc;
 using esperancephone.Models;
+using esperancephone.Pages;
 using Xamarin.Forms;
 
 namespace esperancephone.Views
@@ -141,6 +145,16 @@ namespace esperancephone.Views
         {
             InitializeComponent();
 
+            using (var scope = AppContainer.Container.BeginLifetimeScope())
+            {
+                var diallerService = AppContainer.Container.Resolve<IDiallerService>();
+                var navigationService = AppContainer.Container.Resolve<INavigationService>();
+                diallerService.CallAction = new Command<List<Keys>> (async(keys) =>
+                {
+                    await navigationService.CurrentPage.Navigation.PushModalAsync(new SelectPersonancePage());
+                });
+            }
+
             var sizeMedium = Device.GetNamedSize(NamedSize.Medium, typeof(Label));
 
             Grid addContactsGrid = new Grid() { Padding = 10 };
@@ -253,7 +267,7 @@ namespace esperancephone.Views
 
         private async void AddContact(View arg1, object arg2)
         {
-            TapLabelAnimation(_addContactLabel);
+            //TapLabelAnimation(_addContactLabel);
 
             var action = await HostPage.DisplayActionSheet("Creating contact with Especial Personance", "Cancel", null, "Create New Contact", "Add to Existing Contact");
             Debug.WriteLine("Action: " + action);
@@ -262,7 +276,7 @@ namespace esperancephone.Views
 
         private void PopItem(View s, object e)
         {
-            TapLabelAnimation(_popItemLabel);
+            //TapLabelAnimation(_popItemLabel);
             this.PopCommand?.Execute(null);
         }
 

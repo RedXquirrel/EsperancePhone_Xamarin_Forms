@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using esperancephone.Interfaces;
 using esperancephone.Ioc;
 using esperancephone.ViewModels;
 using Xamarin.Forms;
@@ -24,6 +25,8 @@ namespace esperancephone.Pages
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
                 this.BindingContext = AppContainer.Container.Resolve<DiallerViewModel>();
+                var navigationService = AppContainer.Container.Resolve<INavigationService>();
+                navigationService.CurrentPage = this;
             }
 
             Debug.WriteLine($"INFORMATION: ViewModelType is {this.BindingContext.GetType().Name}");

@@ -33,6 +33,7 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Converters\BindingContextConverter.cs" />
     <Compile Include="Converters\HasKeyStackConverter.cs" />
     <Compile Include="DataSources\MasterDetailItemGroupDataSource.cs" />
     <Compile Include="DataTemplates\CustomCells\FunctionCell.xaml.cs">
@@ -48,19 +49,23 @@
     <Compile Include="Extensions\MobileServiceClientExtensions.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Interfaces\IAuthenticate.cs" />
+    <Compile Include="Interfaces\IContact.cs" />
+    <Compile Include="Interfaces\IContactsService.cs" />
     <Compile Include="Interfaces\IDiallerService.cs" />
     <Compile Include="Interfaces\IEsperancePhoneApiManager.cs" />
     <Compile Include="Interfaces\INavigationService.cs" />
+    <Compile Include="Interfaces\IPhone.cs" />
     <Compile Include="Interfaces\ISettingsService.cs" />
     <Compile Include="Ioc\AppContainer.cs" />
-    <Compile Include="Ioc\AppSetup.cs" />
     <Compile Include="Localisation\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Managers\EsperancePhoneApiManager.cs" />
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Keys.cs" />
+    <Compile Include="Models\Phone.cs" />
     <Compile Include="Pages\AboutCaptainXamtasticPage.xaml.cs">
       <DependentUpon>AboutCaptainXamtasticPage.xaml</DependentUpon>
     </Compile>
@@ -88,6 +93,9 @@
     <Compile Include="Pages\PersonancePage.xaml.cs">
       <DependentUpon>PersonancePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SelectPersonancePage.xaml.cs">
+      <DependentUpon>SelectPersonancePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DiallerService.cs" />
     <Compile Include="Services\MasterPageIndexService.cs" />
@@ -107,6 +115,7 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MasterPageIndexItemViewModel.cs" />
     <Compile Include="ViewModels\PersonanceViewModel.cs" />
+    <Compile Include="ViewModels\SelectPersonanceViewModel.cs" />
     <Compile Include="ViewModels\StandardViewModel.cs" />
     <Compile Include="Views\DiallerButtonView.xaml.cs">
       <DependentUpon>DiallerButtonView.xaml</DependentUpon>
@@ -135,6 +144,14 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Contacts, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugin.Contacts.2.0.2-beta1\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.Contacts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Contacts.Abstractions, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugin.Contacts.2.0.2-beta1\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.Contacts.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Plugin.Settings, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -269,6 +286,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\DiallerView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\SelectPersonancePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

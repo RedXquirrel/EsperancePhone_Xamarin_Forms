@@ -23,11 +23,9 @@ namespace esperancephone
             Authenticator = authenticator;
         }
 
-        public EsperancePhoneFormsApplication(AppSetup setup)
+        public EsperancePhoneFormsApplication()
         {
             InitializeComponent();
-
-            AppContainer.Container = setup.CreateContainer();
 
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {

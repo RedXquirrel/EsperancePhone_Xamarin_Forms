@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Windows.Input;
 using esperancephone.Interfaces;
 using esperancephone.Models;
 
@@ -9,6 +10,17 @@ namespace esperancephone.Services
     public class DiallerService : IDiallerService
     {
         private readonly IList<Keys> _stackKeys = new List<Keys>();
+
+        public ICommand CallAction { get; set; }
+        public IList<Keys> KeyStack { get { return _stackKeys; } }
+
+        public Guid ServiceInstanceId { get; protected set; }
+
+        public DiallerService()
+        {
+            this.ServiceInstanceId = Guid.NewGuid();
+            Debug.WriteLine($"INFORMATION: DIALLERSERVICE instantiating with Id {ServiceInstanceId.ToString()}");
+        }
 
         public void Press(Keys key)
         {
@@ -41,9 +53,9 @@ namespace esperancephone.Services
             return _stackKeys;
         }
 
-        private static void Call()
+        private void Call()
         {
-
+            this.CallAction?.Execute(GetStack());
         }
     }
 }

@@ -45,30 +45,34 @@ namespace esperancephone.ViewModels
             Debug.WriteLine($"INFORMATION: ViewModelGuid = {guid}");
             this.Title = "Esperance Dialler";
 
-            using (var scope = AppContainer.Container.BeginLifetimeScope())
-            {
-                _diallerService = AppContainer.Container.Resolve<IDiallerService>();
-            }
-
             this.KeyPressedCommand = new Command<Keys>((key) =>
             {
                 Debug.WriteLine($"INFORMATION: ViewModelGuid = {guid}");
                 Debug.WriteLine($"INFORMATION: KEYPRESSEDCOMMAND: {key.ToString()}");
-                _diallerService.Press(key);
-                if (key != Keys.KeyCall)
+                using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
-                    KeyStack = _diallerService.GetStack().ToList();
-                }
-                else
-                {
-                    _diallerService.PopAllkeys();
+                    var diallerService = scope.Resolve<IDiallerService>();
+                    diallerService.Press(key);
+
+                    if (key != Keys.KeyCall)
+                    {
+                        KeyStack = diallerService.GetStack().ToList();
+                    }
+                    else
+                    {
+                        //diallerService.PopAllkeys();
+                    }
                 }
             });
 
             this.PopCommand = new Command(() =>
             {
-                _diallerService.PopKey();
-                KeyStack = _diallerService.GetStack().ToList();
+                using (var scope = AppContainer.Container.BeginLifetimeScope())
+                {
+                    var diallerService = scope.Resolve<IDiallerService>();
+                    diallerService.PopKey();
+                    KeyStack = diallerService.GetStack().ToList();
+                }
             });
         }
     }

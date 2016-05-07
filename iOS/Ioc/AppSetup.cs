@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
+using esperancephone.iOS.Services;
 using esperancephone.Interfaces;
 using esperancephone.Managers;
 using esperancephone.Pages;
 using esperancephone.Services;
 using esperancephone.ViewModels;
 
-namespace esperancephone.Ioc
+namespace esperancephone.iOS.Ioc
 {
     public class AppSetup
     {
@@ -26,10 +22,12 @@ namespace esperancephone.Ioc
             containerBuilder.RegisterInstance(new EsperancePhoneApiManager()).As<IEsperancePhoneApiManager>();
             containerBuilder.RegisterInstance(new SettingsService()).As<ISettingsService>();
             containerBuilder.RegisterInstance(new NavigationService()).As<INavigationService>();
-            containerBuilder.RegisterInstance(new DiallerService()).As<IDiallerService>();
+            containerBuilder.RegisterInstance(new DiallerService()).SingleInstance().As<IDiallerService>();
+            containerBuilder.RegisterInstance(new ContactService()).SingleInstance().As<IContactsService>();
             containerBuilder.RegisterType<LoginViewModel>().SingleInstance();
             containerBuilder.RegisterType<DiallerViewModel>().SingleInstance();
             containerBuilder.RegisterType<PersonanceViewModel>().SingleInstance();
+            containerBuilder.RegisterType<SelectPersonanceViewModel>().SingleInstance();
             containerBuilder.RegisterType<FaqViewModel>().SingleInstance();
             containerBuilder.RegisterType<ContactUsViewModel>().SingleInstance();
             containerBuilder.RegisterType<AboutCaptainXamtasticViewModel>().SingleInstance();
