@@ -15,6 +15,7 @@
   </ContentPage.Resources>
   <ContentPage.Content>
     <StackLayout Orientation="Vertical">
+      <SearchBar Placeholder="Search" />
       <ListView  x:Name="listView" SeparatorVisibility="None"
         GroupDisplayBinding="{Binding Title}"
         GroupShortNameBinding="{Binding ShortName}"
@@ -23,30 +24,6 @@
         SeparatorColor="{StaticResource CaptainXamtasticBrandRedColor}"
         ItemsSource="{Binding ContactGroups}"
         >
-        <ListView.Header>
-          <StackLayout Orientation="Vertical">
-            <Grid HorizontalOptions="Fill">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="0" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="10" />
-              </Grid.ColumnDefinitions>
-              <Grid.RowDefinitions>
-                <RowDefinition Height="10" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-              </Grid.RowDefinitions>
-              <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Source="logo-paperview.png" />
-              <Label Grid.Row="1" Grid.Column="2" Text="Esperance" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" VerticalOptions="Center" HorizontalOptions="Start" FontAttributes="Bold" FontSize="Large" />
-              <Label Grid.Row="2" Grid.Column="2" Text="by Captain Xamtastic" VerticalOptions="Center" HorizontalOptions="End" FontAttributes="Bold" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" />
-              <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="4" Source="logo-captainxamtastic.png" />
-            </Grid>
-            <BoxView HeightRequest="10" />
-          </StackLayout>
-        </ListView.Header>
         <ListView.GroupHeaderTemplate>
           <DataTemplate>
             <TextCell Text="{Binding Title}"
