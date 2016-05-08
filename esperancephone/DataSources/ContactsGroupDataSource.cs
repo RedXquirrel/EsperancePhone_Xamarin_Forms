@@ -39,7 +39,6 @@ namespace esperancephone.DataSources
                         FirstName = "My First Name",
                         LastName = "My Last Name"
                     },
-
                 },
                 new ContactsGroupDataSource("B", "B", string.Empty)
                 {

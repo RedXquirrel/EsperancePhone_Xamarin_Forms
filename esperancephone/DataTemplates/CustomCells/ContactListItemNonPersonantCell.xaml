@@ -2,6 +2,9 @@
 <ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="esperancephone.DataTemplates.CustomCells.ContactListItemNonPersonantCell">
+  <ViewCell.ContextActions>
+    <MenuItem  Text="Call" />
+  </ViewCell.ContextActions>
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="40" />

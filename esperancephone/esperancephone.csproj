@@ -33,6 +33,9 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Behaviors\BehaviorBase.cs" />
+    <Compile Include="Behaviors\ListViewItemSelectedBehavior.cs" />
+    <Compile Include="Behaviors\ListViewItemTappedBehavior.cs" />
     <Compile Include="Converters\BindingContextConverter.cs" />
     <Compile Include="Converters\HasKeyStackConverter.cs" />
     <Compile Include="DataSources\ContactsGroupDataSource.cs" />

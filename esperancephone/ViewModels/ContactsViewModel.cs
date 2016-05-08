@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Windows.Input;
 using Autofac;
 using esperancephone.DataSources;
 using esperancephone.Interfaces;
 using esperancephone.Ioc;
 using esperancephone.Models;
+using Xamarin.Forms;
 
 namespace esperancephone.ViewModels
 {
@@ -19,7 +22,17 @@ namespace esperancephone.ViewModels
             set { _contacts = value; RaisePropertyChanged(); }
         }
 
-        //public IList<ContactsGroupDataSource> ContactGroups => ContactsGroupDataSource.Groups;
+        public ICommand SelectedContactCommand => new Command<ContactListItemViewModel>((item) =>
+        {
+            Debug.WriteLine($"INFORMATION: Selected Contact Display Name is {item.DisplayName}");
+        });
+
+        private IContact _selectedContact;
+        public IContact SelectedContact
+        {
+            get { return _selectedContact; }
+            set { _selectedContact = value; RaisePropertyChanged(); }
+        }
 
         private IList<ContactsGroupDataSource> _contactGroups;
         public IList<ContactsGroupDataSource> ContactGroups
@@ -31,8 +44,8 @@ namespace esperancephone.ViewModels
         public ContactsViewModel()
         {
             this.Title = "Contacts";
-            GetContacts();
 
+            GetContacts();
         }
 
         private async void GetContacts()
