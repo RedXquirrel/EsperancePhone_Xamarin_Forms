@@ -5,6 +5,9 @@
 				Title="Azure Todo"
         Style="{StaticResource ToDoListPageStandardMasterDetailNavigationStyle}"      
         >
+  <ContentPage.Padding>
+    0,20,0,0
+  </ContentPage.Padding>
   <Grid RowSpacing="0">
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
@@ -16,23 +19,24 @@
                        IsVisible="False"
                        IsEnabled="True"
                        x:Name="syncIndicator"/>
-    <StackLayout Grid.Row="0" BackgroundColor="#5ABAFF" Padding="10,30,10,5">
-      <Label TextColor="#555555" Text="{Binding ApplicationName}" />
+    <StackLayout Grid.Row="0" Padding="10,0,10,0" BackgroundColor="White">
       <Grid>
         <Grid.ColumnDefinitions>
           <ColumnDefinition/>
           <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Entry x:Name="newItemName"
-                  Placeholder="Item name" />
+        <Entry x:Name="newItemName" Margin="0" TextColor="{StaticResource CaptainXamtasticBrandRedColor}"
+                  Placeholder="To Do Item" />
         <StackLayout x:Name="buttonsPanel" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="StartAndExpand">
-          <Button Text="+"
+          <Button x:Name="AddButton"
+                  TextColor="{StaticResource CaptainXamtasticBrandRedColor}"
+                  FontFamily="FontAwesome"
                   MinimumHeightRequest="30"
                   Clicked="OnAdd" />
         </StackLayout>
       </Grid>
     </StackLayout>
-    <ListView x:Name="todoList"
+    <ListView x:Name="todoList" SeparatorColor="{StaticResource CaptainXamtasticBrandRedColor}"
 				ItemSelected="OnSelected"
 				IsPullToRefreshEnabled="true" Refreshing="OnRefresh"
 				Grid.Row="1">
@@ -44,7 +48,7 @@
             </ViewCell.ContextActions>
             <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal" Padding="15,5,0,0">
               <StackLayout Padding="5,0,0,0" VerticalOptions="StartAndExpand" Orientation="Vertical">
-                <Label Text="{Binding Name}"  />
+                <Label Text="{Binding Name}" TextColor="{StaticResource CaptainXamtasticBrandRedColor}"  />
               </StackLayout>
             </StackLayout>
           </ViewCell>

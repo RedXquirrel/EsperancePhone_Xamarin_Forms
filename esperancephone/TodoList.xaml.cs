@@ -6,6 +6,7 @@ using esperancephone.Extensions;
 using esperancephone.Helpers;
 using esperancephone.Interfaces;
 using esperancephone.Ioc;
+using esperancephone.ViewModels;
 using Xamarin.Forms;
 
 namespace esperancephone
@@ -20,8 +21,16 @@ namespace esperancephone
         {
             InitializeComponent();
 
+            AddButton.Text = "\uf196";
+
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
+                this.BindingContext = scope.Resolve<ToDoListViewModel>();
+
+                Debug.WriteLine($"INFORMATION: ViewModelType is {this.BindingContext.GetType().Name}");
+
+                ((StandardViewModel)this.BindingContext).Navigator = (INavigation)this.Navigation;
+
                 _apiManager = AppContainer.Container.Resolve<IEsperancePhoneApiManager>();
             }
 
@@ -29,20 +38,11 @@ namespace esperancephone
 
             Debug.WriteLine($"INFORMATION: UserId = {Settings.UserId}");
 
-            var loginButton = new Button
-            {
-                Text = "Login",
-                TextColor = Xamarin.Forms.Color.Black,
-                BackgroundColor = Xamarin.Forms.Color.Lime,
-            };
-            loginButton.Clicked += loginButton_Clicked;
-
             Xamarin.Forms.StackLayout bp = buttonsPanel as StackLayout;
             Xamarin.Forms.StackLayout bpParentStack = bp.Parent.Parent as StackLayout;
 
             bpParentStack.Padding = new Xamarin.Forms.Thickness(10, 30, 10, 20);
             bp.Orientation = StackOrientation.Vertical;
-            bp.Children.Add(loginButton);
 
             // OnPlatform<T> doesn't currently support the "Windows" target platform, so we have this check here.
             //if (manager.IsOfflineEnabled &&
@@ -71,16 +71,6 @@ namespace esperancephone
 
                 buttonsPanel.Children.Add(syncButton);
             }
-        }
-
-        async void loginButton_Clicked(object sender, EventArgs e)
-        {
-            if (EsperancePhoneFormsApplication.Authenticator != null)
-                authenticated = await EsperancePhoneFormsApplication.Authenticator.Authenticate();
-
-            // Set syncItems to true in order to synchronize the data on startup when running in offline mode
-            if (authenticated == true)
-                await RefreshItems(true, syncItems: false);
         }
 
         protected override async void OnAppearing()

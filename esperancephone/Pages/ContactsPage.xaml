@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="esperancephone.Pages.ContactsPage"
+             xmlns:dataTemplates="clr-namespace:esperancephone.DataTemplates;assembly=esperancephone"
+             Style="{StaticResource ContactsPageStandardMasterDetailNavigationStyle}"
+             >
+  <ContentPage.Padding>
+    0,20,0,0
+  </ContentPage.Padding>
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <dataTemplates:ContactListDataTemplateSelector x:Key="ContactListDataTemplateSelector" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.Content>
+    <StackLayout Orientation="Vertical">
+      <ListView  x:Name="listView" SeparatorVisibility="None"
+        GroupDisplayBinding="{Binding Title}"
+        GroupShortNameBinding="{Binding ShortName}"
+        IsGroupingEnabled="true"
+        ItemTemplate="{StaticResource ContactListDataTemplateSelector}"
+        SeparatorColor="{StaticResource CaptainXamtasticBrandRedColor}"
+        ItemsSource="{Binding ContactGroups}"
+        >
+        <ListView.Header>
+          <StackLayout Orientation="Vertical">
+            <Grid HorizontalOptions="Fill">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="10" />
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Source="logo-paperview.png" />
+              <Label Grid.Row="1" Grid.Column="2" Text="Esperance" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" VerticalOptions="Center" HorizontalOptions="Start" FontAttributes="Bold" FontSize="Large" />
+              <Label Grid.Row="2" Grid.Column="2" Text="by Captain Xamtastic" VerticalOptions="Center" HorizontalOptions="End" FontAttributes="Bold" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" />
+              <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="4" Source="logo-captainxamtastic.png" />
+            </Grid>
+            <BoxView HeightRequest="10" />
+          </StackLayout>
+        </ListView.Header>
+        <ListView.GroupHeaderTemplate>
+          <DataTemplate>
+            <TextCell Text="{Binding Title}"
+            Detail="{Binding Subtitle}"
+            TextColor="{StaticResource CaptainXamtasticBrandRedColor}"
+            DetailColor="{StaticResource PaperviewBrandBlueColor}" />
+          </DataTemplate>
+        </ListView.GroupHeaderTemplate>
+      </ListView>
+    </StackLayout>
+  </ContentPage.Content>
+
+</ContentPage>

@@ -40,12 +40,7 @@ namespace esperancephone.iOS.Services
 
                 foreach (var contact in _book.Where(c => c.Phones.Any()))
                 {
-                    var phones = new List<Phone>();
-
-                    foreach (var phone in contact.Phones)
-                    {
-                        phones.Add(new Phone() { Label = phone.Label, Number = phone.Number});    
-                    }
+                    var phones = contact.Phones.Select(phone => new Phone() {Label = phone.Label, Number = phone.Number}).ToList();
 
                     contacts.Add(new Contact() { DisplayName = contact.DisplayName, FirstName = contact.FirstName, LastName = contact.LastName, Phones = phones });
                 }

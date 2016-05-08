@@ -41,6 +41,7 @@ namespace esperancephone.DataSources
                 {
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf098", Title = "Dialler", PageType = typeof(DiallerPage) },
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf06e", Title = "Personance", PageType = typeof(PersonancePage) },
+                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf0c0", Title = "Contacts", PageType = typeof(ContactsPage) },
                     new MasterPageIndexItemViewModel { IsPage = false, IconKey = "\uf08b", Title = "Logout", Action =
                         async() =>
                         {
@@ -62,7 +63,11 @@ namespace esperancephone.DataSources
                         } },
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "FAQ", PageType = typeof(FaqPage) },
                 },
-                new MasterDetailItemGroupDataSource("Corporate", "2", "Say hello to Captain Xamtastic")
+                new MasterDetailItemGroupDataSource("Utilities", "2", "Manage yourself")
+                {
+                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf24a", Title = "To Do List", PageType = typeof(TodoList) },
+                },
+                new MasterDetailItemGroupDataSource("Corporate", "3", "Say hello to Captain Xamtastic")
                 {
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf095", Title = "Contact Us", PageType = typeof(ContactUsPage) },
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "About", PageType = typeof(AboutCaptainXamtasticPage) },

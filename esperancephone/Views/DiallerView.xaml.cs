@@ -160,8 +160,8 @@ namespace esperancephone.Views
             Grid addContactsGrid = new Grid() { Padding = 10 };
             Grid popItemsGrid = new Grid() { Padding = 10 };
 
-            _addContactLabel = new Label() { Text = "\uf234", FontFamily = "FontAwesome", FontSize = sizeMedium, VerticalOptions = LayoutOptions.Center, TextColor = Color.White };
-            _popItemLabel = new Label() { Text = "\uf053\uf00d", FontFamily = "FontAwesome", FontSize = sizeMedium, VerticalOptions = LayoutOptions.Center, TextColor = Color.White };
+            _addContactLabel = new Label() { Text = "\uf234", FontFamily = "FontAwesome", FontSize = sizeMedium, VerticalOptions = LayoutOptions.Center, TextColor = (Color)Application.Current.Resources["CaptainXamtasticBrandRedColor"] };
+            _popItemLabel = new Label() { Text = "\uf053\uf00d", FontFamily = "FontAwesome", FontSize = sizeMedium, VerticalOptions = LayoutOptions.Center, TextColor = (Color)Application.Current.Resources["CaptainXamtasticBrandRedColor"] };
 
             addContactsGrid.GestureRecognizers.Add(new TapGestureRecognizer(AddContact));
             popItemsGrid.GestureRecognizers.Add(new TapGestureRecognizer(PopItem));
@@ -259,8 +259,8 @@ namespace esperancephone.Views
                     Keys.Add(button);
 
                     DialPadRelativeLayout.Children.Add(button, Constraint.RelativeToParent((parent) => (b%3)*(parent.Width/3)), // the remainder determines the column
-                        Constraint.RelativeToParent((parent) => (b/3)*(parent.Height/5)), // the division (with remainder discarded) determines the row
-                        Constraint.RelativeToParent((parent) => parent.Width/3), Constraint.RelativeToParent((parent) => parent.Height/5));
+                    Constraint.RelativeToParent((parent) => (b/3)*(parent.Height/5)), // the division (with remainder discarded) determines the row
+                    Constraint.RelativeToParent((parent) => parent.Width/3), Constraint.RelativeToParent((parent) => parent.Height/5));
                 }
             }
         }

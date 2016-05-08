@@ -35,7 +35,15 @@
   <ItemGroup>
     <Compile Include="Converters\BindingContextConverter.cs" />
     <Compile Include="Converters\HasKeyStackConverter.cs" />
+    <Compile Include="DataSources\ContactsGroupDataSource.cs" />
     <Compile Include="DataSources\MasterDetailItemGroupDataSource.cs" />
+    <Compile Include="DataTemplates\ContactListDataTemplateSelector.cs" />
+    <Compile Include="DataTemplates\CustomCells\ContactListItemNonPersonantCell.xaml.cs">
+      <DependentUpon>ContactListItemNonPersonantCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataTemplates\CustomCells\ContactListItemPersonantCell.xaml.cs">
+      <DependentUpon>ContactListItemPersonantCell.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataTemplates\CustomCells\FunctionCell.xaml.cs">
       <DependentUpon>FunctionCell.xaml</DependentUpon>
     </Compile>
@@ -68,6 +76,9 @@
     <Compile Include="Models\Phone.cs" />
     <Compile Include="Pages\AboutCaptainXamtasticPage.xaml.cs">
       <DependentUpon>AboutCaptainXamtasticPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ContactsPage.xaml.cs">
+      <DependentUpon>ContactsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ContactUsPage.xaml.cs">
       <DependentUpon>ContactUsPage.xaml</DependentUpon>
@@ -108,7 +119,9 @@
     <Compile Include="TodoItem.cs" />
     <Compile Include="TodoItemManager.cs" />
     <Compile Include="ViewModels\AboutCaptainXamtasticViewModel.cs" />
+    <Compile Include="ViewModels\ContactsViewModel.cs" />
     <Compile Include="ViewModels\ContactUsViewModel.cs" />
+    <Compile Include="ViewModels\ContactListItemViewModel.cs" />
     <Compile Include="ViewModels\DiallerViewModel.cs" />
     <Compile Include="ViewModels\FaqViewModel.cs" />
     <Compile Include="ViewModels\IndexViewModel.cs" />
@@ -117,6 +130,7 @@
     <Compile Include="ViewModels\PersonanceViewModel.cs" />
     <Compile Include="ViewModels\SelectPersonanceViewModel.cs" />
     <Compile Include="ViewModels\StandardViewModel.cs" />
+    <Compile Include="ViewModels\ToDoListViewModel.cs" />
     <Compile Include="Views\DiallerButtonView.xaml.cs">
       <DependentUpon>DiallerButtonView.xaml</DependentUpon>
     </Compile>
@@ -292,6 +306,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\SelectPersonancePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\ContactsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataTemplates\CustomCells\ContactListItemPersonantCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataTemplates\CustomCells\ContactListItemNonPersonantCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

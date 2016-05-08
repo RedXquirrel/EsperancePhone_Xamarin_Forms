@@ -62,6 +62,11 @@ namespace esperancephone.ViewModels
                     service.MasterDetailAction.Invoke(service.MasterDetailIsOpen);
                 }
             });
+
+            using (var scope = AppContainer.Container.BeginLifetimeScope())
+            {
+                _settingsService = scope.Resolve<ISettingsService>();
+            }
         }
 
         public StandardViewModel(ISettingsService settingsService)
