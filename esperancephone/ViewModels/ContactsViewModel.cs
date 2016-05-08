@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Autofac;
@@ -18,12 +19,20 @@ namespace esperancephone.ViewModels
             set { _contacts = value; RaisePropertyChanged(); }
         }
 
-        public IList<ContactsGroupDataSource> ContactGroups => ContactsGroupDataSource.Groups;
+        //public IList<ContactsGroupDataSource> ContactGroups => ContactsGroupDataSource.Groups;
+
+        private IList<ContactsGroupDataSource> _contactGroups;
+        public IList<ContactsGroupDataSource> ContactGroups
+        {
+            get { return _contactGroups; }
+            set { _contactGroups = value; RaisePropertyChanged(); }
+        }
 
         public ContactsViewModel()
         {
             this.Title = "Contacts";
             GetContacts();
+
         }
 
         private async void GetContacts()
@@ -34,6 +43,59 @@ namespace esperancephone.ViewModels
                 var contacts = await service.GetContacts();
                 _contacts = new ObservableCollection<IContact>(contacts);
             }
+            SetContacts();
+        }
+
+        private void SetContacts()
+        {
+            try
+            {
+
+            var _letterCache = _contacts.FirstOrDefault().DisplayName.Substring(0, 1).ToUpper();
+
+            List<ContactsGroupDataSource> groups = new List<ContactsGroupDataSource>();
+            ContactsGroupDataSource group = new ContactsGroupDataSource(_letterCache, _letterCache, string.Empty);
+
+            foreach (var contact in _contacts)
+            {
+                if (contact.DisplayName.Substring(0, 1).ToUpper().Equals(_letterCache))
+                {
+                    group.Add(new ContactListItemViewModel()
+                    {
+                        DisplayName = contact.DisplayName,
+                        FirstName = contact.FirstName,
+                        LastName = contact.LastName,
+                        IconKey = "\uf007",
+                        IsPersonant = false
+                    });
+                }
+                else
+                {
+                        groups.Add(group);
+                        _letterCache = contact.DisplayName.Substring(0, 1).ToUpper();
+                    group = new ContactsGroupDataSource(_letterCache, _letterCache, string.Empty);
+
+                    group.Add(new ContactListItemViewModel()
+                    {
+                        DisplayName = contact.DisplayName,
+                        FirstName = contact.FirstName,
+                        LastName = contact.LastName,
+                        IconKey = "\uf007",
+                        IsPersonant = false
+                    });
+                }
+            }
+
+                groups.Add(group);
+
+
+
+                ContactGroups = groups;
+            }
+            catch (Exception ex)
+            {
+            }
+
         }
 
     }

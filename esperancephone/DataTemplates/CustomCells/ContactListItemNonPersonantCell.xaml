@@ -15,11 +15,6 @@
     <Label Text="{Binding IconKey}" FontFamily="FontAwesome" FontSize="Large" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" Grid.Column="0" Grid.Row="0" x:Name="IconLabel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
     <StackLayout  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Fill">
       <Label Text="{Binding DisplayName}" FontAttributes="Bold" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" VerticalOptions="Center" HorizontalOptions="Start" />
-      <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="EndAndExpand">
-        <Label Text="{Binding FirstName}" FontAttributes="Italic" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" FontSize="Micro" VerticalOptions="Center" />
-        <Label Text="{Binding LastName}" FontAttributes="Italic" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" FontSize="Micro" VerticalOptions="Center" />
-      </StackLayout>
-      <BoxView WidthRequest="5" />
     </StackLayout>
   </Grid>
 </ViewCell>

@@ -16,7 +16,7 @@ namespace esperancephone.DataSources
         public string Title { get; set; }
         public string ShortName { get; set; } // used for jump lists, must be 1 character
         public string Subtitle { get; set; }
-        private ContactsGroupDataSource(string title, string shortName, string subtitle)
+        public ContactsGroupDataSource(string title, string shortName, string subtitle)
         {
             Title = title;
             ShortName = shortName;
