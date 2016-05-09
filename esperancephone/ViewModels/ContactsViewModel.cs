@@ -9,6 +9,7 @@ using esperancephone.DataSources;
 using esperancephone.Interfaces;
 using esperancephone.Ioc;
 using esperancephone.Models;
+using esperancephone.Pages;
 using Xamarin.Forms;
 
 namespace esperancephone.ViewModels
@@ -22,9 +23,15 @@ namespace esperancephone.ViewModels
             set { _contacts = value; RaisePropertyChanged(); }
         }
 
-        public ICommand SelectedContactCommand => new Command<ContactListItemViewModel>((item) =>
+        public ICommand SelectedContactCommand => new Command<ContactListItemViewModel>(async(item) =>
         {
             Debug.WriteLine($"INFORMATION: Selected Contact Display Name is {item.DisplayName}");
+
+            using (var scope = AppContainer.Container.BeginLifetimeScope())
+            {
+                var navigationService = AppContainer.Container.Resolve<INavigationService>();
+                await navigationService.CurrentPage.Navigation.PushModalAsync(new ContactPage());
+            }
         });
 
         private IContact _selectedContact;

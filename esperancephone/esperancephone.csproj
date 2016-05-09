@@ -80,6 +80,9 @@
     <Compile Include="Pages\AboutCaptainXamtasticPage.xaml.cs">
       <DependentUpon>AboutCaptainXamtasticPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ContactPage.xaml.cs">
+      <DependentUpon>ContactPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ContactsPage.xaml.cs">
       <DependentUpon>ContactsPage.xaml</DependentUpon>
     </Compile>
@@ -125,6 +128,7 @@
     <Compile Include="ViewModels\ContactsViewModel.cs" />
     <Compile Include="ViewModels\ContactUsViewModel.cs" />
     <Compile Include="ViewModels\ContactListItemViewModel.cs" />
+    <Compile Include="ViewModels\ContactViewModel.cs" />
     <Compile Include="ViewModels\DiallerViewModel.cs" />
     <Compile Include="ViewModels\FaqViewModel.cs" />
     <Compile Include="ViewModels\IndexViewModel.cs" />
@@ -327,6 +331,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DataTemplates\CustomCells\ContactListItemNonPersonantCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\ContactPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

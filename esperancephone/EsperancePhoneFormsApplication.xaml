@@ -48,6 +48,35 @@
             <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.Title}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
           </Grid>
           <ContentPresenter HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+          <Grid HeightRequest="50" BackgroundColor="White">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="0">
+              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.FavouritesIcon}" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.FavouritesLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+            </StackLayout>
+            <StackLayout Grid.Column="1">
+              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.RecentIcon}" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.RecentLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+            </StackLayout>
+            <StackLayout Grid.Column="2">
+              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.ContactsIcon}" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.ContactsLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+            </StackLayout>
+            <StackLayout Grid.Column="3">
+              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.DiallerIcon}" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.DiallerLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+            </StackLayout>
+            <StackLayout Grid.Column="4">
+              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.PersonanceIcon}" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.PersonanceLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+            </StackLayout>            
+          </Grid>
         </StackLayout>
       </Grid>
     </ControlTemplate>
@@ -84,13 +113,25 @@
       <Style.Setters>
         <Setter Property="ControlTemplate" Value="{StaticResource StandardMasterDetailNavigationTemplate}" />
       </Style.Setters>
-    </Style>    
-    
+    </Style>
+
+    <Style TargetType="pages:ContactPage" x:Key="ContactPageStandardMasterDetailNavigationStyle">
+      <Style.Setters>
+        <Setter Property="ControlTemplate" Value="{StaticResource StandardMasterDetailNavigationTemplate}" />
+      </Style.Setters>
+    </Style>
+
     <Style TargetType="pages:SelectPersonancePage" x:Key="SelectPersonancePageModalNavigationStyle">
       <Style.Setters>
         <Setter Property="ControlTemplate" Value="{StaticResource StandardModalNavigationTemplate}" />
       </Style.Setters>
-    </Style>    
+    </Style>
+
+    <Style TargetType="pages:ContactPage" x:Key="ContactPageModalNavigationStyle">
+      <Style.Setters>
+        <Setter Property="ControlTemplate" Value="{StaticResource StandardModalNavigationTemplate}" />
+      </Style.Setters>
+    </Style>
 
     <Style TargetType="pages:FaqPage" x:Key="FaqPageStandardMasterDetailNavigationStyle">
       <Style.Setters>

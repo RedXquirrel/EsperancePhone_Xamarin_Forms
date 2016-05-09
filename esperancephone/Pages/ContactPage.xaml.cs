@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
-using esperancephone.DataSources;
 using esperancephone.Interfaces;
 using esperancephone.Ioc;
 using esperancephone.ViewModels;
@@ -13,22 +12,19 @@ using Xamarin.Forms;
 
 namespace esperancephone.Pages
 {
-    public partial class ContactsPage : ContentPage
+    public partial class ContactPage : ContentPage
     {
-        public ContactsPage()
+        public ContactPage()
         {
             InitializeComponent();
 
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
-                this.BindingContext = scope.Resolve<ContactsViewModel>();
+                this.BindingContext = scope.Resolve<ContactViewModel>();
 
                 Debug.WriteLine($"INFORMATION: ViewModelType is {this.BindingContext.GetType().Name}");
 
                 ((StandardViewModel)this.BindingContext).Navigator = (INavigation)this.Navigation;
-
-                var navigationService = scope.Resolve<INavigationService>();
-                navigationService.CurrentPage = this;
             }
         }
     }
