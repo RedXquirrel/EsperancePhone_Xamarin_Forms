@@ -48,34 +48,58 @@
             <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.Title}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
           </Grid>
           <ContentPresenter HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
-          <Grid HeightRequest="50" BackgroundColor="White">
+          <Grid BackgroundColor="White">
             <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="1" />
               <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="Auto" />
               <ColumnDefinition Width="*" />
-              <ColumnDefinition Width="*" />
-              <ColumnDefinition Width="*" />
-              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="1" />
             </Grid.ColumnDefinitions>
-            <StackLayout Grid.Column="0">
-              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.FavouritesIcon}" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
-              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.FavouritesLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
-            </StackLayout>
-            <StackLayout Grid.Column="1">
-              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.RecentIcon}" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
-              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.RecentLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
-            </StackLayout>
-            <StackLayout Grid.Column="2">
-              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.ContactsIcon}" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
-              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.ContactsLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
-            </StackLayout>
-            <StackLayout Grid.Column="3">
-              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.DiallerIcon}" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
-              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.DiallerLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
-            </StackLayout>
-            <StackLayout Grid.Column="4">
-              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.PersonanceIcon}" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
-              <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.PersonanceLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
-            </StackLayout>            
+            <views:TappableGrid Grid.Column="2" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.FavouritesCommand}">
+              <StackLayout>
+                <BoxView HeightRequest="2" />
+                <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.FavouritesIcon}" FontSize="Large" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+                <views:ShrinkingTextLabel Text="{TemplateBinding Parent.CurrentPage.BindingContext.FavouritesLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+                <BoxView HeightRequest="2" />
+              </StackLayout>
+            </views:TappableGrid>
+            <views:TappableGrid Grid.Column="3" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.RecentCommand}">
+              <StackLayout>
+                <BoxView HeightRequest="2" />
+                <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.RecentIcon}" FontSize="Large" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+                <views:ShrinkingTextLabel Text="{TemplateBinding Parent.CurrentPage.BindingContext.RecentLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+                <BoxView HeightRequest="2" />
+              </StackLayout>
+            </views:TappableGrid>
+            <views:TappableGrid Grid.Column="4" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.ContactsCommand}">
+              <StackLayout>
+                <BoxView HeightRequest="2" />
+                <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.ContactsIcon}" FontSize="Large" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+                <views:ShrinkingTextLabel Text="{TemplateBinding Parent.CurrentPage.BindingContext.ContactsLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+                <BoxView HeightRequest="2" />
+              </StackLayout>
+            </views:TappableGrid>
+            <views:TappableGrid Grid.Column="5" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.DiallerCommand}">
+              <StackLayout>
+                <BoxView HeightRequest="2" />
+                <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.DiallerIcon}" FontSize="Large" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+                <views:ShrinkingTextLabel Text="{TemplateBinding Parent.CurrentPage.BindingContext.DiallerLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+                <BoxView HeightRequest="2" />
+              </StackLayout>
+            </views:TappableGrid>
+            <views:TappableGrid Grid.Column="6" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.PersonanceCommand}">
+              <StackLayout>
+                <BoxView HeightRequest="2" />
+                <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.PersonanceIcon}" FontSize="Large" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+                <views:ShrinkingTextLabel Text="{TemplateBinding Parent.CurrentPage.BindingContext.PersonanceLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
+                <BoxView HeightRequest="2" />
+              </StackLayout>
+            </views:TappableGrid>
           </Grid>
         </StackLayout>
       </Grid>

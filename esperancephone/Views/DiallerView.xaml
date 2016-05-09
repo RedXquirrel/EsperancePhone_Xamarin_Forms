@@ -16,5 +16,4 @@
   <RelativeLayout x:Name="DialPaneRelativeLayout">
   <RelativeLayout x:Name="DialPadRelativeLayout" />
   </RelativeLayout>
-  <RelativeLayout x:Name="OptionsPaneRelativeLayout"></RelativeLayout>
 </RelativeLayout>

@@ -177,9 +177,7 @@ namespace esperancephone.Views
 
             this.Children.Add(DigitsPaneRelativeLayout, Constraint.RelativeToParent((parent) => 0), Constraint.RelativeToParent((parent) => 0), Constraint.RelativeToParent((parent) => parent.Width), Constraint.RelativeToParent((parent) => 50));
 
-            this.Children.Add(OptionsPaneRelativeLayout, Constraint.RelativeToParent((parent) => 0), Constraint.RelativeToParent((parent) => parent.Height - 50), Constraint.RelativeToParent((parent) => parent.Width), Constraint.RelativeToParent((parent) => 50));
-
-            this.Children.Add(DialPaneRelativeLayout, Constraint.RelativeToParent((parent) => 0), Constraint.RelativeToParent((parent) => 50), Constraint.RelativeToParent((parent) => parent.Width), Constraint.RelativeToParent((parent) => parent.Height - 100));
+            this.Children.Add(DialPaneRelativeLayout, Constraint.RelativeToParent((parent) => 0), Constraint.RelativeToParent((parent) => 50), Constraint.RelativeToParent((parent) => parent.Width), Constraint.RelativeToParent((parent) => parent.Height - 50));
 
             _margin = 20;
 

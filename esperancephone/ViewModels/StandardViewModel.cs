@@ -137,11 +137,11 @@ namespace esperancephone.ViewModels
             set { _recentCommand = value; RaisePropertyChanged(); }
         }
 
-        private ICommand _contactCommand;
-        public ICommand ContactCommand
+        private ICommand _contactsCommand;
+        public ICommand ContactsCommand
         {
-            get { return _contactCommand; }
-            set { _contactCommand = value; RaisePropertyChanged(); }
+            get { return _contactsCommand; }
+            set { _contactsCommand = value; RaisePropertyChanged(); }
         }
 
         private ICommand _diallerCommand;
@@ -170,6 +170,31 @@ namespace esperancephone.ViewModels
 
                     service.MasterDetailAction.Invoke(service.MasterDetailIsOpen);
                 }
+            });
+
+            this.FavouritesCommand = new Command(() =>
+            {
+                
+            });
+
+            this.RecentCommand = new Command(() =>
+            {
+                
+            });
+
+            this.ContactsCommand = new Command(() =>
+            {
+                
+            });
+
+            this.DiallerCommand = new Command(() =>
+            {
+                
+            });
+
+            this.PersonanceCommand = new Command(() =>
+            {
+                
             });
 
             using (var scope = AppContainer.Container.BeginLifetimeScope())
