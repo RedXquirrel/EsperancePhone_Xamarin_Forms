@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using esperancephone.DataSources;
+using esperancephone.Extensions;
 using esperancephone.Interfaces;
 using esperancephone.Ioc;
 using esperancephone.ViewModels;
@@ -19,11 +20,13 @@ namespace esperancephone.Pages
         {
             InitializeComponent();
 
+            NavigationPage.SetHasNavigationBar(this, false);
+
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
                 this.BindingContext = scope.Resolve<ContactsViewModel>();
 
-                Debug.WriteLine($"INFORMATION: ViewModelType is {this.BindingContext.GetType().Name}");
+                this.WriteLineInstanceAndInstanceId();
 
                 ((StandardViewModel)this.BindingContext).Navigator = (INavigation)this.Navigation;
 

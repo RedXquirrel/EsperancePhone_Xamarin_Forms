@@ -42,13 +42,18 @@
           <RowDefinition Height="*" />
           <RowDefinition Height="1" />
         </Grid.RowDefinitions>
-        <StackLayout Grid.Row="0" Grid.Column="1" BackgroundColor="{StaticResource CaptainXamtasticBrandRedColor}">
-          <Grid Padding="5">
+        <Grid Grid.Row="0" Grid.Column="1" BackgroundColor="{StaticResource CaptainXamtasticBrandRedColor}">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Grid Grid.Row="0" Padding="5">
             <views:Hamburger HorizontalOptions="Start" IconColor="White" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.MasterDetailCommand, Mode=TwoWay}" />
             <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.Title}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
           </Grid>
-          <ContentPresenter HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
-          <Grid BackgroundColor="White">
+          <ContentPresenter Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" />
+          <Grid Grid.Row="2" BackgroundColor="White" HeightRequest="70">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="1" />
               <ColumnDefinition Width="*" />
@@ -65,7 +70,7 @@
               <ColumnDefinition Width="1" />
             </Grid.ColumnDefinitions>
             <views:TappableGrid Grid.Column="2" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.FavouritesCommand}">
-              <StackLayout>
+              <StackLayout VerticalOptions="Center">
                 <BoxView HeightRequest="2" />
                 <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.FavouritesIcon}" FontSize="Large" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
                 <views:ShrinkingTextLabel Text="{TemplateBinding Parent.CurrentPage.BindingContext.FavouritesLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
@@ -73,7 +78,7 @@
               </StackLayout>
             </views:TappableGrid>
             <views:TappableGrid Grid.Column="4" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.RecentCommand}">
-              <StackLayout>
+              <StackLayout VerticalOptions="Center">
                 <BoxView HeightRequest="2" />
                 <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.RecentIcon}" FontSize="Large" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
                 <views:ShrinkingTextLabel Text="{TemplateBinding Parent.CurrentPage.BindingContext.RecentLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
@@ -81,7 +86,7 @@
               </StackLayout>
             </views:TappableGrid>
             <views:TappableGrid Grid.Column="6" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.ContactsCommand}">
-              <StackLayout>
+              <StackLayout VerticalOptions="Center">
                 <BoxView HeightRequest="2" />
                 <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.ContactsIcon}" FontSize="Large" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
                 <views:ShrinkingTextLabel Text="{TemplateBinding Parent.CurrentPage.BindingContext.ContactsLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
@@ -89,7 +94,7 @@
               </StackLayout>
             </views:TappableGrid>
             <views:TappableGrid Grid.Column="8" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.DiallerCommand}">
-              <StackLayout>
+              <StackLayout VerticalOptions="Center">
                 <BoxView HeightRequest="2" />
                 <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.DiallerIcon}" FontSize="Large" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
                 <views:ShrinkingTextLabel Text="{TemplateBinding Parent.CurrentPage.BindingContext.DiallerLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
@@ -97,7 +102,7 @@
               </StackLayout>
             </views:TappableGrid>
             <views:TappableGrid Grid.Column="10" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.PersonanceCommand}">
-              <StackLayout>
+              <StackLayout VerticalOptions="Center">
                 <BoxView HeightRequest="2" />
                 <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.PersonanceIcon}" FontSize="Large" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
                 <views:ShrinkingTextLabel Text="{TemplateBinding Parent.CurrentPage.BindingContext.PersonanceLabelText}" FontSize="Micro" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
@@ -105,7 +110,7 @@
               </StackLayout>
             </views:TappableGrid>
           </Grid>
-        </StackLayout>
+        </Grid>
       </Grid>
     </ControlTemplate>
 
@@ -118,6 +123,25 @@
         <ContentPresenter HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
       </StackLayout>
     </ControlTemplate>
+
+    <Style TargetType="pages:PersonasPage" x:Key="PersonasPageStandardMasterDetailNavigationStyle">
+      <Style.Setters>
+        <Setter Property="ControlTemplate" Value="{StaticResource StandardMasterDetailNavigationTemplate}" />
+      </Style.Setters>
+    </Style>
+
+    <Style TargetType="pages:FavouritesPage" x:Key="FavouritesPageStandardMasterDetailNavigationStyle">
+      <Style.Setters>
+        <Setter Property="ControlTemplate" Value="{StaticResource StandardMasterDetailNavigationTemplate}" />
+      </Style.Setters>
+    </Style>
+
+    <Style TargetType="pages:RecentPage" x:Key="RecentPageStandardMasterDetailNavigationStyle">
+      <Style.Setters>
+        <Setter Property="ControlTemplate" Value="{StaticResource StandardMasterDetailNavigationTemplate}" />
+      </Style.Setters>
+    </Style>
+
 
     <Style TargetType="local:TodoList" x:Key="ToDoListPageStandardMasterDetailNavigationStyle">
       <Style.Setters>

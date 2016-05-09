@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using Com.Xamtastic.Patterns.SmallestMvvm;
+using esperancephone.Extensions;
 using esperancephone.Ioc;
 using esperancephone.ViewModels;
 using Xamarin.Forms;
@@ -25,7 +26,7 @@ namespace esperancephone.Pages
                 this.BindingContext = AppContainer.Container.Resolve<LoginViewModel>();
             }
 
-            Debug.WriteLine($"INFORMATION: ViewModelType is {this.BindingContext.GetType().Name}");
+            this.WriteLineInstanceAndInstanceId();
 
             ((StandardViewModel) this.BindingContext).Navigator = (INavigation) this.Navigation;
         }

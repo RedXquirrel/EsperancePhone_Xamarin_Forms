@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,12 +9,15 @@ using Autofac;
 using Com.Xamtastic.Patterns.SmallestMvvm;
 using esperancephone.Interfaces;
 using esperancephone.Ioc;
+using esperancephone.Pages;
 using Xamarin.Forms;
 
 namespace esperancephone.ViewModels
 {
     public class StandardViewModel : ViewModelBase
     {
+        public string ViewModelInstanceId { get; set; }
+
         private ISettingsService _settingsService;
 
         private INavigation _navigator;
@@ -162,6 +166,9 @@ namespace esperancephone.ViewModels
 
         public StandardViewModel()
         {
+            this.ViewModelInstanceId = Guid.NewGuid().ToString();
+            Debug.WriteLine($"INFORMATION: {this.GetType().Name} Instance ID is {this.ViewModelInstanceId}");
+
             this.MasterDetailCommand = new Command((p) =>
             {
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
@@ -174,27 +181,47 @@ namespace esperancephone.ViewModels
 
             this.FavouritesCommand = new Command(() =>
             {
-                
+                using (var scope = AppContainer.Container.BeginLifetimeScope())
+                {
+                    var navigationService = scope.Resolve<INavigationService>();
+                    navigationService.Navigation.PushAsync(new FavouritesPage(), false);
+                }
             });
 
             this.RecentCommand = new Command(() =>
             {
-                
+                using (var scope = AppContainer.Container.BeginLifetimeScope())
+                {
+                    var navigationService = scope.Resolve<INavigationService>();
+                    navigationService.Navigation.PushAsync(new RecentPage(), false);
+                }
             });
 
             this.ContactsCommand = new Command(() =>
             {
-                
+                using (var scope = AppContainer.Container.BeginLifetimeScope())
+                {
+                    var navigationService = scope.Resolve<INavigationService>();
+                    navigationService.Navigation.PushAsync(new ContactsPage(), false);
+                }
             });
 
             this.DiallerCommand = new Command(() =>
             {
-                
+                using (var scope = AppContainer.Container.BeginLifetimeScope())
+                {
+                    var navigationService = scope.Resolve<INavigationService>();
+                    navigationService.Navigation.PushAsync(new DiallerPage(), false);
+                }
             });
 
             this.PersonanceCommand = new Command(() =>
             {
-                
+                using (var scope = AppContainer.Container.BeginLifetimeScope())
+                {
+                    var navigationService = scope.Resolve<INavigationService>();
+                    navigationService.Navigation.PushAsync(new PersonasPage(), false);
+                }
             });
 
             using (var scope = AppContainer.Container.BeginLifetimeScope())

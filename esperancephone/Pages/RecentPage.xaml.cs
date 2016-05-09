@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,20 +12,18 @@ using Xamarin.Forms;
 
 namespace esperancephone.Pages
 {
-    public partial class DiallerPage : ContentPage
+    public partial class RecentPage : ContentPage
     {
-        public DiallerPage()
+        public RecentPage()
         {
             InitializeComponent();
-
-            this.DiallerView.HostPage = this; // so that the DiallerView can call ActionSheets directly.
 
             NavigationPage.SetHasNavigationBar(this, false);
 
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
-                this.BindingContext = AppContainer.Container.Resolve<DiallerViewModel>();
-                var navigationService = AppContainer.Container.Resolve<INavigationService>();
+                this.BindingContext = scope.Resolve<RecentViewModel>();
+                var navigationService = scope.Resolve<INavigationService>();
                 navigationService.CurrentPage = this;
 
                 this.WriteLineInstanceAndInstanceId();

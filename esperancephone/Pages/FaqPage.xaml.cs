@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using esperancephone.Extensions;
 using esperancephone.Ioc;
 using esperancephone.ViewModels;
 using Xamarin.Forms;
@@ -22,7 +23,7 @@ namespace esperancephone.Pages
                 this.BindingContext = AppContainer.Container.Resolve<FaqViewModel>();
             }
 
-            Debug.WriteLine($"INFORMATION: ViewModelType is {this.BindingContext.GetType().Name}");
+            this.WriteLineInstanceAndInstanceId();
 
             ((StandardViewModel)this.BindingContext).Navigator = (INavigation)this.Navigation;
 

@@ -57,6 +57,7 @@
     <Compile Include="EsperancePhoneFormsApplication.xaml.cs">
       <DependentUpon>EsperancePhoneFormsApplication.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\DebuggingExtensions.cs" />
     <Compile Include="Extensions\MobileServiceClientExtensions.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Interfaces\IAuthenticate.cs" />
@@ -95,6 +96,9 @@
     <Compile Include="Pages\FaqPage.xaml.cs">
       <DependentUpon>FaqPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\FavouritesPage.xaml.cs">
+      <DependentUpon>FavouritesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\IndexPage.xaml.cs">
       <DependentUpon>IndexPage.xaml</DependentUpon>
     </Compile>
@@ -109,6 +113,12 @@
     </Compile>
     <Compile Include="Pages\PersonancePage.xaml.cs">
       <DependentUpon>PersonancePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PersonasPage.xaml.cs">
+      <DependentUpon>PersonasPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RecentPage.xaml.cs">
+      <DependentUpon>RecentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SelectPersonancePage.xaml.cs">
       <DependentUpon>SelectPersonancePage.xaml</DependentUpon>
@@ -131,10 +141,13 @@
     <Compile Include="ViewModels\ContactViewModel.cs" />
     <Compile Include="ViewModels\DiallerViewModel.cs" />
     <Compile Include="ViewModels\FaqViewModel.cs" />
+    <Compile Include="ViewModels\FavouritesViewModel.cs" />
     <Compile Include="ViewModels\IndexViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MasterPageIndexItemViewModel.cs" />
     <Compile Include="ViewModels\PersonanceViewModel.cs" />
+    <Compile Include="ViewModels\PersonasViewModel.cs" />
+    <Compile Include="ViewModels\RecentViewModel.cs" />
     <Compile Include="ViewModels\SelectPersonanceViewModel.cs" />
     <Compile Include="ViewModels\StandardViewModel.cs" />
     <Compile Include="ViewModels\ToDoListViewModel.cs" />
@@ -338,6 +351,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\ContactPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\PersonasPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\FavouritesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\RecentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

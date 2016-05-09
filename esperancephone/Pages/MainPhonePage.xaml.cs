@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using esperancephone.Extensions;
 using esperancephone.Interfaces;
 using esperancephone.Ioc;
 using esperancephone.ViewModels;
