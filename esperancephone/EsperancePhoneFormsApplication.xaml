@@ -53,9 +53,13 @@
               <ColumnDefinition Width="1" />
               <ColumnDefinition Width="*" />
               <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*" />
               <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*" />
               <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*" />
               <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*" />
               <ColumnDefinition Width="Auto" />
               <ColumnDefinition Width="*" />
               <ColumnDefinition Width="1" />
@@ -68,7 +72,7 @@
                 <BoxView HeightRequest="2" />
               </StackLayout>
             </views:TappableGrid>
-            <views:TappableGrid Grid.Column="3" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.RecentCommand}">
+            <views:TappableGrid Grid.Column="4" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.RecentCommand}">
               <StackLayout>
                 <BoxView HeightRequest="2" />
                 <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.RecentIcon}" FontSize="Large" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
@@ -76,7 +80,7 @@
                 <BoxView HeightRequest="2" />
               </StackLayout>
             </views:TappableGrid>
-            <views:TappableGrid Grid.Column="4" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.ContactsCommand}">
+            <views:TappableGrid Grid.Column="6" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.ContactsCommand}">
               <StackLayout>
                 <BoxView HeightRequest="2" />
                 <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.ContactsIcon}" FontSize="Large" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
@@ -84,7 +88,7 @@
                 <BoxView HeightRequest="2" />
               </StackLayout>
             </views:TappableGrid>
-            <views:TappableGrid Grid.Column="5" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.DiallerCommand}">
+            <views:TappableGrid Grid.Column="8" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.DiallerCommand}">
               <StackLayout>
                 <BoxView HeightRequest="2" />
                 <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.DiallerIcon}" FontSize="Large" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
@@ -92,7 +96,7 @@
                 <BoxView HeightRequest="2" />
               </StackLayout>
             </views:TappableGrid>
-            <views:TappableGrid Grid.Column="6" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.PersonanceCommand}">
+            <views:TappableGrid Grid.Column="10" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.PersonanceCommand}">
               <StackLayout>
                 <BoxView HeightRequest="2" />
                 <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.PersonanceIcon}" FontSize="Large" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />

@@ -37,19 +37,19 @@ namespace esperancephone.DataSources
         {
             List<MasterDetailItemGroupDataSource> Groups = new List<MasterDetailItemGroupDataSource>
             {
-                new MasterDetailItemGroupDataSource("Gallery", string.Empty, "All your inbound especial personance")
+                new MasterDetailItemGroupDataSource("Gallery", string.Empty, "All your inbound personas")
                 {
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf017", Title = "Recent", PageType = typeof(DiallerPage) },
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf006", Title = "Favourites", PageType = typeof(DiallerPage) },
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf03a", Title = "All", PageType = typeof(DiallerPage) }
                 },
-                new MasterDetailItemGroupDataSource("Curation", string.Empty, "Artfifacts you prepare to send")
+                new MasterDetailItemGroupDataSource("Curation", string.Empty, "Personas you prepare to send")
                 {
-                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf06e", Title = "Personance", PageType = typeof(PersonancePage) },
+                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf06e", Title = "Personas", PageType = typeof(PersonancePage) },
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf0fe", Title = "Create", PageType = typeof(PersonancePage) },
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "FAQ", PageType = typeof(FaqPage) },
                 },
-                new MasterDetailItemGroupDataSource("Phone", string.Empty, "Make your calls especially personant")
+                new MasterDetailItemGroupDataSource("Phone", string.Empty, "Send a persona when you make a call")
                 {
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf098", Title = "Dialler", PageType = typeof(DiallerPage) },
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf0c0", Title = "Contacts", PageType = typeof(ContactsPage) },
