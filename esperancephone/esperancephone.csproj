@@ -40,7 +40,14 @@
     <Compile Include="Converters\HasKeyStackConverter.cs" />
     <Compile Include="DataSources\ContactsGroupDataSource.cs" />
     <Compile Include="DataSources\MasterDetailItemGroupDataSource.cs" />
+    <Compile Include="DataTemplates\ContactListCells\DisplayNameCell.xaml.cs">
+      <DependentUpon>DisplayNameCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataTemplates\ContactListCells\PhoneCell.xaml.cs">
+      <DependentUpon>PhoneCell.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataTemplates\ContactListDataTemplateSelector.cs" />
+    <Compile Include="DataTemplates\ContactsListDataTemplateSelector.cs" />
     <Compile Include="DataTemplates\CustomCells\ContactListItemNonPersonantCell.xaml.cs">
       <DependentUpon>ContactListItemNonPersonantCell.xaml</DependentUpon>
     </Compile>
@@ -76,6 +83,7 @@
     </Compile>
     <Compile Include="Managers\EsperancePhoneApiManager.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\ContactListItemType.cs" />
     <Compile Include="Models\Keys.cs" />
     <Compile Include="Models\Phone.cs" />
     <Compile Include="Pages\AboutCaptainXamtasticPage.xaml.cs">
@@ -135,9 +143,12 @@
     <Compile Include="TodoItem.cs" />
     <Compile Include="TodoItemManager.cs" />
     <Compile Include="ViewModels\AboutCaptainXamtasticViewModel.cs" />
+    <Compile Include="ViewModels\ContactListItemViewModel.cs" />
+    <Compile Include="ViewModels\ContactListItemViewModels\DisplayNameViewModel.cs" />
+    <Compile Include="ViewModels\ContactListItemViewModels\PhoneViewModel.cs" />
     <Compile Include="ViewModels\ContactsViewModel.cs" />
     <Compile Include="ViewModels\ContactUsViewModel.cs" />
-    <Compile Include="ViewModels\ContactListItemViewModel.cs" />
+    <Compile Include="ViewModels\ContactsListItemViewModel.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />
     <Compile Include="ViewModels\DiallerViewModel.cs" />
     <Compile Include="ViewModels\FaqViewModel.cs" />
@@ -369,6 +380,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\RecentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataTemplates\ContactListCells\DisplayNameCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataTemplates\ContactListCells\PhoneCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

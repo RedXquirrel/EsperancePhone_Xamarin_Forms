@@ -11,7 +11,7 @@
   </ContentPage.Padding>
   <ContentPage.Resources>
     <ResourceDictionary>
-      <dataTemplates:ContactListDataTemplateSelector x:Key="ContactListDataTemplateSelector" />
+      <dataTemplates:ContactsListDataTemplateSelector x:Key="ContactListDataTemplateSelector" />
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.Content>

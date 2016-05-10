@@ -10,5 +10,6 @@ namespace esperancephone.Interfaces
     {
         Task<IEnumerable<IContact>> GetContacts();
         List<IContact> Find(string searchTerm);
+        IContact CurrentContact { get; set; }
     }
 }

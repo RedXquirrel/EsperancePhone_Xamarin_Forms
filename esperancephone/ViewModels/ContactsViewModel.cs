@@ -23,13 +23,15 @@ namespace esperancephone.ViewModels
             set { _contacts = value; RaisePropertyChanged(); }
         }
 
-        public ICommand SelectedContactCommand => new Command<ContactListItemViewModel>(async(item) =>
+        public ICommand SelectedContactCommand => new Command<ContactsListItemViewModel>(async(item) =>
         {
             Debug.WriteLine($"INFORMATION: Selected Contact Display Name is {item.DisplayName}");
 
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
-                var navigationService = AppContainer.Container.Resolve<INavigationService>();
+                var service = scope.Resolve<IContactsService>();
+                service.CurrentContact = item.Contact;
+                var navigationService = scope.Resolve<INavigationService>();
                 await navigationService.CurrentPage.Navigation.PushModalAsync(new ContactPage());
             }
         });
@@ -80,8 +82,9 @@ namespace esperancephone.ViewModels
             {
                 if (contact.DisplayName.Substring(0, 1).ToUpper().Equals(_letterCache))
                 {
-                    group.Add(new ContactListItemViewModel()
+                    group.Add(new ContactsListItemViewModel()
                     {
+                        Contact = contact,
                         DisplayName = contact.DisplayName,
                         FirstName = contact.FirstName,
                         LastName = contact.LastName,
@@ -95,8 +98,9 @@ namespace esperancephone.ViewModels
                         _letterCache = contact.DisplayName.Substring(0, 1).ToUpper();
                     group = new ContactsGroupDataSource(_letterCache, _letterCache, string.Empty);
 
-                    group.Add(new ContactListItemViewModel()
+                    group.Add(new ContactsListItemViewModel()
                     {
+                        Contact = contact,
                         DisplayName = contact.DisplayName,
                         FirstName = contact.FirstName,
                         LastName = contact.LastName,

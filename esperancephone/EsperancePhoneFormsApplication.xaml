@@ -120,7 +120,9 @@
           <views:Hamburger IconCharacter="{TemplateBinding BindingContext.CloseIconCharacter}" HorizontalOptions="End" IconColor="White" TappedCommand="{TemplateBinding BindingContext.CloseCommand, Mode=TwoWay}" />
           <Label Text="{TemplateBinding BindingContext.Title}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
         </Grid>
-        <ContentPresenter HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+        <Grid Padding="20" BackgroundColor="White">
+          <ContentPresenter HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+        </Grid>
       </StackLayout>
     </ControlTemplate>
 

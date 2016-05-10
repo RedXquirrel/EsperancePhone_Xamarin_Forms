@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="esperancephone.Views.DiallerButtonView">
   <Grid>
+    <Grid x:Name="ImageGrid" Padding="5">
+      <Image Source="icon-dialler.png" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center" />
+    </Grid>
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
       <Label x:Name="SupLabel" FontSize="Large" HorizontalOptions="Center" TextColor="{StaticResource DiallerButtonTextColor}" />
       <Label x:Name="SubLabel" FontSize="Micro" HorizontalOptions="Center" TextColor="{StaticResource DiallerButtonTextColor}" />

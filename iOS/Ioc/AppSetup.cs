@@ -31,7 +31,7 @@ namespace esperancephone.iOS.Ioc
             containerBuilder.RegisterType<PersonasViewModel>().SingleInstance();
             containerBuilder.RegisterType<PersonanceViewModel>().SingleInstance();
             containerBuilder.RegisterType<ContactsViewModel>().SingleInstance();
-            containerBuilder.RegisterType<ContactViewModel>().SingleInstance();
+            containerBuilder.RegisterType<ContactViewModel>();
             containerBuilder.RegisterType<ToDoListViewModel>().SingleInstance();
             containerBuilder.RegisterType<SelectPersonanceViewModel>().SingleInstance();
             containerBuilder.RegisterType<FaqViewModel>().SingleInstance();

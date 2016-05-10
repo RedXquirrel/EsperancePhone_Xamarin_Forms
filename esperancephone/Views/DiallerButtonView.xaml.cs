@@ -52,6 +52,9 @@ namespace esperancephone.Views
         private double _subLabelFontSizeCache;
         private double _centerLabelFontSizeCache;
         private double _fontAwesomeLabelFontSizeCache;
+        private Thickness _imageGridPaddingCache;
+
+        private Thickness _imageGridAnimatedPadding = new Thickness(9);
 
         private string _keyString;
         public string KeyString
@@ -102,6 +105,7 @@ namespace esperancephone.Views
             _subLabelFontSizeCache = SubLabel.FontSize;
             _centerLabelFontSizeCache = CenterLabel.FontSize;
             _fontAwesomeLabelFontSizeCache = FontAwesomeLabel.FontSize;
+            _imageGridPaddingCache = ImageGrid.Padding;
 
             this.GestureRecognizers.Add(new TapGestureRecognizer(KeyTapped));
         }
@@ -125,6 +129,7 @@ namespace esperancephone.Views
                     SubLabel.FontSize = _subLabelFontSizeCache - 4;
                     CenterLabel.FontSize = _centerLabelFontSizeCache - 4;
                     FontAwesomeLabel.FontSize = _fontAwesomeLabelFontSizeCache - 4;
+                    ImageGrid.Padding = _imageGridAnimatedPadding;
                 }),
                 easing: Easing.CubicOut,
                 length: 250,
@@ -146,6 +151,7 @@ namespace esperancephone.Views
                     SubLabel.FontSize = _subLabelFontSizeCache;
                     CenterLabel.FontSize = _centerLabelFontSizeCache;
                     FontAwesomeLabel.FontSize = _fontAwesomeLabelFontSizeCache;
+                    ImageGrid.Padding = _imageGridPaddingCache;
                 }),
                 easing: Easing.CubicIn,
                 length: 250,

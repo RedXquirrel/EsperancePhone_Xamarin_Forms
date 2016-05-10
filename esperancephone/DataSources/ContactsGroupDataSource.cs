@@ -11,7 +11,7 @@ using esperancephone.ViewModels;
 
 namespace esperancephone.DataSources
 {
-    public class ContactsGroupDataSource : List<ContactListItemViewModel>
+    public class ContactsGroupDataSource : List<ContactsListItemViewModel>
     {
         public string Title { get; set; }
         public string ShortName { get; set; } // used for jump lists, must be 1 character
@@ -31,7 +31,7 @@ namespace esperancephone.DataSources
             {
                 new ContactsGroupDataSource("A", "A", string.Empty)
                 {
-                    new ContactListItemViewModel
+                    new ContactsListItemViewModel
                     {
                         IsPersonant = false,
                         IconKey = "\uf007",
@@ -42,7 +42,7 @@ namespace esperancephone.DataSources
                 },
                 new ContactsGroupDataSource("B", "B", string.Empty)
                 {
-                    new ContactListItemViewModel
+                    new ContactsListItemViewModel
                     {
                         IsPersonant = false,
                         IconKey = "\uf007",

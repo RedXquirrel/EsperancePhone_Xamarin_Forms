@@ -14,6 +14,8 @@ namespace esperancephone.iOS.Services
 
         private static IEnumerable<Contact> _contacts;
 
+        public IContact CurrentContact { get; set; }
+
         public ContactService()
         {
             _book = new Xamarin.Contacts.AddressBook();

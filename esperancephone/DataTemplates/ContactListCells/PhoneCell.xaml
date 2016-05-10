@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="esperancephone.DataTemplates.ContactListCells.PhoneCell"
+            xmlns:views="clr-namespace:esperancephone.Views;assembly=esperancephone"
+            >
+  <Grid VerticalOptions="Start">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="Auto" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="70" />
+    </Grid.RowDefinitions>
+  <StackLayout Grid.Column="0" Grid.Row="0" VerticalOptions="Center">
+    <BoxView HeightRequest="5" />
+    <Label Text="{Binding Data.Label}" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" VerticalOptions="Center" HorizontalOptions="Start" />
+    <Label Text="{Binding Data.Number}" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" VerticalOptions="Center" HorizontalOptions="Start" />
+    <BoxView HeightRequest="5" />
+  </StackLayout>
+    <views:Hamburger Grid.Column="1" Grid.Row="0" VerticalOptions="Center" IconCharacter="{Binding Data.CallIcon}" IconColor="{StaticResource PaperviewBrandBlueColor}" TappedCommand="{Binding Data.CallCommand}" />
+  </Grid>
+</ViewCell>
