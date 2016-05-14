@@ -24,6 +24,9 @@
       SeparatorColor="{StaticResource CaptainXamtasticBrandRedColor}"
       ItemsSource="{Binding PersonaListItems}"
       >
+       <views:PaneListView.Behaviors>
+          <behaviors:ListViewItemTappedBehavior ItemTappedCommand="{Binding SelectedPersonaListItemCommand}" />
+        </views:PaneListView.Behaviors>
     </views:PaneListView>
   </ContentPage.Content>
 </ContentPage>
