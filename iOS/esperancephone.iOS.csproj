@@ -157,6 +157,7 @@
     <Compile Include="Ioc\AppSetup.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderers\ShapeRenderer.cs" />
     <Compile Include="Services\ContactService.cs" />
     <Compile Include="ShrinkingTextLabelRenderer.cs" />
   </ItemGroup>

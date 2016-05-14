@@ -86,6 +86,7 @@
     <Compile Include="Models\ContactListItemType.cs" />
     <Compile Include="Models\Keys.cs" />
     <Compile Include="Models\Phone.cs" />
+    <Compile Include="Models\ShapeType.cs" />
     <Compile Include="Pages\AboutCaptainXamtasticPage.xaml.cs">
       <DependentUpon>AboutCaptainXamtasticPage.xaml</DependentUpon>
     </Compile>
@@ -171,6 +172,7 @@
     <Compile Include="Views\Hamburger.xaml.cs">
       <DependentUpon>Hamburger.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ShapeView.cs" />
     <Compile Include="Views\ShrinkingTextLabel.cs" />
     <Compile Include="Views\TappableGrid.cs" />
   </ItemGroup>
