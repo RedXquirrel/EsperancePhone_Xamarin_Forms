@@ -158,6 +158,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renderers\ShapeRenderer.cs" />
+    <Compile Include="Renderers\StandardViewCellRenderer.cs" />
     <Compile Include="Services\ContactService.cs" />
     <Compile Include="ShrinkingTextLabelRenderer.cs" />
   </ItemGroup>

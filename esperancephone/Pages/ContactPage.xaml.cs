@@ -17,7 +17,14 @@ namespace esperancephone.Pages
     {
         public ContactPage()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+            }
+            catch (Exception ex)
+            {
+
+            }
 
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
