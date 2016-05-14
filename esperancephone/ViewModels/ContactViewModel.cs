@@ -13,6 +13,7 @@ using esperancephone.Ioc;
 using esperancephone.Models;
 using esperancephone.Pages;
 using esperancephone.ViewModels.ContactListItemViewModels;
+using esperancephone.ViewModels.Shared;
 using Xamarin.Forms;
 
 namespace esperancephone.ViewModels
@@ -113,6 +114,21 @@ namespace esperancephone.ViewModels
                         CallCommand = new Command(() =>
                         {
                             Debug.WriteLine($"INFORMATION: Call button tapped for {phone.Number}");
+                            using (var scope = AppContainer.Container.BeginLifetimeScope())
+                            {
+                                var navigationService = scope.Resolve<INavigationService>();
+                                var telecommunicationService = scope.Resolve<ITeleCommunicationService>();
+                                var dialService = scope.Resolve<IDialService>();
+                                telecommunicationService.SetDialService(dialService);
+                                var commSession = new CommunicationModel();
+                                commSession.CommunicationType = CommunicationType.CallAndPersona;
+                                commSession.DisplayName = Contact.DisplayName;
+                                commSession.PhoneNumber = phone.Number;
+                                telecommunicationService.CurrentSession = commSession;
+                                navigationService.CurrentPage.Navigation.PushAsync(new PersonasPage());
+                                CloseCommand?.Execute(null);
+                                //var success = dialService.Dial(phone.Number);
+                            }
                         })
                     }
                 });

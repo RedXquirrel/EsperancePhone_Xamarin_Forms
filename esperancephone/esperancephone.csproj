@@ -40,7 +40,16 @@
     <Compile Include="Converters\HasKeyStackConverter.cs" />
     <Compile Include="DataSources\ContactsGroupDataSource.cs" />
     <Compile Include="DataSources\MasterDetailItemGroupDataSource.cs" />
-    <Compile Include="DataTemplates\ContactListCells\DisplayNameCell.xaml.cs">
+    <Compile Include="DataTemplates\PersonaListCells\CommunicateCell.xaml.cs">
+      <DependentUpon>CommunicateCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataTemplates\PersonaListCells\PersonaListCell.xaml.cs">
+      <DependentUpon>PersonaListCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataTemplates\PersonaListCells\PhoneNumberCell.xaml.cs">
+      <DependentUpon>PhoneNumberCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataTemplates\Shared\DisplayNameCell.xaml.cs">
       <DependentUpon>DisplayNameCell.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataTemplates\ContactListCells\PhoneCell.xaml.cs">
@@ -61,20 +70,25 @@
       <DependentUpon>PageCell.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataTemplates\MasterDetailDataTemplateSelector.cs" />
+    <Compile Include="DataTemplates\PersonaListDataTemplateSelector.cs" />
     <Compile Include="EsperancePhoneFormsApplication.xaml.cs">
       <DependentUpon>EsperancePhoneFormsApplication.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\DebuggingExtensions.cs" />
     <Compile Include="Extensions\MobileServiceClientExtensions.cs" />
+    <Compile Include="Helpers\Services.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Interfaces\IAuthenticate.cs" />
+    <Compile Include="Interfaces\ICommunicationModel.cs" />
     <Compile Include="Interfaces\IContact.cs" />
     <Compile Include="Interfaces\IContactsService.cs" />
     <Compile Include="Interfaces\IDiallerService.cs" />
+    <Compile Include="Interfaces\IDialService.cs" />
     <Compile Include="Interfaces\IEsperancePhoneApiManager.cs" />
     <Compile Include="Interfaces\INavigationService.cs" />
     <Compile Include="Interfaces\IPhone.cs" />
     <Compile Include="Interfaces\ISettingsService.cs" />
+    <Compile Include="Interfaces\ITeleCommunicationService.cs" />
     <Compile Include="Ioc\AppContainer.cs" />
     <Compile Include="Localisation\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -83,10 +97,14 @@
     </Compile>
     <Compile Include="Managers\EsperancePhoneApiManager.cs" />
     <Compile Include="Models\CellSelectionStyle.cs" />
+    <Compile Include="Models\CommunicationModel.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\ContactListItemType.cs" />
     <Compile Include="Models\Keys.cs" />
+    <Compile Include="Models\PersonaListItemType.cs" />
     <Compile Include="Models\Phone.cs" />
+    <Compile Include="Models\SendModel.cs" />
+    <Compile Include="Models\SendType.cs" />
     <Compile Include="Models\ShapeType.cs" />
     <Compile Include="Pages\AboutCaptainXamtasticPage.xaml.cs">
       <DependentUpon>AboutCaptainXamtasticPage.xaml</DependentUpon>
@@ -138,6 +156,7 @@
     <Compile Include="Services\MasterPageIndexService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\SettingsService.cs" />
+    <Compile Include="Services\TelecommunicationService.cs" />
     <Compile Include="TodoList.xaml.cs">
       <DependentUpon>TodoList.xaml</DependentUpon>
     </Compile>
@@ -145,8 +164,11 @@
     <Compile Include="TodoItem.cs" />
     <Compile Include="TodoItemManager.cs" />
     <Compile Include="ViewModels\AboutCaptainXamtasticViewModel.cs" />
+    <Compile Include="ViewModels\CommunicateViewModel.cs" />
     <Compile Include="ViewModels\ContactListItemViewModel.cs" />
-    <Compile Include="ViewModels\ContactListItemViewModels\DisplayNameViewModel.cs" />
+    <Compile Include="ViewModels\PersonaListItemViewModels\PersonaViewModel.cs" />
+    <Compile Include="ViewModels\PersonaListItemViewModels\PhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\Shared\DisplayNameViewModel.cs" />
     <Compile Include="ViewModels\ContactListItemViewModels\PhoneViewModel.cs" />
     <Compile Include="ViewModels\ContactsViewModel.cs" />
     <Compile Include="ViewModels\ContactUsViewModel.cs" />
@@ -158,6 +180,7 @@
     <Compile Include="ViewModels\IndexViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MasterPageIndexItemViewModel.cs" />
+    <Compile Include="ViewModels\PersonaListItemViewModel.cs" />
     <Compile Include="ViewModels\PersonanceViewModel.cs" />
     <Compile Include="ViewModels\PersonasViewModel.cs" />
     <Compile Include="ViewModels\RecentViewModel.cs" />
@@ -390,13 +413,31 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DataTemplates\ContactListCells\DisplayNameCell.xaml">
+    <EmbeddedResource Include="DataTemplates\Shared\DisplayNameCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DataTemplates\ContactListCells\PhoneCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataTemplates\PersonaListCells\PhoneNumberCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataTemplates\PersonaListCells\PersonaListCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataTemplates\PersonaListCells\CommunicateCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

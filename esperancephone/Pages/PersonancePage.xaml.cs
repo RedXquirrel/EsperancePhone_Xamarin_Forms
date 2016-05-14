@@ -19,6 +19,8 @@ namespace esperancephone.Pages
         {
             InitializeComponent();
 
+            NavigationPage.SetHasNavigationBar(this,false);
+
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
                 this.BindingContext = scope.Resolve<PersonanceViewModel>();

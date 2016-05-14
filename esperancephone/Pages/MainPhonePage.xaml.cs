@@ -96,6 +96,9 @@ namespace esperancephone.Pages
         {
             if (item?.PageType == null) return;
 
+            // Reset Everything
+            esperancephone.Helpers.Services.ResetServices();
+
             MainNavigationPage.Navigation.PushAsync((Page) Activator.CreateInstance(item.PageType));
             NavigationPage.SetHasNavigationBar(MainNavigationPage.CurrentPage, false);
 

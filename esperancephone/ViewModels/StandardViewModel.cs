@@ -181,6 +181,7 @@ namespace esperancephone.ViewModels
 
             this.FavouritesCommand = new Command(() =>
             {
+                esperancephone.Helpers.Services.ResetServices();
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
                     var navigationService = scope.Resolve<INavigationService>();
@@ -190,6 +191,7 @@ namespace esperancephone.ViewModels
 
             this.RecentCommand = new Command(() =>
             {
+                esperancephone.Helpers.Services.ResetServices();
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
                     var navigationService = scope.Resolve<INavigationService>();
@@ -199,6 +201,7 @@ namespace esperancephone.ViewModels
 
             this.ContactsCommand = new Command(() =>
             {
+                esperancephone.Helpers.Services.ResetServices();
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
                     var navigationService = scope.Resolve<INavigationService>();
@@ -208,6 +211,7 @@ namespace esperancephone.ViewModels
 
             this.DiallerCommand = new Command(() =>
             {
+                esperancephone.Helpers.Services.ResetServices();
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
                     var navigationService = scope.Resolve<INavigationService>();
@@ -217,6 +221,7 @@ namespace esperancephone.ViewModels
 
             this.PersonanceCommand = new Command(() =>
             {
+                esperancephone.Helpers.Services.ResetServices();
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
                     var navigationService = scope.Resolve<INavigationService>();

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Com.Xamtastic.Patterns.SmallestMvvm;
+﻿using Com.Xamtastic.Patterns.SmallestMvvm;
 
-namespace esperancephone.ViewModels.ContactListItemViewModels
+namespace esperancephone.ViewModels.Shared
 {
     public class DisplayNameViewModel : ViewModelBase
     {
