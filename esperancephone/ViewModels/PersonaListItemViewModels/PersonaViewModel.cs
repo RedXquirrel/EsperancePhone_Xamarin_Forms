@@ -4,7 +4,7 @@
     {
         public PersonaViewModel()
         {
-            this.Title = "Persona Item";
+            this.Title = "Paperview Item";
         }
          
     }

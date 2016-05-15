@@ -43,8 +43,14 @@
     <Compile Include="DataTemplates\PersonaListCells\CommunicateCell.xaml.cs">
       <DependentUpon>CommunicateCell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataTemplates\PersonaListCells\DisplayNameCell.xaml.cs">
+      <DependentUpon>DisplayNameCell.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataTemplates\PersonaListCells\PersonaListCell.xaml.cs">
       <DependentUpon>PersonaListCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataTemplates\PersonaListCells\PersonasGroupHeadingCell.xaml.cs">
+      <DependentUpon>PersonasGroupHeadingCell.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataTemplates\PersonaListCells\PhoneNumberCell.xaml.cs">
       <DependentUpon>PhoneNumberCell.xaml</DependentUpon>
@@ -168,6 +174,7 @@
     <Compile Include="ViewModels\ContactListItemViewModel.cs" />
     <Compile Include="ViewModels\PersonaListItemViewModels\PersonaViewModel.cs" />
     <Compile Include="ViewModels\PersonaListItemViewModels\PhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\PersonasGroupHeadingViewModel.cs" />
     <Compile Include="ViewModels\Shared\DisplayNameViewModel.cs" />
     <Compile Include="ViewModels\ContactListItemViewModels\PhoneViewModel.cs" />
     <Compile Include="ViewModels\ContactsViewModel.cs" />
@@ -438,6 +445,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DataTemplates\PersonaListCells\CommunicateCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataTemplates\PersonaListCells\DisplayNameCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataTemplates\PersonaListCells\PersonasGroupHeadingCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

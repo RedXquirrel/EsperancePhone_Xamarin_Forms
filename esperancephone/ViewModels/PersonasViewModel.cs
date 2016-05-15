@@ -26,7 +26,7 @@ namespace esperancephone.ViewModels
 
         public ICommand SelectedPersonaListItemCommand => new Command<PersonaListItemViewModel>((item) =>
         {
-            Debug.WriteLine($"INFORMATION: Selected Persona List Data Item class is {item.Data.GetType().ToString()}");
+            Debug.WriteLine($"INFORMATION: Selected Paperview List Data Item class is {item.Data.GetType().ToString()}");
 
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
@@ -52,7 +52,7 @@ namespace esperancephone.ViewModels
 
         public PersonasViewModel()
         {
-            this.Title = "Personas";
+            this.Title = "Paperviews";
 
             BuildDataItems();
         }
@@ -86,22 +86,41 @@ namespace esperancephone.ViewModels
 
                 listItems.Add(new PersonaListItemViewModel()
                 {
-                    TemplateSelectorType = PersonaListItemType.Persona,
+                    TemplateSelectorType = PersonaListItemType.PersonasGroupHeading,
+                    Data = new PersonasGroupHeadingViewModel()
+                    {
+                        LabelText = "Select Paperview:",
+                        IconCharacter = "\uf196",
+                        AddCommand = new Command(() =>
+                        {
+                            using (var commandScope = AppContainer.Container.BeginLifetimeScope())
+                            {
+                                var navigationService = commandScope.Resolve<INavigationService>();
+                                navigationService.CurrentPage.DisplayAlert("ToDo",
+                                    "To be implemented", "OK");
+                            }
+                        })
+                    }
+                });
+
+                listItems.Add(new PersonaListItemViewModel()
+                {
+                    TemplateSelectorType = PersonaListItemType.Personas,
                     Data = new PersonaViewModel() { Title = "xPersonal Item 0" }
                 });
                 listItems.Add(new PersonaListItemViewModel()
                 {
-                    TemplateSelectorType = PersonaListItemType.Persona,
+                    TemplateSelectorType = PersonaListItemType.Personas,
                     Data = new PersonaViewModel() { Title = "xPersonal Item 1" }
                 });
                 listItems.Add(new PersonaListItemViewModel()
                 {
-                    TemplateSelectorType = PersonaListItemType.Persona,
+                    TemplateSelectorType = PersonaListItemType.Personas,
                     Data = new PersonaViewModel() { Title = "xPersonal Item 2" }
                 });
                 listItems.Add(new PersonaListItemViewModel()
                 {
-                    TemplateSelectorType = PersonaListItemType.Persona,
+                    TemplateSelectorType = PersonaListItemType.Personas,
                     Data = new PersonaViewModel() { Title = "xPersonal Item 3" }
                 });
 
@@ -113,7 +132,7 @@ namespace esperancephone.ViewModels
                         TemplateSelectorType = PersonaListItemType.Communicate,
                         Data = new CommunicateViewModel()
                         {
-                            Label = "Send Persona and Call",
+                            Label = "Send Paperview and Call",
                             CallCommand = new Command(() =>
                             {
                                 using (var commandScope = AppContainer.Container.BeginLifetimeScope())
@@ -126,10 +145,9 @@ namespace esperancephone.ViewModels
                                     }
                                     else
                                     {
-
                                         var navigationService = commandScope.Resolve<INavigationService>();
-                                        navigationService.CurrentPage.DisplayAlert("No Persona Selected Alert",
-                                            "Please select a Persona to send from the Persona list", "OK");
+                                        navigationService.CurrentPage.DisplayAlert("No Paperview Selected Alert",
+                                            "Please select a Paperview to send from the Paperview list", "OK");
                                     }
                                 }
                             })
@@ -141,7 +159,7 @@ namespace esperancephone.ViewModels
                         TemplateSelectorType = PersonaListItemType.Communicate,
                         Data = new CommunicateViewModel()
                         {
-                            Label = "Send Persona only",
+                            Label = "Send Paperview only",
                             CallCommand = new Command(() =>
                             {
                                 using (var commandScope = AppContainer.Container.BeginLifetimeScope())
@@ -151,13 +169,13 @@ namespace esperancephone.ViewModels
                                         // ToDo: Send Persona !!!
                                         var navigationService = commandScope.Resolve<INavigationService>();
                                         navigationService.CurrentPage.DisplayAlert("Sent",
-                                            "The selected Persona has been sent", "OK");
+                                            "The selected Paperview has been sent", "OK");
                                     }
                                     else
                                     {
                                         var navigationService = commandScope.Resolve<INavigationService>();
-                                        navigationService.CurrentPage.DisplayAlert("No Persona Selected Alert",
-                                            "Please select a Persona to send from the Persona list", "OK");
+                                        navigationService.CurrentPage.DisplayAlert("No Paperview Selected Alert",
+                                            "Please select a Paperview to send from the Paperview list", "OK");
                                     }
                                 }
                             })
@@ -174,7 +192,7 @@ namespace esperancephone.ViewModels
                             {
                                 using (var commandScope = AppContainer.Container.BeginLifetimeScope())
                                 {
-                                    var dialService = scope.Resolve<IDialService>();
+                                    var dialService = commandScope.Resolve<IDialService>();
                                     dialService.Dial(telecommunicationService.CurrentSession.PhoneNumber);
                                 }
                             })

@@ -3,6 +3,7 @@ using esperancephone.DataTemplates.ContactListCells;
 using esperancephone.DataTemplates.PersonaListCells;
 using esperancephone.Models;
 using esperancephone.ViewModels;
+using esperancephone.Views;
 using Xamarin.Forms;
 
 namespace esperancephone.DataTemplates
@@ -11,7 +12,8 @@ namespace esperancephone.DataTemplates
     {
         public PersonaListDataTemplateSelector()
         {
-            this._displayNameCell = new DataTemplate(typeof(DisplayNameCell));
+            this._personasGroupHeadingCell = new DataTemplate(typeof(PersonasGroupHeadingCell));
+            this._displayNameCell = new DataTemplate(typeof(PersonaListCells.DisplayNameCell));
             this._phoneNumberCell = new DataTemplate(typeof(PhoneNumberCell));
             this._personaCell = new DataTemplate(typeof(PersonaListCell));
             this._communicateCell = new DataTemplate(typeof(CommunicateCell));
@@ -32,11 +34,14 @@ namespace esperancephone.DataTemplates
                 case PersonaListItemType.PhoneNumber:
                     response = _phoneNumberCell;
                     break;
-                case PersonaListItemType.Persona:
+                case PersonaListItemType.Personas:
                     response = _personaCell;
                     break;
                 case PersonaListItemType.Communicate:
                     response = _communicateCell;
+                    break;
+                case PersonaListItemType.PersonasGroupHeading:
+                    response = _personasGroupHeadingCell;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -45,6 +50,7 @@ namespace esperancephone.DataTemplates
             return response;
         }
 
+        private readonly DataTemplate _personasGroupHeadingCell;
         private readonly DataTemplate _displayNameCell;
         private readonly DataTemplate _phoneNumberCell;
         private readonly DataTemplate _personaCell;

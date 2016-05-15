@@ -120,7 +120,7 @@ namespace esperancephone.ViewModels
             set { _diallerLabelText = value; RaisePropertyChanged(); }
         }
 
-        private string _personanceLabelText = "Personas";
+        private string _personanceLabelText = "Paperviews";
         public string PersonanceLabelText
         {
             get { return _personanceLabelText; }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using esperancephone.Views;
 using Xamarin.Forms;
 
-namespace esperancephone.DataTemplates.ContactListCells
+namespace esperancephone.DataTemplates.PersonaListCells
 {
-    public partial class DisplayNameCell : SelectionStyleViewCell
+    public partial class PersonasGroupHeadingCell : SelectionStyleViewCell
     {
-        public DisplayNameCell()
+        public PersonasGroupHeadingCell()
         {
             InitializeComponent();
         }

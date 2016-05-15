@@ -2,12 +2,12 @@
 <views:SelectionStyleViewCell xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:esperancephone.Views;assembly=esperancephone"
-             x:Class="esperancephone.DataTemplates.PersonaListCells.PhoneNumberCell"
+             x:Class="esperancephone.DataTemplates.PersonaListCells.DisplayNameCell"
              SelectionStyle="None"
              >
   <Grid Padding="10">
-    <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
-      <Label Text="{Binding Data.PhoneNumber}" FontSize="Large" VerticalOptions="Center" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" />
+    <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Padding="0">
+      <Label Text="{Binding Data.DisplayName}" FontSize="Large" FontAttributes="Bold" VerticalOptions="Center" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" />
     </StackLayout>
   </Grid>
 </views:SelectionStyleViewCell>

@@ -2,9 +2,11 @@
 {
     public enum PersonaListItemType
     {
+        PersonasGroupHeading,
         DisplayName,
         PhoneNumber,
-        Persona,
+        Personas,
         Communicate
+
     }
 }
