@@ -57,5 +57,61 @@ namespace esperancephone.Services
         {
             this.CallAction?.Execute(GetStack());
         }
+
+        public string GetNumber(List<Keys> keys)
+        {
+            var response = string.Empty;
+
+            foreach (var key in keys)
+            {
+                switch (key)
+                {
+                    case Keys.Key0:
+                        response += "0";
+                        break;
+                    case Keys.Key1:
+                        response += "1";
+                        break;
+                    case Keys.Key2:
+                        response += "2";
+                        break;
+                    case Keys.Key3:
+                        response += "3";
+                        break;
+                    case Keys.Key4:
+                        response += "4";
+                        break;
+                    case Keys.Key5:
+                        response += "5";
+                        break;
+                    case Keys.Key6:
+                        response += "6";
+                        break;
+                    case Keys.Key7:
+                        response += "7";
+                        break;
+                    case Keys.Key8:
+                        response += "8";
+                        break;
+                    case Keys.Key9:
+                        response += "9";
+                        break;
+                    case Keys.KeyStar:
+                        response += "*";
+                        break;
+                    case Keys.KeyHash:
+                        response += "#";
+                        break;
+                    case Keys.KeyPlus:
+                        response += "+";
+                        break;
+                    case Keys.KeyCall:
+                        throw new Exception("Keys.KeyCall is not a valid key input list item to derive a number from [esperancephone.Services.DiallerService].");
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+            return response;
+        }
     }
 }

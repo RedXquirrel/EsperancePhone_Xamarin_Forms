@@ -14,5 +14,6 @@ namespace esperancephone.Interfaces
         IList<Keys> GetStack();
         IList<Keys> KeyStack { get; }
         ICommand CallAction { get; set; }
+        string GetNumber(List<Keys> keys);
     }
 }

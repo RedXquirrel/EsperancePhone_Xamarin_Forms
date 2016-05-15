@@ -147,11 +147,21 @@ namespace esperancephone.Views
 
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
-                var diallerService = AppContainer.Container.Resolve<IDiallerService>();
-                var navigationService = AppContainer.Container.Resolve<INavigationService>();
+                var diallerService = scope.Resolve<IDiallerService>();
+
                 diallerService.CallAction = new Command<List<Keys>> (async(keys) =>
                 {
-                    await navigationService.CurrentPage.Navigation.PushModalAsync(new SelectPersonancePage());
+                    using (var commandScope = AppContainer.Container.BeginLifetimeScope())
+                    {
+                        var navigationService = commandScope.Resolve<INavigationService>();
+                        var telecommunicationService = commandScope.Resolve<ITeleCommunicationService>();
+                        var diallerServiceCS = commandScope.Resolve<IDiallerService>();
+                        var commSession = new CommunicationModel();
+                        commSession.DisplayName = "Unidentified";
+                        commSession.PhoneNumber = diallerServiceCS.GetNumber(keys);
+                        telecommunicationService.CurrentSession = commSession;
+                        await navigationService.CurrentPage.Navigation.PushAsync(new PersonasPage());
+                    }
                 });
             }
 

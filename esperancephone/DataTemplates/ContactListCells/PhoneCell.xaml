@@ -19,7 +19,7 @@
     <Label Text="{Binding Data.Number}" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" VerticalOptions="Center" HorizontalOptions="Start" />
     <BoxView HeightRequest="5" />
   </StackLayout>
-    <Grid  Grid.Column="1" Grid.Row="0" HeightRequest="70" WidthRequest="70">
+    <Grid  Grid.Column="1" Grid.Row="0" HeightRequest="85" WidthRequest="85">
      <views:ShapeView  ShapeType="Circle" StrokeColor="{StaticResource CaptainXamtasticBrandRedColor}" StrokeWidth="2" Padding="20" />
     </Grid>
     <views:Hamburger Grid.Column="1" Grid.Row="0" VerticalOptions="Center" IconCharacter="{Binding Data.CallIcon}" IconColor="{StaticResource CaptainXamtasticBrandRedColor}" TappedCommand="{Binding Data.CallCommand}" />
