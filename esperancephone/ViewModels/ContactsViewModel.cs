@@ -25,6 +25,7 @@ namespace esperancephone.ViewModels
 
         public ICommand SelectedContactCommand => new Command<ContactsListItemViewModel>(async(item) =>
         {
+            this.IsBusy = true;
             Debug.WriteLine($"INFORMATION: Selected Contact Display Name is {item.DisplayName}");
 
             using (var scope = AppContainer.Container.BeginLifetimeScope())
@@ -33,6 +34,7 @@ namespace esperancephone.ViewModels
                 service.CurrentContact = item.Contact;
                 var navigationService = scope.Resolve<INavigationService>();
                 await navigationService.CurrentPage.Navigation.PushModalAsync(new ContactPage());
+                this.IsBusy = false;
             }
         });
 
@@ -59,6 +61,7 @@ namespace esperancephone.ViewModels
 
         private async void GetContacts()
         {
+            this.IsBusy = true;
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
                 var service = scope.Resolve<IContactsService>();
@@ -119,7 +122,7 @@ namespace esperancephone.ViewModels
             catch (Exception ex)
             {
             }
-
+            this.IsBusy = false;
         }
 
     }

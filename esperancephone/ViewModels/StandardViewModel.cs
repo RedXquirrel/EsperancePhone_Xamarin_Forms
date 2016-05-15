@@ -56,6 +56,14 @@ namespace esperancephone.ViewModels
             set { _masterDetailCommand = value; RaisePropertyChanged(); }
         }
 
+        private bool _isBusy;
+
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { _isBusy = value; RaisePropertyChanged(); }
+        }
+
         #region Bottom Bar (favourtites, recent, contacts, dialler, personnance
 
         private string _favouritesIcon;

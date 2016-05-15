@@ -44,12 +44,21 @@ namespace esperancephone.ViewModels
             this.GoogleLoginProviderCommand = new Command((async() =>
             {
                 if (EsperancePhoneFormsApplication.Authenticator != null)
-                    EsperancePhoneFormsApplication.Authenticated = await EsperancePhoneFormsApplication.Authenticator.Authenticate();
-                
+                {
+                    this.IsBusy = true;
+                    EsperancePhoneFormsApplication.Authenticated =
+                        await EsperancePhoneFormsApplication.Authenticator.Authenticate();
+                }
+
                 // Set syncItems to true in order to synchronize the data on startup when running in offline mode
                 if (EsperancePhoneFormsApplication.Authenticated == true)
                 {
                     await this.Navigator.PushAsync(new MainPhonePage(), true);
+                    this.IsBusy = false;
+                }
+                else
+                {
+                    this.IsBusy = false;
                 }
             }));
         }

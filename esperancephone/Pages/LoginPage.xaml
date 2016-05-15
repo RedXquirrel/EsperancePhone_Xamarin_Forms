@@ -11,5 +11,9 @@
       <Label Text="{Binding Title}" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
     </StackLayout>
     <Button Text="{Binding GoogleButtonText}" Command="{Binding GoogleLoginProviderCommand}" HorizontalOptions="Center" VerticalOptions="Center" />
+    <Grid IsVisible="{Binding IsBusy}">
+      <Grid BackgroundColor="Black" Opacity="0.3" />
+      <ActivityIndicator Color="{StaticResource CaptainXamtasticBrandRedColor}" IsRunning="{Binding IsBusy}" HorizontalOptions="Center" VerticalOptions="Center" />
+    </Grid>
   </Grid>
 </ContentPage>

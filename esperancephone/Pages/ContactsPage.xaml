@@ -15,29 +15,34 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.Content>
-    <StackLayout Orientation="Vertical">
-      <SearchBar Placeholder="Search" />
-      <ListView  x:Name="listView" SeparatorVisibility="None"
-        GroupDisplayBinding="{Binding Title}"
-        GroupShortNameBinding="{Binding ShortName}"
-        IsGroupingEnabled="true"
-        ItemTemplate="{StaticResource ContactListDataTemplateSelector}"
-        SeparatorColor="{StaticResource CaptainXamtasticBrandRedColor}"
-        ItemsSource="{Binding ContactGroups}"
+    <Grid>
+      <StackLayout Orientation="Vertical">
+        <SearchBar Placeholder="Search" />
+        <ListView  x:Name="listView" SeparatorVisibility="None"
+          GroupDisplayBinding="{Binding Title}"
+          GroupShortNameBinding="{Binding ShortName}"
+          IsGroupingEnabled="true"
+          ItemTemplate="{StaticResource ContactListDataTemplateSelector}"
+          SeparatorColor="{StaticResource CaptainXamtasticBrandRedColor}"
+          ItemsSource="{Binding ContactGroups}"
         >
-        <ListView.Behaviors>
-          <behaviors:ListViewItemTappedBehavior ItemTappedCommand="{Binding SelectedContactCommand}" />
-        </ListView.Behaviors>
-        <ListView.GroupHeaderTemplate>
-          <DataTemplate>
-            <TextCell Text="{Binding Title}"
-            Detail="{Binding Subtitle}"
-            TextColor="{StaticResource CaptainXamtasticBrandRedColor}"
-            DetailColor="{StaticResource PaperviewBrandBlueColor}" />
-          </DataTemplate>
-        </ListView.GroupHeaderTemplate>
-      </ListView>
-    </StackLayout>
+          <ListView.Behaviors>
+            <behaviors:ListViewItemTappedBehavior ItemTappedCommand="{Binding SelectedContactCommand}" />
+          </ListView.Behaviors>
+          <ListView.GroupHeaderTemplate>
+            <DataTemplate>
+              <TextCell Text="{Binding Title}"
+              Detail="{Binding Subtitle}"
+              TextColor="{StaticResource CaptainXamtasticBrandRedColor}"
+              DetailColor="{StaticResource PaperviewBrandBlueColor}" />
+            </DataTemplate>
+          </ListView.GroupHeaderTemplate>
+        </ListView>
+      </StackLayout>
+      <Grid  HorizontalOptions="Center" VerticalOptions="Start" Padding="0,10,0,0">
+        <ActivityIndicator Color="{StaticResource CaptainXamtasticBrandRedColor}" IsRunning="{Binding IsBusy}" HorizontalOptions="Center" VerticalOptions="Start" />
+      </Grid>
+    </Grid>
   </ContentPage.Content>
 
 </ContentPage>
