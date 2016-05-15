@@ -25,7 +25,7 @@
       ItemsSource="{Binding PersonaListItems}"
       >
        <views:PaneListView.Behaviors>
-          <behaviors:ListViewItemTappedBehavior ItemTappedCommand="{Binding SelectedPersonaListItemCommand}" />
+          <behaviors:ListViewItemTappedBehavior ItemTappedCommand="{Binding SelectedPaperviewListItemCommand}" />
         </views:PaneListView.Behaviors>
     </views:PaneListView>
   </ContentPage.Content>

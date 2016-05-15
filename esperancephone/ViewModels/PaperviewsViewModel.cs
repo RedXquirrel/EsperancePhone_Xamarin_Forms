@@ -24,7 +24,7 @@ namespace esperancephone.ViewModels
 
         private PaperviewListItemViewModel _selectedListItem;
 
-        public ICommand SelectedPersonaListItemCommand => new Command<PaperviewListItemViewModel>((item) =>
+        public ICommand SelectedPaperviewListItemCommand => new Command<PaperviewListItemViewModel>((item) =>
         {
             Debug.WriteLine($"INFORMATION: Selected Paperview List Data Item class is {item.Data.GetType().ToString()}");
 
@@ -32,7 +32,11 @@ namespace esperancephone.ViewModels
             {
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
-                    SetSelectedItem(item);
+                    _selectedListItem = item;
+                    if (_selectedListItem != null)
+                    {
+                        _isPaperviewSelected = item.Data.GetType() == typeof(PaperviewViewModel);
+                    }
 
                     var paperviewService = scope.Resolve<IPaperviewService>();
 
@@ -51,6 +55,7 @@ namespace esperancephone.ViewModels
                 }
             }
         });
+
 
         private void SetSelectedItem(PaperviewListItemViewModel item)
         {
@@ -116,7 +121,7 @@ namespace esperancephone.ViewModels
                     listItems.Add(new PaperviewListItemViewModel()
                     {
                         TemplateSelectorType = PaperviewListItemType.PaperviewsGroupHeading,
-                        Data = GetPaperviewAlreadySelectedHeadingRow()
+                        Data = GetPaperviewAlreadySelectedViewModel()
                     });
 
                     // Add the Already Selected Paperview item under the above heading
@@ -132,7 +137,7 @@ namespace esperancephone.ViewModels
                     listItems.Add(new PaperviewListItemViewModel()
                     {
                         TemplateSelectorType = PaperviewListItemType.PaperviewsGroupHeading,
-                        Data = GetPleaseSelectPaperviewHeadingRow()
+                        Data = GetPleaseSelectPaperviewViewModel()
                     });
 
                     // Add all the available Paperviews under the above heading
@@ -148,73 +153,19 @@ namespace esperancephone.ViewModels
                     listItems.Add(new PaperviewListItemViewModel()
                     {
                         TemplateSelectorType = PaperviewListItemType.Communicate,
-                        Data = new CommunicateViewModel()
-                        {
-                            Label = "Send Paperview and Call",
-                            CallCommand = new Command(() =>
-                            {
-                                using (var commandScope = AppContainer.Container.BeginLifetimeScope())
-                                {
-                                    if (_isPaperviewSelected)
-                                    {
-                                        // ToDo: SEND PERSONA!!!!!
-                                        var dialService = commandScope.Resolve<IDialService>();
-                                        dialService.Dial(telecommunicationService.CurrentSession.PhoneNumber);
-                                    }
-                                    else
-                                    {
-                                        var navigationService = commandScope.Resolve<INavigationService>();
-                                        navigationService.CurrentPage.DisplayAlert("No Paperview Selected Alert",
-                                            "Please select a Paperview to send from the Paperview list", "OK");
-                                    }
-                                }
-                            })
-
-                        }
-                    });
-                    listItems.Add(new PaperviewListItemViewModel()
-                    {
-                        TemplateSelectorType = PaperviewListItemType.Communicate,
-                        Data = new CommunicateViewModel()
-                        {
-                            Label = "Send Paperview only",
-                            CallCommand = new Command(() =>
-                            {
-                                using (var commandScope = AppContainer.Container.BeginLifetimeScope())
-                                {
-                                    if (_isPaperviewSelected)
-                                    {
-                                        // ToDo: Send Persona !!!
-                                        var navigationService = commandScope.Resolve<INavigationService>();
-                                        navigationService.CurrentPage.DisplayAlert("Sent",
-                                            "The selected Paperview has been sent", "OK");
-                                    }
-                                    else
-                                    {
-                                        var navigationService = commandScope.Resolve<INavigationService>();
-                                        navigationService.CurrentPage.DisplayAlert("No Paperview Selected Alert",
-                                            "Please select a Paperview to send from the Paperview list", "OK");
-                                    }
-                                }
-                            })
-                        }
+                        Data = GetSendPaperviewAndCallViewModel()
                     });
 
                     listItems.Add(new PaperviewListItemViewModel()
                     {
                         TemplateSelectorType = PaperviewListItemType.Communicate,
-                        Data = new CommunicateViewModel()
-                        {
-                            Label = "Call only",
-                            CallCommand = new Command(() =>
-                            {
-                                using (var commandScope = AppContainer.Container.BeginLifetimeScope())
-                                {
-                                    var dialService = commandScope.Resolve<IDialService>();
-                                    dialService.Dial(telecommunicationService.CurrentSession.PhoneNumber);
-                                }
-                            })
-                        }
+                        Data = GetSendPaperviewOnlyViewModel()
+                    });
+
+                    listItems.Add(new PaperviewListItemViewModel()
+                    {
+                        TemplateSelectorType = PaperviewListItemType.Communicate,
+                        Data = GetCallOnlyViewModel()
                     });
                 }
 
@@ -222,29 +173,36 @@ namespace esperancephone.ViewModels
             }
         }
 
+        #region Private methods to create the ViewModels for each particular row in the list
+
         private static PaperviewListItemViewModel GetPleaseSelectPaperviewHeadingRow()
         {
             return new PaperviewListItemViewModel()
             {
                 TemplateSelectorType = PaperviewListItemType.PaperviewsGroupHeading,
-                Data = new PersonasGroupHeadingViewModel()
-                {
-                    LabelText = "Select Paperview:",
-                    IconCharacter = "\uf196",
-                    AddCommand = new Command(() =>
-                    {
-                        using (var commandScope = AppContainer.Container.BeginLifetimeScope())
-                        {
-                            var navigationService = commandScope.Resolve<INavigationService>();
-                            navigationService.CurrentPage.DisplayAlert("ToDo",
-                                "To be implemented", "OK");
-                        }
-                    })
-                }
+                Data = GetPleaseSelectPaperviewViewModel()
             };
         }
 
-        private PersonasGroupHeadingViewModel GetPaperviewAlreadySelectedHeadingRow()
+        private static PersonasGroupHeadingViewModel GetPleaseSelectPaperviewViewModel()
+        {
+            return new PersonasGroupHeadingViewModel()
+            {
+                LabelText = "Select Paperview:",
+                IconCharacter = "\uf196",
+                AddCommand = new Command(() =>
+                {
+                    using (var commandScope = AppContainer.Container.BeginLifetimeScope())
+                    {
+                        var navigationService = commandScope.Resolve<INavigationService>();
+                        navigationService.CurrentPage.DisplayAlert("ToDo",
+                            "To be implemented", "OK");
+                    }
+                })
+            };
+        }
+
+        private PersonasGroupHeadingViewModel GetPaperviewAlreadySelectedViewModel()
         {
             return new PersonasGroupHeadingViewModel()
             {
@@ -331,6 +289,78 @@ namespace esperancephone.ViewModels
             };
         }
 
+        private CommunicateViewModel GetSendPaperviewAndCallViewModel()
+        {
+            return new CommunicateViewModel()
+            {
+                Label = "Send Paperview and Call",
+                CallCommand = new Command(() =>
+                {
+                    using (var commandScope = AppContainer.Container.BeginLifetimeScope())
+                    {
+                        if (_isPaperviewSelected)
+                        {
+                            // ToDo: SEND PERSONA!!!!!
+                            var dialService = commandScope.Resolve<IDialService>();
+                            var telecommunicationService = commandScope.Resolve<ITeleCommunicationService>();
+                            dialService.Dial(telecommunicationService.CurrentSession.PhoneNumber);
+                        }
+                        else
+                        {
+                            var navigationService = commandScope.Resolve<INavigationService>();
+                            navigationService.CurrentPage.DisplayAlert("No Paperview Selected Alert",
+                                "Please select a Paperview to send from the Paperview list", "OK");
+                        }
+                    }
+                })
+
+            };
+        }
+
+        private CommunicateViewModel GetSendPaperviewOnlyViewModel()
+        {
+            return new CommunicateViewModel()
+            {
+                Label = "Send Paperview only",
+                CallCommand = new Command(() =>
+                {
+                    using (var commandScope = AppContainer.Container.BeginLifetimeScope())
+                    {
+                        if (_isPaperviewSelected)
+                        {
+                            // ToDo: Send Persona !!!
+                            var navigationService = commandScope.Resolve<INavigationService>();
+                            navigationService.CurrentPage.DisplayAlert("Sent",
+                                "The selected Paperview has been sent", "OK");
+                        }
+                        else
+                        {
+                            var navigationService = commandScope.Resolve<INavigationService>();
+                            navigationService.CurrentPage.DisplayAlert("No Paperview Selected Alert",
+                                "Please select a Paperview to send from the Paperview list", "OK");
+                        }
+                    }
+                })
+            };
+        }
+
+        private CommunicateViewModel GetCallOnlyViewModel()
+        {
+            return new CommunicateViewModel()
+            {
+                Label = "Call only",
+                CallCommand = new Command(() =>
+                {
+                    using (var commandScope = AppContainer.Container.BeginLifetimeScope())
+                    {
+                        var dialService = commandScope.Resolve<IDialService>();
+                        var telecommunicationService = commandScope.Resolve<ITeleCommunicationService>();
+                        dialService.Dial(telecommunicationService.CurrentSession.PhoneNumber);
+                    }
+                })
+            };
+        }
+
         private async Task<List<PaperviewListItemViewModel>> BuildPaperviewViewModels()
         {
 
@@ -383,5 +413,6 @@ namespace esperancephone.ViewModels
             });
             return list;
         }
+        #endregion
     }
 }
