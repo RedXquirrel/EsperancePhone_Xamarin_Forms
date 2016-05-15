@@ -17,14 +17,14 @@ using Xamarin.Forms;
 
 namespace esperancephone.ViewModels
 {
-    public class PersonasViewModel : StandardViewModel
+    public class PaperviewsViewModel : StandardViewModel
     {
         private bool _contactSelected;
         private bool _personaSelected;
 
-        private PersonaListItemViewModel _selectedListItem;
+        private PaperviewListItemViewModel _selectedListItem;
 
-        public ICommand SelectedPersonaListItemCommand => new Command<PersonaListItemViewModel>((item) =>
+        public ICommand SelectedPersonaListItemCommand => new Command<PaperviewListItemViewModel>((item) =>
         {
             Debug.WriteLine($"INFORMATION: Selected Paperview List Data Item class is {item.Data.GetType().ToString()}");
 
@@ -34,7 +34,7 @@ namespace esperancephone.ViewModels
             }
         });
 
-        private void SetSelectedItem(PersonaListItemViewModel item)
+        private void SetSelectedItem(PaperviewListItemViewModel item)
         {
             _selectedListItem = item;
             if (_selectedListItem != null)
@@ -43,14 +43,14 @@ namespace esperancephone.ViewModels
             }
         }
 
-        private ObservableCollection<PersonaListItemViewModel> _personaListItems;
-        public ObservableCollection<PersonaListItemViewModel> PersonaListItems
+        private ObservableCollection<PaperviewListItemViewModel> _personaListItems;
+        public ObservableCollection<PaperviewListItemViewModel> PersonaListItems
         {
             get { return _personaListItems; }
             set { _personaListItems = value; RaisePropertyChanged(); }
         }
 
-        public PersonasViewModel()
+        public PaperviewsViewModel()
         {
             this.Title = "Paperviews";
 
@@ -59,7 +59,7 @@ namespace esperancephone.ViewModels
 
         private void BuildDataItems()
         {
-            var listItems = new ObservableCollection<PersonaListItemViewModel>();
+            var listItems = new ObservableCollection<PaperviewListItemViewModel>();
 
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
@@ -71,22 +71,22 @@ namespace esperancephone.ViewModels
 
                 if (_contactSelected)
                 {
-                    listItems.Add(new PersonaListItemViewModel()
+                    listItems.Add(new PaperviewListItemViewModel()
                     {
-                        TemplateSelectorType = PersonaListItemType.DisplayName,
+                        TemplateSelectorType = PaperviewListItemType.DisplayName,
                         Data = new DisplayNameViewModel() { DisplayName = telecommunicationService.CurrentSession.DisplayName }
                     });
 
-                    listItems.Add(new PersonaListItemViewModel()
+                    listItems.Add(new PaperviewListItemViewModel()
                     {
-                        TemplateSelectorType = PersonaListItemType.PhoneNumber,
+                        TemplateSelectorType = PaperviewListItemType.PhoneNumber,
                         Data = new PhoneNumberViewModel() { PhoneNumber = telecommunicationService.CurrentSession.PhoneNumber }
                     });
                 }
 
-                listItems.Add(new PersonaListItemViewModel()
+                listItems.Add(new PaperviewListItemViewModel()
                 {
-                    TemplateSelectorType = PersonaListItemType.PersonasGroupHeading,
+                    TemplateSelectorType = PaperviewListItemType.PaperviewsGroupHeading,
                     Data = new PersonasGroupHeadingViewModel()
                     {
                         LabelText = "Select Paperview:",
@@ -103,33 +103,33 @@ namespace esperancephone.ViewModels
                     }
                 });
 
-                listItems.Add(new PersonaListItemViewModel()
+                listItems.Add(new PaperviewListItemViewModel()
                 {
-                    TemplateSelectorType = PersonaListItemType.Personas,
+                    TemplateSelectorType = PaperviewListItemType.Paperviews,
                     Data = new PersonaViewModel() { Title = "xPersonal Item 0" }
                 });
-                listItems.Add(new PersonaListItemViewModel()
+                listItems.Add(new PaperviewListItemViewModel()
                 {
-                    TemplateSelectorType = PersonaListItemType.Personas,
+                    TemplateSelectorType = PaperviewListItemType.Paperviews,
                     Data = new PersonaViewModel() { Title = "xPersonal Item 1" }
                 });
-                listItems.Add(new PersonaListItemViewModel()
+                listItems.Add(new PaperviewListItemViewModel()
                 {
-                    TemplateSelectorType = PersonaListItemType.Personas,
+                    TemplateSelectorType = PaperviewListItemType.Paperviews,
                     Data = new PersonaViewModel() { Title = "xPersonal Item 2" }
                 });
-                listItems.Add(new PersonaListItemViewModel()
+                listItems.Add(new PaperviewListItemViewModel()
                 {
-                    TemplateSelectorType = PersonaListItemType.Personas,
+                    TemplateSelectorType = PaperviewListItemType.Paperviews,
                     Data = new PersonaViewModel() { Title = "xPersonal Item 3" }
                 });
 
                 if (_contactSelected)
                 {
 
-                    listItems.Add(new PersonaListItemViewModel()
+                    listItems.Add(new PaperviewListItemViewModel()
                     {
-                        TemplateSelectorType = PersonaListItemType.Communicate,
+                        TemplateSelectorType = PaperviewListItemType.Communicate,
                         Data = new CommunicateViewModel()
                         {
                             Label = "Send Paperview and Call",
@@ -154,9 +154,9 @@ namespace esperancephone.ViewModels
 
                         }
                     });
-                    listItems.Add(new PersonaListItemViewModel()
+                    listItems.Add(new PaperviewListItemViewModel()
                     {
-                        TemplateSelectorType = PersonaListItemType.Communicate,
+                        TemplateSelectorType = PaperviewListItemType.Communicate,
                         Data = new CommunicateViewModel()
                         {
                             Label = "Send Paperview only",
@@ -182,9 +182,9 @@ namespace esperancephone.ViewModels
                         }
                     });
 
-                    listItems.Add(new PersonaListItemViewModel()
+                    listItems.Add(new PaperviewListItemViewModel()
                     {
-                        TemplateSelectorType = PersonaListItemType.Communicate,
+                        TemplateSelectorType = PaperviewListItemType.Communicate,
                         Data = new CommunicateViewModel()
                         {
                             Label = "Call only",

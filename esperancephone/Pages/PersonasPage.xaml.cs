@@ -22,7 +22,7 @@ namespace esperancephone.Pages
 
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
-                this.BindingContext = scope.Resolve<PersonasViewModel>();
+                this.BindingContext = scope.Resolve<PaperviewsViewModel>();
                 var navigationService = scope.Resolve<INavigationService>();
                 navigationService.CurrentPage = this;
 

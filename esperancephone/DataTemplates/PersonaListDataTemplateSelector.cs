@@ -23,24 +23,24 @@ namespace esperancephone.DataTemplates
         {
             DataTemplate response = null;
 
-            var viewModel = item as PersonaListItemViewModel;
+            var viewModel = item as PaperviewListItemViewModel;
             if (viewModel == null) return null;
 
             switch (viewModel.TemplateSelectorType)
             {
-                case PersonaListItemType.DisplayName:
+                case PaperviewListItemType.DisplayName:
                     response = _displayNameCell;
                     break;
-                case PersonaListItemType.PhoneNumber:
+                case PaperviewListItemType.PhoneNumber:
                     response = _phoneNumberCell;
                     break;
-                case PersonaListItemType.Personas:
+                case PaperviewListItemType.Paperviews:
                     response = _personaCell;
                     break;
-                case PersonaListItemType.Communicate:
+                case PaperviewListItemType.Communicate:
                     response = _communicateCell;
                     break;
-                case PersonaListItemType.PersonasGroupHeading:
+                case PaperviewListItemType.PaperviewsGroupHeading:
                     response = _personasGroupHeadingCell;
                     break;
                 default:

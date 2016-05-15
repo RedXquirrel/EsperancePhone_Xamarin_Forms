@@ -8,9 +8,9 @@ using esperancephone.Models;
 
 namespace esperancephone.ViewModels
 {
-    public class PersonaListItemViewModel : ViewModelBase
+    public class PaperviewListItemViewModel : ViewModelBase
     {
-        public PersonaListItemType TemplateSelectorType { get; set; }
+        public PaperviewListItemType TemplateSelectorType { get; set; }
         public object Data { get; set; }
     }
 }

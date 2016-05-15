@@ -35,7 +35,7 @@ namespace esperancephone.Droid.Ioc
             containerBuilder.RegisterType<FavouritesViewModel>().SingleInstance();
             containerBuilder.RegisterType<RecentViewModel>().SingleInstance();
             containerBuilder.RegisterType<DiallerViewModel>().SingleInstance();
-            containerBuilder.RegisterType<PersonasViewModel>().SingleInstance();
+            containerBuilder.RegisterType<PaperviewsViewModel>().SingleInstance();
             containerBuilder.RegisterType<PersonanceViewModel>().SingleInstance();
             containerBuilder.RegisterType<ContactsViewModel>().SingleInstance();
             containerBuilder.RegisterType<ContactViewModel>();

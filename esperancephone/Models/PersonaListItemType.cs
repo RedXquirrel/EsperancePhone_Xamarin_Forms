@@ -1,11 +1,11 @@
 ﻿namespace esperancephone.Models
 {
-    public enum PersonaListItemType
+    public enum PaperviewListItemType
     {
-        PersonasGroupHeading,
+        PaperviewsGroupHeading,
         DisplayName,
         PhoneNumber,
-        Personas,
+        Paperviews,
         Communicate
 
     }
