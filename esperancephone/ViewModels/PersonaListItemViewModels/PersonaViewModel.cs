@@ -2,7 +2,7 @@
 
 namespace esperancephone.ViewModels.PersonaListItemViewModels
 {
-    public class PaperviewViewModelViewModel : StandardViewModel
+    public class PaperviewViewModel : StandardViewModel
     {
         private PaperviewModel _paperview;
 
@@ -12,7 +12,7 @@ namespace esperancephone.ViewModels.PersonaListItemViewModels
             set { _paperview = value; this.Title = _paperview.DisplayName; }
         }
 
-        public PaperviewViewModelViewModel()
+        public PaperviewViewModel()
         {
             this.Title = "Paperview Item";
         }
