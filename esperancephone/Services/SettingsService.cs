@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using esperancephone.Helpers;
 using esperancephone.Interfaces;
+using esperancephone.Models;
+using Newtonsoft.Json;
 
 namespace esperancephone.Services
 {
@@ -26,6 +28,12 @@ namespace esperancephone.Services
         {
             get { return Settings.MobileServiceAuthenticationToken; }
             set { Settings.MobileServiceAuthenticationToken = value; }
+        }
+
+        public CurrentPageCacheModel CurrentPageCacheModel
+        {
+            get { return JsonConvert.DeserializeObject<CurrentPageCacheModel>(Settings.CurrentPageCacheModel); }
+            set { Settings.CurrentPageCacheModel = JsonConvert.SerializeObject(value); }
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using esperancephone.Interfaces;
 using esperancephone.Ioc;
+using esperancephone.Models;
+using esperancephone.Pages;
 
 namespace esperancephone.Helpers
 {
@@ -15,6 +17,15 @@ namespace esperancephone.Helpers
 
                 var contactsService = scope.Resolve<IContactsService>();
                 contactsService.CurrentContact = null;
+            }
+        }
+
+        public static void SetCurrentPageCache(CurrentPageCacheModel cache)
+        {
+            using (var scope = AppContainer.Container.BeginLifetimeScope())
+            {
+                var settingsService = scope.Resolve<ISettingsService>();
+                settingsService.CurrentPageCacheModel = cache;
             }
         }
     }

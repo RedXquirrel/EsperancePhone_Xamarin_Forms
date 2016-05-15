@@ -9,6 +9,7 @@ using Autofac;
 using Com.Xamtastic.Patterns.SmallestMvvm;
 using esperancephone.Interfaces;
 using esperancephone.Ioc;
+using esperancephone.Models;
 using esperancephone.Pages;
 using Xamarin.Forms;
 
@@ -181,7 +182,8 @@ namespace esperancephone.ViewModels
 
             this.FavouritesCommand = new Command(() =>
             {
-                esperancephone.Helpers.Services.ResetServices();
+                Helpers.Services.ResetServices();
+                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { Cache = typeof(FavouritesPage) });
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
                     var navigationService = scope.Resolve<INavigationService>();
@@ -191,7 +193,8 @@ namespace esperancephone.ViewModels
 
             this.RecentCommand = new Command(() =>
             {
-                esperancephone.Helpers.Services.ResetServices();
+                Helpers.Services.ResetServices();
+                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { Cache = typeof(RecentPage) });
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
                     var navigationService = scope.Resolve<INavigationService>();
@@ -201,7 +204,8 @@ namespace esperancephone.ViewModels
 
             this.ContactsCommand = new Command(() =>
             {
-                esperancephone.Helpers.Services.ResetServices();
+                Helpers.Services.ResetServices();
+                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { Cache = typeof(ContactsPage) });
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
                     var navigationService = scope.Resolve<INavigationService>();
@@ -211,7 +215,8 @@ namespace esperancephone.ViewModels
 
             this.DiallerCommand = new Command(() =>
             {
-                esperancephone.Helpers.Services.ResetServices();
+                Helpers.Services.ResetServices();
+                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { Cache = typeof(DiallerPage) });
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
                     var navigationService = scope.Resolve<INavigationService>();
@@ -221,10 +226,11 @@ namespace esperancephone.ViewModels
 
             this.PersonanceCommand = new Command(() =>
             {
-                esperancephone.Helpers.Services.ResetServices();
+                Helpers.Services.ResetServices();
+                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { Cache = typeof(PersonasPage) });
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
-                    var navigationService = scope.Resolve<INavigationService>();
+                   var navigationService = scope.Resolve<INavigationService>();
                     navigationService.Navigation.PushAsync(new PersonasPage(), false);
                 }
             });

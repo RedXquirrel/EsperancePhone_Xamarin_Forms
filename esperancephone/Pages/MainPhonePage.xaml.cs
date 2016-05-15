@@ -7,6 +7,7 @@ using Autofac;
 using esperancephone.Extensions;
 using esperancephone.Interfaces;
 using esperancephone.Ioc;
+using esperancephone.Models;
 using esperancephone.ViewModels;
 using Xamarin.Forms;
 
@@ -36,10 +37,21 @@ namespace esperancephone.Pages
 
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
-                var service = scope.Resolve<INavigationService>();
+                var navigationService = scope.Resolve<INavigationService>();
                 masterPhonePage.ListView.SelectedItem = null;
-                service.MasterDetailAction = this.MasterDetailToggleAction;
+                navigationService.MasterDetailAction = this.MasterDetailToggleAction;
                 IsPresented = false;
+
+                var settingsService = scope.Resolve<ISettingsService>();
+                var currentPageCacheModel = settingsService.CurrentPageCacheModel;
+
+                if (currentPageCacheModel != null)
+                {
+                    MainNavigationPage.Navigation.PushAsync(
+                        (Page) Activator.CreateInstance(currentPageCacheModel.Cache));
+                    NavigationPage.SetHasNavigationBar(MainNavigationPage.CurrentPage, false);
+                }
+
             }
 
             masterPhonePage.ListView.ItemSelected += ItemSelected;
@@ -98,6 +110,18 @@ namespace esperancephone.Pages
 
             // Reset Everything
             esperancephone.Helpers.Services.ResetServices();
+
+            // These are the only pages that are to be automatically navigated to
+            // when the app is started.
+            if (item.PageType == typeof(FavouritesPage) ||
+                item.PageType == typeof(RecentPage) ||
+                item.PageType == typeof(ContactsPage) ||
+                item.PageType == typeof(DiallerPage) ||
+                item.PageType == typeof(PersonasPage)
+                )
+            {
+                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { Cache = item.PageType });
+            }
 
             MainNavigationPage.Navigation.PushAsync((Page) Activator.CreateInstance(item.PageType));
             NavigationPage.SetHasNavigationBar(MainNavigationPage.CurrentPage, false);

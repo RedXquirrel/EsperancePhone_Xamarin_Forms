@@ -106,6 +106,7 @@
     <Compile Include="Models\CommunicationModel.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\ContactListItemType.cs" />
+    <Compile Include="Models\CurrentPageCacheModel.cs" />
     <Compile Include="Models\Keys.cs" />
     <Compile Include="Models\PersonaListItemType.cs" />
     <Compile Include="Models\Phone.cs" />

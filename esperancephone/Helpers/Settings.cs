@@ -30,6 +30,9 @@ namespace esperancephone.Helpers
 
         private const string MobileServiceAuthenticationTokenKey = "mobileserviceauthenticationtoken_key";
         private static readonly string MobileServiceAuthenticationTokenDefault = string.Empty;
+
+        private const string CurrentPageCacheModelKey = "currentpagecachemodel_key";
+        private static readonly string CurrentPageCacheModelDefault = string.Empty;
         #endregion
 
         public static string ApplicationName
@@ -69,5 +72,23 @@ namespace esperancephone.Helpers
                 AppSettings.AddOrUpdateValue<string>(MobileServiceAuthenticationTokenKey, value);
             }
         }
+
+        /// <summary>
+        /// Json value of CurrentPageCacheModel class instance.
+        /// </summary>
+        public static string CurrentPageCacheModel
+        {
+            get
+            {
+                Debug.WriteLine($"INFORMATION: CurrentPageCacheModel = {AppSettings.GetValueOrDefault<string>(CurrentPageCacheModelKey, CurrentPageCacheModelDefault)}");
+                return AppSettings.GetValueOrDefault<string>(CurrentPageCacheModelKey, CurrentPageCacheModelDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue<string>(CurrentPageCacheModelKey, value);
+            }
+        }
+
+
     }
 }
