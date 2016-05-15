@@ -9,6 +9,7 @@ using Autofac;
 using esperancephone.Interfaces;
 using esperancephone.Ioc;
 using esperancephone.Models;
+using esperancephone.Pages;
 using Xamarin.Forms;
 
 namespace esperancephone.ViewModels
@@ -44,6 +45,30 @@ namespace esperancephone.ViewModels
         {
             Debug.WriteLine($"INFORMATION: ViewModelGuid = {guid}");
             this.Title = "Esperance Dialler";
+
+            using (var scope = AppContainer.Container.BeginLifetimeScope())
+            {
+                var diallerService = scope.Resolve<IDiallerService>();
+
+                diallerService.CallAction = new Command<List<Keys>>(async (keys) =>
+                {
+                    if (keys != null && keys.Count != 0)
+                    {
+                        using (var commandScope = AppContainer.Container.BeginLifetimeScope())
+                        {
+                            var navigationService = commandScope.Resolve<INavigationService>();
+                            var telecommunicationService = commandScope.Resolve<ITeleCommunicationService>();
+                            var diallerServiceCS = commandScope.Resolve<IDiallerService>();
+                            var commSession = new CommunicationModel();
+                            commSession.DisplayName = "Unidentified";
+                            commSession.PhoneNumber = diallerServiceCS.GetNumber(keys);
+                            telecommunicationService.CurrentSession = commSession;
+                            diallerServiceCS.PopAllkeys();
+                            await navigationService.CurrentPage.Navigation.PushAsync(new PersonasPage());
+                        }
+                    }
+                });
+            }
 
             this.KeyPressedCommand = new Command<Keys>((key) =>
             {

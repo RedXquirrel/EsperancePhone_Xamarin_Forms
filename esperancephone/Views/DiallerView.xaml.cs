@@ -145,26 +145,6 @@ namespace esperancephone.Views
         {
             InitializeComponent();
 
-            using (var scope = AppContainer.Container.BeginLifetimeScope())
-            {
-                var diallerService = scope.Resolve<IDiallerService>();
-
-                diallerService.CallAction = new Command<List<Keys>> (async(keys) =>
-                {
-                    using (var commandScope = AppContainer.Container.BeginLifetimeScope())
-                    {
-                        var navigationService = commandScope.Resolve<INavigationService>();
-                        var telecommunicationService = commandScope.Resolve<ITeleCommunicationService>();
-                        var diallerServiceCS = commandScope.Resolve<IDiallerService>();
-                        var commSession = new CommunicationModel();
-                        commSession.DisplayName = "Unidentified";
-                        commSession.PhoneNumber = diallerServiceCS.GetNumber(keys);
-                        telecommunicationService.CurrentSession = commSession;
-                        await navigationService.CurrentPage.Navigation.PushAsync(new PersonasPage());
-                    }
-                });
-            }
-
             var sizeMedium = Device.GetNamedSize(NamedSize.Medium, typeof(Label));
 
             Grid addContactsGrid = new Grid() { Padding = 10 };
