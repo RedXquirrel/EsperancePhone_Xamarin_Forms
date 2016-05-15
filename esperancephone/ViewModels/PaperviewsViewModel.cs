@@ -19,8 +19,8 @@ namespace esperancephone.ViewModels
 {
     public class PaperviewsViewModel : StandardViewModel
     {
-        private bool _contactSelected;
-        private bool _paperviewSelected;
+        private bool _isCommSession;
+        private bool _isPaperviewSelected;
 
         private PaperviewListItemViewModel _selectedListItem;
 
@@ -36,7 +36,7 @@ namespace esperancephone.ViewModels
 
                     var paperviewService = scope.Resolve<IPaperviewService>();
 
-                    paperviewService.CurrentPaperview = _paperviewSelected
+                    paperviewService.CurrentPaperview = _isPaperviewSelected
                         ? ((PaperviewViewModel) item.Data).Paperview
                         : null;
 
@@ -57,7 +57,7 @@ namespace esperancephone.ViewModels
             _selectedListItem = item;
             if (_selectedListItem != null)
             {
-                _paperviewSelected = item.Data.GetType() == typeof (PaperviewViewModel);
+                _isPaperviewSelected = item.Data.GetType() == typeof (PaperviewViewModel);
             }
         }
 
@@ -77,117 +77,72 @@ namespace esperancephone.ViewModels
 
         private async void BuildDataItems()
         {
+            // Declare the list to build. It's all about building this list !!!
             var listItems = new ObservableCollection<PaperviewListItemViewModel>();
 
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
                 var telecommunicationService = scope.Resolve<ITeleCommunicationService>();
-                //var dialService = scope.Resolve<IDialService>();
-                //telecommunicationService.SetDialService(dialService);
-
-                var paperviewService = scope.Resolve<IPaperviewService>();
-                if (paperviewService.CurrentPaperview != null)
-                {
-                    _paperviewSelected = true;
-                }
                 
-                _contactSelected = telecommunicationService.CurrentSession != null ? true : false;
+                _isCommSession = telecommunicationService.CurrentSession != null ? true : false;
 
-                if (_contactSelected)
+                if (_isCommSession) // i.e. Has a previous Display Name and Number been selected?
                 {
+                    // Add DisplayName
                     listItems.Add(new PaperviewListItemViewModel()
                     {
                         TemplateSelectorType = PaperviewListItemType.DisplayName,
-                        Data = new DisplayNameViewModel() { DisplayName = telecommunicationService.CurrentSession.DisplayName }
+                        Data = GetDisplayNameViewModel()
                     });
 
+                    // Add PhoneNumber
                     listItems.Add(new PaperviewListItemViewModel()
                     {
                         TemplateSelectorType = PaperviewListItemType.PhoneNumber,
-                        Data = new PhoneNumberViewModel() { PhoneNumber = telecommunicationService.CurrentSession.PhoneNumber }
+                        Data = GetPhoneNumberViewModel()
                     });
                 }
 
-                if (_paperviewSelected)
+                var paperviewService = scope.Resolve<IPaperviewService>();
+
+                if (paperviewService.CurrentPaperview != null)
                 {
+                    _isPaperviewSelected = true;
+                }
+
+                if (_isPaperviewSelected) // i.e. Has a Paperview been selected
+                {
+                    // Add a heading to display the Paperview item under
                     listItems.Add(new PaperviewListItemViewModel()
                     {
                         TemplateSelectorType = PaperviewListItemType.PaperviewsGroupHeading,
-                        Data = new PersonasGroupHeadingViewModel()
-                        {
-                            LabelText = "Selected Paperview:",
-                            IconCharacter = "\uf147",
-                            AddCommand = new Command(async() =>
-                            {
-                                using (var commandScope = AppContainer.Container.BeginLifetimeScope())
-                                {
-                                    var paperviewServiceCs = commandScope.Resolve<IPaperviewService>();
-                                    paperviewServiceCs.CurrentPaperview = null;
-
-                                    _paperviewSelected = false;
-
-                                    var index = 2;
-
-                                    PersonaListItems.RemoveAt(index); // Label
-
-                                    PersonaListItems.RemoveAt(index); // Paperview item
-
-                                    PersonaListItems.Insert(index, GetSelectRow());
-
-                                    var list = await BuildPaperviewViewModels();
-
-                                    foreach (var item in list)
-                                    {
-                                        PersonaListItems.Insert(++index,item);
-                                    }
-
-                                }
-                            })
-                        }
+                        Data = GetPaperviewAlreadySelectedHeadingRow()
                     });
 
+                    // Add the Already Selected Paperview item under the above heading
                     listItems.Add(new PaperviewListItemViewModel()
                     {
                         TemplateSelectorType = PaperviewListItemType.Paperviews,
-                        Data = new PaperviewViewModel()
-                        {
-                            Paperview = paperviewService.CurrentPaperview
-                        }
+                        Data = GetCurrentPaperviewViewModel()
                     });
-
                 }
-                else
+                else // i.e. Paperview has not been selected
                 {
-                    
+                    // Add a heading to disp[lay ALL the Paperviews under
                     listItems.Add(new PaperviewListItemViewModel()
                     {
                         TemplateSelectorType = PaperviewListItemType.PaperviewsGroupHeading,
-                        Data = new PersonasGroupHeadingViewModel()
-                        {
-                            LabelText = "Select Paperview:",
-                            IconCharacter = "\uf196",
-                            AddCommand = new Command(() =>
-                            {
-                                using (var commandScope = AppContainer.Container.BeginLifetimeScope())
-                                {
-                                    var navigationService = commandScope.Resolve<INavigationService>();
-                                    navigationService.CurrentPage.DisplayAlert("ToDo",
-                                        "To be implemented", "OK");
-                                }
-                            })
-                        }
+                        Data = GetPleaseSelectPaperviewHeadingRow()
                     });
 
-                    var list = await BuildPaperviewViewModels();
-
-                    foreach (var item in list)
+                    // Add all the available Paperviews under the above heading
+                    foreach (var item in await BuildPaperviewViewModels())
                     {
                         listItems.Add(item);
                     }
-                   
                 }
 
-                if (_contactSelected)
+                if (_isCommSession)
                 {
 
                     listItems.Add(new PaperviewListItemViewModel()
@@ -200,7 +155,7 @@ namespace esperancephone.ViewModels
                             {
                                 using (var commandScope = AppContainer.Container.BeginLifetimeScope())
                                 {
-                                    if (_paperviewSelected)
+                                    if (_isPaperviewSelected)
                                     {
                                         // ToDo: SEND PERSONA!!!!!
                                         var dialService = commandScope.Resolve<IDialService>();
@@ -227,7 +182,7 @@ namespace esperancephone.ViewModels
                             {
                                 using (var commandScope = AppContainer.Container.BeginLifetimeScope())
                                 {
-                                    if (_paperviewSelected)
+                                    if (_isPaperviewSelected)
                                     {
                                         // ToDo: Send Persona !!!
                                         var navigationService = commandScope.Resolve<INavigationService>();
@@ -267,7 +222,7 @@ namespace esperancephone.ViewModels
             }
         }
 
-        private static PaperviewListItemViewModel GetSelectRow()
+        private static PaperviewListItemViewModel GetPleaseSelectPaperviewHeadingRow()
         {
             return new PaperviewListItemViewModel()
             {
@@ -286,6 +241,93 @@ namespace esperancephone.ViewModels
                         }
                     })
                 }
+            };
+        }
+
+        private PersonasGroupHeadingViewModel GetPaperviewAlreadySelectedHeadingRow()
+        {
+            return new PersonasGroupHeadingViewModel()
+            {
+                LabelText = "Selected Paperview:",
+                IconCharacter = "\uf147",
+                AddCommand = new Command(async () =>
+                {
+                    using (var commandScope = AppContainer.Container.BeginLifetimeScope())
+                    {
+                        var paperviewServiceCs = commandScope.Resolve<IPaperviewService>();
+                        paperviewServiceCs.CurrentPaperview = null;
+
+                        _isPaperviewSelected = false;
+
+                        var index = 2;
+
+                        PersonaListItems.RemoveAt(index); // Label
+
+                        PersonaListItems.RemoveAt(index); // Paperview item
+
+                        PersonaListItems.Insert(index, GetPleaseSelectPaperviewHeadingRow());
+
+                        var list = await BuildPaperviewViewModels();
+
+                        foreach (var item in list)
+                        {
+                            PersonaListItems.Insert(++index, item);
+                        }
+
+                    }
+                })
+            };
+        }
+
+        private static DisplayNameViewModel GetDisplayNameViewModel()
+        {
+            string displayName = string.Empty;
+
+            using (var commandScope = AppContainer.Container.BeginLifetimeScope())
+            {
+                var telecommunicationsService = commandScope.Resolve<ITeleCommunicationService>();
+                displayName = telecommunicationsService.CurrentSession.DisplayName;
+            }
+
+            return new DisplayNameViewModel()
+            {
+                DisplayName = displayName
+            };
+        }
+
+        private static PhoneNumberViewModel GetPhoneNumberViewModel()
+        {
+            string phoneNumber = string.Empty;
+
+            using (var commandScope = AppContainer.Container.BeginLifetimeScope())
+            {
+                var telecommunicationsService = commandScope.Resolve<ITeleCommunicationService>();
+                phoneNumber = telecommunicationsService.CurrentSession.PhoneNumber;
+            }
+
+            return new PhoneNumberViewModel()
+            {
+                PhoneNumber = phoneNumber
+            };
+        }
+
+        private static PaperviewModel GetCurrentPaperviewModel()
+        {
+            PaperviewModel response = null;
+
+            using (var commandScope = AppContainer.Container.BeginLifetimeScope())
+            {
+                var paperviewService = commandScope.Resolve<IPaperviewService>();
+                response = paperviewService.CurrentPaperview;
+            }
+            return response;
+        }
+
+        private static PaperviewViewModel GetCurrentPaperviewViewModel()
+        {
+            return new PaperviewViewModel()
+            {
+                Paperview = GetCurrentPaperviewModel()
             };
         }
 
