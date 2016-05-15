@@ -39,7 +39,7 @@ namespace esperancephone.ViewModels
             _selectedListItem = item;
             if (_selectedListItem != null)
             {
-                _personaSelected = item.Data.GetType() == typeof (PersonaViewModel);
+                _personaSelected = item.Data.GetType() == typeof (PaperviewViewModelViewModel);
             }
         }
 
@@ -106,22 +106,46 @@ namespace esperancephone.ViewModels
                 listItems.Add(new PaperviewListItemViewModel()
                 {
                     TemplateSelectorType = PaperviewListItemType.Paperviews,
-                    Data = new PersonaViewModel() { Title = "xPersonal Item 0" }
+                    Data = new PaperviewViewModelViewModel()
+                    {
+                        Paperview = new PaperviewModel()
+                        {
+                            DisplayName = "xPersonal Item 0"
+                        }
+                    }
                 });
                 listItems.Add(new PaperviewListItemViewModel()
                 {
                     TemplateSelectorType = PaperviewListItemType.Paperviews,
-                    Data = new PersonaViewModel() { Title = "xPersonal Item 1" }
+                    Data = new PaperviewViewModelViewModel()
+                    {
+                        Paperview = new PaperviewModel()
+                        {
+                            DisplayName = "xPersonal Item 1"
+                        }
+                    }
                 });
                 listItems.Add(new PaperviewListItemViewModel()
                 {
                     TemplateSelectorType = PaperviewListItemType.Paperviews,
-                    Data = new PersonaViewModel() { Title = "xPersonal Item 2" }
+                    Data = new PaperviewViewModelViewModel()
+                    {
+                        Paperview = new PaperviewModel()
+                        {
+                            DisplayName = "xPersonal Item 2"
+                        }
+                    }
                 });
                 listItems.Add(new PaperviewListItemViewModel()
                 {
                     TemplateSelectorType = PaperviewListItemType.Paperviews,
-                    Data = new PersonaViewModel() { Title = "xPersonal Item 3" }
+                    Data = new PaperviewViewModelViewModel()
+                    {
+                        Paperview = new PaperviewModel()
+                        {
+                            DisplayName = "xPersonal Item 3"
+                        }
+                    }
                 });
 
                 if (_contactSelected)

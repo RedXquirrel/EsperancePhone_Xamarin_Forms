@@ -92,6 +92,7 @@
     <Compile Include="Interfaces\IDialService.cs" />
     <Compile Include="Interfaces\IEsperancePhoneApiManager.cs" />
     <Compile Include="Interfaces\INavigationService.cs" />
+    <Compile Include="Interfaces\IPaperviewService.cs" />
     <Compile Include="Interfaces\IPhone.cs" />
     <Compile Include="Interfaces\ISettingsService.cs" />
     <Compile Include="Interfaces\ITeleCommunicationService.cs" />
@@ -108,7 +109,8 @@
     <Compile Include="Models\ContactListItemType.cs" />
     <Compile Include="Models\CurrentPageCacheModel.cs" />
     <Compile Include="Models\Keys.cs" />
-    <Compile Include="Models\PersonaListItemType.cs" />
+    <Compile Include="Models\PaperviewListItemType.cs" />
+    <Compile Include="Models\PaperviewModel.cs" />
     <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\SendModel.cs" />
     <Compile Include="Models\SendType.cs" />
@@ -162,6 +164,7 @@
     <Compile Include="Services\DiallerService.cs" />
     <Compile Include="Services\MasterPageIndexService.cs" />
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Services\PaperviewService.cs" />
     <Compile Include="Services\SettingsService.cs" />
     <Compile Include="Services\TelecommunicationService.cs" />
     <Compile Include="TodoList.xaml.cs">
@@ -188,9 +191,9 @@
     <Compile Include="ViewModels\IndexViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MasterPageIndexItemViewModel.cs" />
-    <Compile Include="ViewModels\PersonaListItemViewModel.cs" />
+    <Compile Include="ViewModels\PaperviewListItemViewModel.cs" />
     <Compile Include="ViewModels\PersonanceViewModel.cs" />
-    <Compile Include="ViewModels\PersonasViewModel.cs" />
+    <Compile Include="ViewModels\PaperviewsViewModel.cs" />
     <Compile Include="ViewModels\RecentViewModel.cs" />
     <Compile Include="ViewModels\SelectPersonanceViewModel.cs" />
     <Compile Include="ViewModels\StandardViewModel.cs" />

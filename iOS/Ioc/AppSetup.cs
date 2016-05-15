@@ -20,6 +20,7 @@ namespace esperancephone.iOS.Ioc
         protected virtual void RegisterDependencies(ContainerBuilder containerBuilder)
         {
             containerBuilder.RegisterInstance(new EsperancePhoneApiManager()).As<IEsperancePhoneApiManager>();
+            containerBuilder.RegisterInstance(new PaperviewService()).SingleInstance().As<IPaperviewService>();
             containerBuilder.RegisterInstance(new SettingsService()).As<ISettingsService>();
             containerBuilder.RegisterInstance(new NavigationService()).As<INavigationService>();
             containerBuilder.RegisterInstance(new DiallerService()).SingleInstance().As<IDiallerService>();
