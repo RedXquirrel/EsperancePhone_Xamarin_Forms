@@ -191,55 +191,80 @@ namespace esperancephone.ViewModels
             this.FavouritesCommand = new Command(() =>
             {
                 Helpers.Services.ResetServices();
-                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { Cache = typeof(FavouritesPage) });
+                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { PageCache = typeof(FavouritesPage), ViewModelCache = typeof(FavouritesViewModel) });
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
-                    var navigationService = scope.Resolve<INavigationService>();
-                    navigationService.Navigation.PushAsync(new FavouritesPage(), false);
+                    var settingsService = scope.Resolve<ISettingsService>();
+
+                    if (this.GetType() != settingsService.CurrentPageCacheModel.ViewModelCache)
+                    {
+                        var navigationService = scope.Resolve<INavigationService>();
+                        navigationService.Navigation.PushAsync(new FavouritesPage(), false);
+                    }
                 }
             });
 
             this.RecentCommand = new Command(() =>
             {
                 Helpers.Services.ResetServices();
-                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { Cache = typeof(RecentPage) });
+                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { PageCache = typeof(RecentPage), ViewModelCache = typeof(RecentViewModel) });
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
-                    var navigationService = scope.Resolve<INavigationService>();
-                    navigationService.Navigation.PushAsync(new RecentPage(), false);
+                    var settingsService = scope.Resolve<ISettingsService>();
+
+                    if (this.GetType() != settingsService.CurrentPageCacheModel.ViewModelCache)
+                    {
+                        var navigationService = scope.Resolve<INavigationService>();
+                        navigationService.Navigation.PushAsync(new RecentPage(), false);
+                    }
                 }
             });
 
             this.ContactsCommand = new Command(() =>
             {
                 Helpers.Services.ResetServices();
-                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { Cache = typeof(ContactsPage) });
+                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { PageCache = typeof(ContactsPage), ViewModelCache = typeof(ContactsViewModel) });
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
-                    var navigationService = scope.Resolve<INavigationService>();
-                    navigationService.Navigation.PushAsync(new ContactsPage(), false);
+                    var settingsService = scope.Resolve<ISettingsService>();
+
+                    if (this.GetType() != settingsService.CurrentPageCacheModel.ViewModelCache)
+                    {
+                        var navigationService = scope.Resolve<INavigationService>();
+                        navigationService.Navigation.PushAsync(new ContactsPage(), false);
+                    }
                 }
             });
 
             this.DiallerCommand = new Command(() =>
             {
                 Helpers.Services.ResetServices();
-                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { Cache = typeof(DiallerPage) });
+                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { PageCache = typeof(DiallerPage), ViewModelCache = typeof(DiallerViewModel) });
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
-                    var navigationService = scope.Resolve<INavigationService>();
-                    navigationService.Navigation.PushAsync(new DiallerPage(), false);
+                    var settingsService = scope.Resolve<ISettingsService>();
+
+                    if (this.GetType() != settingsService.CurrentPageCacheModel.ViewModelCache)
+                    {
+                        var navigationService = scope.Resolve<INavigationService>();
+                        navigationService.Navigation.PushAsync(new DiallerPage(), false);
+                    }
                 }
             });
 
             this.PersonanceCommand = new Command(() =>
             {
                 Helpers.Services.ResetServices();
-                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { Cache = typeof(PersonasPage) });
+                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { PageCache = typeof(PersonasPage), ViewModelCache = typeof(PaperviewsViewModel) });
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
-                   var navigationService = scope.Resolve<INavigationService>();
-                    navigationService.Navigation.PushAsync(new PersonasPage(), false);
+                    var settingsService = scope.Resolve<ISettingsService>();
+
+                    if (this.GetType() != settingsService.CurrentPageCacheModel.ViewModelCache)
+                    {
+                        var navigationService = scope.Resolve<INavigationService>();
+                        navigationService.Navigation.PushAsync(new PersonasPage(), false);
+                    }
                 }
             });
 

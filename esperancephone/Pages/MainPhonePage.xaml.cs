@@ -48,7 +48,7 @@ namespace esperancephone.Pages
                 if (currentPageCacheModel != null)
                 {
                     MainNavigationPage.Navigation.PushAsync(
-                        (Page) Activator.CreateInstance(currentPageCacheModel.Cache));
+                        (Page) Activator.CreateInstance(currentPageCacheModel.PageCache));
                     NavigationPage.SetHasNavigationBar(MainNavigationPage.CurrentPage, false);
                 }
 
@@ -120,7 +120,7 @@ namespace esperancephone.Pages
                 item.PageType == typeof(PersonasPage)
                 )
             {
-                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { Cache = item.PageType });
+                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { PageCache = item.PageType });
             }
 
             MainNavigationPage.Navigation.PushAsync((Page) Activator.CreateInstance(item.PageType));

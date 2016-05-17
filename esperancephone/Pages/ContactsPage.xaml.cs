@@ -19,11 +19,13 @@ namespace esperancephone.Pages
         public ContactsPage()
         {
             InitializeComponent();
+            Setup();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            var a = this.BindingContext;
             Setup();
         }
 
