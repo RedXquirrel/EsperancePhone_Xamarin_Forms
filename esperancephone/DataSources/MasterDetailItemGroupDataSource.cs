@@ -37,29 +37,11 @@ namespace esperancephone.DataSources
         {
             List<MasterDetailItemGroupDataSource> Groups = new List<MasterDetailItemGroupDataSource>
             {
-                new MasterDetailItemGroupDataSource("Gallery", string.Empty, "All your paperviews, inbound and outbound")
+                new MasterDetailItemGroupDataSource("Esperance", string.Empty, "To reach out with especial personance")
                 {
-                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf017", Title = "Recent", PageType = typeof(RecentPage) },
-                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf006", Title = "Favourites", PageType = typeof(FavouritesPage) },
-                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf03a", Title = "All", PageType = typeof(PersonasPage) }
-                },
-                new MasterDetailItemGroupDataSource("Curation", string.Empty, "Paperviews you prepare to send")
-                {
-                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf06e", Title = "Paperviews", PageType = typeof(PersonasPage) },
-                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf0fe", Title = "Create", PageType = typeof(PersonancePage) },
+                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "About", PageType = typeof(AboutCaptainXamtasticPage) },
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "FAQ", PageType = typeof(FaqPage) },
-                },
-                new MasterDetailItemGroupDataSource("Phone", string.Empty, "Send a paperview when you make a call")
-                {
-                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf098", Title = "Dialler", PageType = typeof(DiallerPage) },
-                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf0c0", Title = "Contacts", PageType = typeof(ContactsPage) },
-                },
-                new MasterDetailItemGroupDataSource("Utilities", string.Empty, "Manage yourself")
-                {
-                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf24a", Title = "To Do List", PageType = typeof(TodoList) },
-                },
-                new MasterDetailItemGroupDataSource("Account", string.Empty, "Manage yourself")
-                {
+                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "Terms and Conditions", PageType = typeof(FaqPage) },
                     new MasterPageIndexItemViewModel { IsPage = false, IconKey = "\uf08b", Title = "Logout", Action =
                         async() =>
                         {
@@ -80,10 +62,20 @@ namespace esperancephone.DataSources
                             }
                         } },
                 },
+                new MasterDetailItemGroupDataSource("Paperview", string.Empty, "Our universal distribution format")
+                {
+                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "About", PageType = typeof(AboutCaptainXamtasticPage) },
+                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "FAQ", PageType = typeof(FaqPage) },
+                },
                 new MasterDetailItemGroupDataSource("Corporate", string.Empty, "Say hello to Captain Xamtastic")
                 {
-                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf095", Title = "Contact Us", PageType = typeof(ContactUsPage) },
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "About", PageType = typeof(AboutCaptainXamtasticPage) },
+                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf095", Title = "Contact Us", PageType = typeof(ContactUsPage) },
+                },
+                new MasterDetailItemGroupDataSource("Feedback", string.Empty, "Help us improve our app")
+                {
+                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf24a", Title = "Be Anonymous", PageType = typeof(TodoList) },
+                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf24a", Title = "Be You", PageType = typeof(TodoList) },
                 },
             };
 

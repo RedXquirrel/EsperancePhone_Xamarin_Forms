@@ -148,6 +148,9 @@
     <Compile Include="Pages\MainPhonePage.xaml.cs">
       <DependentUpon>MainPhonePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\PaperviewManagerPage.xaml.cs">
+      <DependentUpon>PaperviewManagerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\PersonancePage.xaml.cs">
       <DependentUpon>PersonancePage.xaml</DependentUpon>
     </Compile>
@@ -176,6 +179,8 @@
     <Compile Include="ViewModels\AboutCaptainXamtasticViewModel.cs" />
     <Compile Include="ViewModels\CommunicateViewModel.cs" />
     <Compile Include="ViewModels\ContactListItemViewModel.cs" />
+    <Compile Include="ViewModels\ModalViewModelBase.cs" />
+    <Compile Include="ViewModels\PaperviewManagerViewModel.cs" />
     <Compile Include="ViewModels\PersonaListItemViewModels\PersonaViewModel.cs" />
     <Compile Include="ViewModels\PersonaListItemViewModels\PhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\PersonasGroupHeadingViewModel.cs" />
@@ -461,6 +466,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DataTemplates\PersonaListCells\PersonasGroupHeadingCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\PaperviewManagerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

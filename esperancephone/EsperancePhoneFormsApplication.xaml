@@ -120,7 +120,7 @@
           <views:Hamburger IconCharacter="{TemplateBinding BindingContext.CloseIconCharacter}" HorizontalOptions="End" IconColor="White" TappedCommand="{TemplateBinding BindingContext.CloseCommand, Mode=TwoWay}" />
           <Label Text="{TemplateBinding BindingContext.Title}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
         </Grid>
-        <Grid Padding="20" BackgroundColor="White">
+        <Grid Padding="20" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
           <ContentPresenter HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
         </Grid>
       </StackLayout>
@@ -186,6 +186,13 @@
         <Setter Property="ControlTemplate" Value="{StaticResource StandardModalNavigationTemplate}" />
       </Style.Setters>
     </Style>
+
+    <Style TargetType="pages:PaperviewManagerPage" x:Key="PaperviewManagerPageModalNavigationStyle">
+      <Style.Setters>
+        <Setter Property="ControlTemplate" Value="{StaticResource StandardModalNavigationTemplate}" />
+      </Style.Setters>
+    </Style>
+
 
     <Style TargetType="pages:FaqPage" x:Key="FaqPageStandardMasterDetailNavigationStyle">
       <Style.Setters>

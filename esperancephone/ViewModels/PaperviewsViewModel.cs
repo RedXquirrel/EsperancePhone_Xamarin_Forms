@@ -50,7 +50,7 @@ namespace esperancephone.ViewModels
                     if (telecommunicationService.CurrentSession == null)
                     {
                         var navigationService = scope.Resolve<INavigationService>();
-                        navigationService.CurrentPage.Navigation.PushAsync(new ContactsPage());
+                        navigationService.CurrentPage.Navigation.PushAsync(new ContactsPage(), false);
                     }
                 }
             }
@@ -190,13 +190,12 @@ namespace esperancephone.ViewModels
             {
                 LabelText = "Select Paperview:",
                 IconCharacter = "\uf196",
-                AddCommand = new Command(() =>
+                AddCommand = new Command(async() =>
                 {
-                    using (var commandScope = AppContainer.Container.BeginLifetimeScope())
+                    using (var scope = AppContainer.Container.BeginLifetimeScope())
                     {
-                        var navigationService = commandScope.Resolve<INavigationService>();
-                        navigationService.CurrentPage.DisplayAlert("ToDo",
-                            "To be implemented", "OK");
+                        var navigationService = scope.Resolve<INavigationService>();
+                        await navigationService.CurrentPage.Navigation.PushModalAsync(new PaperviewManagerPage());
                     }
                 })
             };

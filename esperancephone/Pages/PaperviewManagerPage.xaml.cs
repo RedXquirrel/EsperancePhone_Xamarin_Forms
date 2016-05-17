@@ -12,35 +12,24 @@ using Xamarin.Forms;
 
 namespace esperancephone.Pages
 {
-    public partial class PersonasPage : ContentPage
+    public partial class PaperviewManagerPage : ContentPage
     {
-        public PersonasPage()
+        public PaperviewManagerPage()
         {
             InitializeComponent();
 
-            Setup();
-        }
-
-        private void Setup()
-        {
             NavigationPage.SetHasNavigationBar(this, false);
 
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
-                this.BindingContext = scope.Resolve<PaperviewsViewModel>();
+                this.BindingContext = scope.Resolve<PaperviewManagerViewModel>();
                 var navigationService = scope.Resolve<INavigationService>();
                 navigationService.CurrentPage = this;
 
                 this.WriteLineInstanceAndInstanceId();
 
-                ((StandardViewModel) this.BindingContext).Navigator = (INavigation) this.Navigation;
+                ((StandardViewModel)this.BindingContext).Navigator = (INavigation)this.Navigation;
             }
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            Setup();
         }
     }
 }

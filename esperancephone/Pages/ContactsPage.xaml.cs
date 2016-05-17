@@ -19,7 +19,16 @@ namespace esperancephone.Pages
         public ContactsPage()
         {
             InitializeComponent();
+        }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            Setup();
+        }
+
+        private void Setup()
+        {
             NavigationPage.SetHasNavigationBar(this, false);
 
             using (var scope = AppContainer.Container.BeginLifetimeScope())
@@ -28,7 +37,7 @@ namespace esperancephone.Pages
 
                 this.WriteLineInstanceAndInstanceId();
 
-                ((StandardViewModel)this.BindingContext).Navigator = (INavigation)this.Navigation;
+                ((StandardViewModel) this.BindingContext).Navigator = (INavigation) this.Navigation;
 
                 var navigationService = scope.Resolve<INavigationService>();
                 navigationService.CurrentPage = this;
