@@ -16,6 +16,7 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.Content>
+    <Grid>
     <views:PaneListView  x:Name="listView"
       SeparatorVisibility="None"
       HasUnevenRows="True"
@@ -28,5 +29,9 @@
           <behaviors:ListViewItemTappedBehavior ItemTappedCommand="{Binding SelectedPaperviewListItemCommand}" />
         </views:PaneListView.Behaviors>
     </views:PaneListView>
+      <Grid  HorizontalOptions="Center" VerticalOptions="Start" Padding="0,10,0,0">
+        <ActivityIndicator Color="Green" IsRunning="{Binding IsBusy}" HorizontalOptions="Center" VerticalOptions="Start" />
+      </Grid>      
+    </Grid>
   </ContentPage.Content>
 </ContentPage>

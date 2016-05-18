@@ -122,6 +122,10 @@ namespace esperancephone.Pages
             {
                 Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { PageCache = item.PageType });
             }
+            else
+            {
+                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { BottomBarSelection = BottomBarSelection.None });
+            }
 
             MainNavigationPage.Navigation.PushAsync((Page) Activator.CreateInstance(item.PageType));
             NavigationPage.SetHasNavigationBar(MainNavigationPage.CurrentPage, false);

@@ -6,6 +6,7 @@ namespace esperancephone.Models
     {
         public Type PageCache { get; set; }
         public Type ViewModelCache { get; set; }
+        public BottomBarSelection BottomBarSelection { get; set; }
         public object Parameters { get; set; }
     }
 }

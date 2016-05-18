@@ -153,6 +153,12 @@ namespace esperancephone.ViewModels
                     listItems.Add(new PaperviewListItemViewModel()
                     {
                         TemplateSelectorType = PaperviewListItemType.Communicate,
+                        Data = GetDeliverPaperviewThenCallViewModel()
+                    });
+
+                    listItems.Add(new PaperviewListItemViewModel()
+                    {
+                        TemplateSelectorType = PaperviewListItemType.Communicate,
                         Data = GetSendPaperviewAndCallViewModel()
                     });
 
@@ -285,6 +291,38 @@ namespace esperancephone.ViewModels
             return new PaperviewViewModel()
             {
                 Paperview = GetCurrentPaperviewModel()
+            };
+        }
+
+        private CommunicateViewModel GetDeliverPaperviewThenCallViewModel()
+        {
+            return new CommunicateViewModel()
+            {
+                Label = "Deliver Paperview then Call",
+                CallCommand = new Command(async() =>
+                {
+                    using (var commandScope = AppContainer.Container.BeginLifetimeScope())
+                    {
+                        if (_isPaperviewSelected)
+                        {
+                            // ToDo: SEND PERSONA!!!!!
+
+                            this.IsBusy = true;
+                            var dialService = commandScope.Resolve<IDialService>();
+                            var telecommunicationService = commandScope.Resolve<ITeleCommunicationService>();
+                            await Task.Delay(8000);
+                            this.IsBusy = false;
+                            dialService.Dial(telecommunicationService.CurrentSession.PhoneNumber);
+                        }
+                        else
+                        {
+                            var navigationService = commandScope.Resolve<INavigationService>();
+                            await navigationService.CurrentPage.DisplayAlert("No Paperview Selected Alert",
+                                "Please select a Paperview to send from the Paperview list", "OK");
+                        }
+                    }
+                })
+
             };
         }
 

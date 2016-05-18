@@ -12,6 +12,7 @@
     
     <converters:BindingContextConverter x:Key="BindingContextConverter" />
     <converters:HasKeyStackConverter x:Key="HasKeyStackConverter" />
+    <converters:BottomBarSelectionToIsVisibleConverter x:Key="BottomBarSelectionToIsVisibleConverter" />
 
     <x:Double x:Key="StandardTitleFontSizeDoublePhone">18</x:Double>
     <x:Double x:Key="StandardTitleFontSizeDoubleTablet">40</x:Double>
@@ -70,6 +71,11 @@
               <ColumnDefinition Width="1" />
             </Grid.ColumnDefinitions>
             <views:TappableGrid Grid.Column="2" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.FavouritesCommand}">
+              <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                <BoxView HeightRequest="1" />
+                <BoxView HeightRequest="5" HorizontalOptions="FillAndExpand" VerticalOptions="End" BackgroundColor="{StaticResource CaptainXamtasticBrandRedColor}" IsVisible="{TemplateBinding Parent.CurrentPage.BindingContext.BottomBarSelection, Converter={StaticResource BottomBarSelectionToIsVisibleConverter}, ConverterParameter=Favourites}" />
+                <BoxView HeightRequest="1" />
+              </StackLayout>
               <StackLayout VerticalOptions="Center">
                 <BoxView HeightRequest="2" />
                 <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.FavouritesIcon}" FontSize="Large" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
@@ -78,6 +84,11 @@
               </StackLayout>
             </views:TappableGrid>
             <views:TappableGrid Grid.Column="4" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.RecentCommand}">
+              <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                <BoxView HeightRequest="1" />
+                <BoxView HeightRequest="5" HorizontalOptions="FillAndExpand" VerticalOptions="End" BackgroundColor="{StaticResource CaptainXamtasticBrandRedColor}" IsVisible="{TemplateBinding Parent.CurrentPage.BindingContext.BottomBarSelection, Converter={StaticResource BottomBarSelectionToIsVisibleConverter}, ConverterParameter=Recent}" />
+                <BoxView HeightRequest="1" />
+              </StackLayout>
               <StackLayout VerticalOptions="Center">
                 <BoxView HeightRequest="2" />
                 <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.RecentIcon}" FontSize="Large" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
@@ -86,6 +97,11 @@
               </StackLayout>
             </views:TappableGrid>
             <views:TappableGrid Grid.Column="6" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.ContactsCommand}">
+              <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                <BoxView HeightRequest="1" />
+                <BoxView HeightRequest="5" HorizontalOptions="FillAndExpand" VerticalOptions="End" BackgroundColor="{StaticResource CaptainXamtasticBrandRedColor}" IsVisible="{TemplateBinding Parent.CurrentPage.BindingContext.BottomBarSelection, Converter={StaticResource BottomBarSelectionToIsVisibleConverter}, ConverterParameter=Contacts}" />
+                <BoxView HeightRequest="1" />
+              </StackLayout>
               <StackLayout VerticalOptions="Center">
                 <BoxView HeightRequest="2" />
                 <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.ContactsIcon}" FontSize="Large" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
@@ -94,6 +110,11 @@
               </StackLayout>
             </views:TappableGrid>
             <views:TappableGrid Grid.Column="8" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.DiallerCommand}">
+              <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                <BoxView HeightRequest="1" />
+                <BoxView HeightRequest="5" HorizontalOptions="FillAndExpand" VerticalOptions="End" BackgroundColor="{StaticResource CaptainXamtasticBrandRedColor}" IsVisible="{TemplateBinding Parent.CurrentPage.BindingContext.BottomBarSelection, Converter={StaticResource BottomBarSelectionToIsVisibleConverter}, ConverterParameter=Dialler}" />
+                <BoxView HeightRequest="1" />
+              </StackLayout>
               <StackLayout VerticalOptions="Center">
                 <BoxView HeightRequest="2" />
                 <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.DiallerIcon}" FontSize="Large" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />
@@ -102,6 +123,11 @@
               </StackLayout>
             </views:TappableGrid>
             <views:TappableGrid Grid.Column="10" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.PersonanceCommand}">
+              <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                <BoxView HeightRequest="1" />
+                <BoxView HeightRequest="5" HorizontalOptions="FillAndExpand" VerticalOptions="End" BackgroundColor="{StaticResource CaptainXamtasticBrandRedColor}" IsVisible="{TemplateBinding Parent.CurrentPage.BindingContext.BottomBarSelection, Converter={StaticResource BottomBarSelectionToIsVisibleConverter}, ConverterParameter=Paperviews}" />
+                <BoxView HeightRequest="1" />
+              </StackLayout>
               <StackLayout VerticalOptions="Center">
                 <BoxView HeightRequest="2" />
                 <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.PersonanceIcon}" FontSize="Large" FontFamily="FontAwesome" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" HorizontalOptions="Center" />

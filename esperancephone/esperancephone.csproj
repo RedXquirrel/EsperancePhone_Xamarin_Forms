@@ -37,6 +37,7 @@
     <Compile Include="Behaviors\ListViewItemSelectedBehavior.cs" />
     <Compile Include="Behaviors\ListViewItemTappedBehavior.cs" />
     <Compile Include="Converters\BindingContextConverter.cs" />
+    <Compile Include="Converters\BottomBarSelectionToIsVisibleConverter.cs" />
     <Compile Include="Converters\HasKeyStackConverter.cs" />
     <Compile Include="DataSources\ContactsGroupDataSource.cs" />
     <Compile Include="DataSources\MasterDetailItemGroupDataSource.cs" />
@@ -103,6 +104,7 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Managers\EsperancePhoneApiManager.cs" />
+    <Compile Include="Models\BottomBarSelection.cs" />
     <Compile Include="Models\CellSelectionStyle.cs" />
     <Compile Include="Models\CommunicationModel.cs" />
     <Compile Include="Models\Contact.cs" />

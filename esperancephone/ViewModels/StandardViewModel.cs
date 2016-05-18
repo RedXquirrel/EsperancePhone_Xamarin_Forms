@@ -66,6 +66,13 @@ namespace esperancephone.ViewModels
 
         #region Bottom Bar (favourtites, recent, contacts, dialler, personnance
 
+        private BottomBarSelection _bottomBarSelection;
+        public BottomBarSelection BottomBarSelection
+        {
+            get { return _bottomBarSelection; }
+            set { _bottomBarSelection = value; RaisePropertyChanged(); }
+        }
+
         private string _favouritesIcon;
         public string FavouritesIcon
         {
@@ -191,7 +198,7 @@ namespace esperancephone.ViewModels
             this.FavouritesCommand = new Command(() =>
             {
                 Helpers.Services.ResetServices();
-                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { PageCache = typeof(FavouritesPage), ViewModelCache = typeof(FavouritesViewModel) });
+                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { PageCache = typeof(FavouritesPage), ViewModelCache = typeof(FavouritesViewModel), BottomBarSelection = BottomBarSelection.Favourites });
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
                     var settingsService = scope.Resolve<ISettingsService>();
@@ -207,7 +214,7 @@ namespace esperancephone.ViewModels
             this.RecentCommand = new Command(() =>
             {
                 Helpers.Services.ResetServices();
-                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { PageCache = typeof(RecentPage), ViewModelCache = typeof(RecentViewModel) });
+                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { PageCache = typeof(RecentPage), ViewModelCache = typeof(RecentViewModel), BottomBarSelection = BottomBarSelection.Recent });
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
                     var settingsService = scope.Resolve<ISettingsService>();
@@ -223,7 +230,7 @@ namespace esperancephone.ViewModels
             this.ContactsCommand = new Command(() =>
             {
                 Helpers.Services.ResetServices();
-                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { PageCache = typeof(ContactsPage), ViewModelCache = typeof(ContactsViewModel) });
+                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { PageCache = typeof(ContactsPage), ViewModelCache = typeof(ContactsViewModel), BottomBarSelection = BottomBarSelection.Contacts });
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
                     var settingsService = scope.Resolve<ISettingsService>();
@@ -239,7 +246,7 @@ namespace esperancephone.ViewModels
             this.DiallerCommand = new Command(() =>
             {
                 Helpers.Services.ResetServices();
-                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { PageCache = typeof(DiallerPage), ViewModelCache = typeof(DiallerViewModel) });
+                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { PageCache = typeof(DiallerPage), ViewModelCache = typeof(DiallerViewModel), BottomBarSelection = BottomBarSelection.Dialler});
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
                     var settingsService = scope.Resolve<ISettingsService>();
@@ -255,7 +262,7 @@ namespace esperancephone.ViewModels
             this.PersonanceCommand = new Command(() =>
             {
                 Helpers.Services.ResetServices();
-                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { PageCache = typeof(PersonasPage), ViewModelCache = typeof(PaperviewsViewModel) });
+                Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { PageCache = typeof(PersonasPage), ViewModelCache = typeof(PaperviewsViewModel), BottomBarSelection = BottomBarSelection.Paperviews });
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
                     var settingsService = scope.Resolve<ISettingsService>();
@@ -271,6 +278,8 @@ namespace esperancephone.ViewModels
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
                 _settingsService = scope.Resolve<ISettingsService>();
+                var curr = _settingsService.CurrentPageCacheModel;
+                this.BottomBarSelection = curr.BottomBarSelection;
             }
         }
 
