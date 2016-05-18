@@ -279,7 +279,7 @@ namespace esperancephone.ViewModels
             {
                 _settingsService = scope.Resolve<ISettingsService>();
                 var curr = _settingsService.CurrentPageCacheModel;
-                this.BottomBarSelection = curr.BottomBarSelection;
+                if(curr != null) this.BottomBarSelection = curr.BottomBarSelection;
             }
         }
 

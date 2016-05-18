@@ -22,9 +22,11 @@ namespace esperancephone.ViewModels
         private bool _isCommSession;
         private bool _isPaperviewSelected;
 
+        private int _listAnimationDelay = 105;
+
         private PaperviewListItemViewModel _selectedListItem;
 
-        public ICommand SelectedPaperviewListItemCommand => new Command<PaperviewListItemViewModel>((item) =>
+        public ICommand SelectedPaperviewListItemCommand => new Command<PaperviewListItemViewModel>(async(item) =>
         {
             Debug.WriteLine($"INFORMATION: Selected Paperview List Data Item class is {item.Data.GetType().ToString()}");
 
@@ -51,6 +53,25 @@ namespace esperancephone.ViewModels
                     {
                         var navigationService = scope.Resolve<INavigationService>();
                         navigationService.CurrentPage.Navigation.PushAsync(new ContactsPage(), false);
+                    }
+                    else
+                    {
+                        int lastX = 0;
+                        for (var x = this.PersonaListItems.Count; x > 0; x--)
+                        {
+                            if (this.PersonaListItems[x - 1].Data.GetType() == typeof(PaperviewViewModel))
+                            {
+                                await Task.Delay(_listAnimationDelay);
+                                this.PersonaListItems.RemoveAt(x - 1);
+                                lastX = x;
+                            }
+                        }
+                        await Task.Delay(_listAnimationDelay);
+                        this.PersonaListItems.RemoveAt(lastX-2); // Remove the heading
+                        await Task.Delay(_listAnimationDelay);
+                        this.PersonaListItems.Insert(lastX-2, GetAlreadySelectedHeadingListItem()); // Insert the new heading
+                        await Task.Delay(_listAnimationDelay);
+                        this.PersonaListItems.Insert(lastX-1, GetAlreadySelectedPaperviewListItem()); // Insert the newly selected item
                     }
                 }
             }
@@ -118,18 +139,10 @@ namespace esperancephone.ViewModels
                 if (_isPaperviewSelected) // i.e. Has a Paperview been selected
                 {
                     // Add a heading to display the Paperview item under
-                    listItems.Add(new PaperviewListItemViewModel()
-                    {
-                        TemplateSelectorType = PaperviewListItemType.PaperviewsGroupHeading,
-                        Data = GetPaperviewAlreadySelectedViewModel()
-                    });
+                    listItems.Add(GetAlreadySelectedHeadingListItem());
 
                     // Add the Already Selected Paperview item under the above heading
-                    listItems.Add(new PaperviewListItemViewModel()
-                    {
-                        TemplateSelectorType = PaperviewListItemType.Paperviews,
-                        Data = GetCurrentPaperviewViewModel()
-                    });
+                    listItems.Add(GetAlreadySelectedPaperviewListItem());
                 }
                 else // i.e. Paperview has not been selected
                 {
@@ -168,20 +181,38 @@ namespace esperancephone.ViewModels
             }
         }
 
+        private static PaperviewListItemViewModel GetAlreadySelectedPaperviewListItem()
+        {
+            return new PaperviewListItemViewModel()
+            {
+                TemplateSelectorType = PaperviewListItemType.Paperviews,
+                Data = GetCurrentPaperviewViewModel()
+            };
+        }
+
+        private PaperviewListItemViewModel GetAlreadySelectedHeadingListItem()
+        {
+            return new PaperviewListItemViewModel()
+            {
+                TemplateSelectorType = PaperviewListItemType.LabelAndCommandText,
+                Data = GetPaperviewAlreadySelectedViewModel()
+            };
+        }
+
         private async Task BuildAllPaperviewListItems(ObservableCollection<PaperviewListItemViewModel> listItems)
         {
-            await Task.Delay(150);
+            await Task.Delay(_listAnimationDelay);
             // Add a heading to disp[lay ALL the Paperviews under
             listItems.Add(new PaperviewListItemViewModel()
             {
-                TemplateSelectorType = PaperviewListItemType.PaperviewsGroupHeading,
+                TemplateSelectorType = PaperviewListItemType.LabelAndCommandText,
                 Data = GetPleaseSelectPaperviewViewModel()
             });
 
             // Add all the available Paperviews under the above heading
             foreach (var item in await BuildPaperviewViewModels())
             {
-                await Task.Delay(150);
+                await Task.Delay(_listAnimationDelay);
                 listItems.Add(item);
             }
         }
@@ -192,18 +223,18 @@ namespace esperancephone.ViewModels
         {
             return new PaperviewListItemViewModel()
             {
-                TemplateSelectorType = PaperviewListItemType.PaperviewsGroupHeading,
+                TemplateSelectorType = PaperviewListItemType.LabelAndCommandText,
                 Data = GetPleaseSelectPaperviewViewModel()
             };
         }
 
-        private static PersonasGroupHeadingViewModel GetPleaseSelectPaperviewViewModel()
+        private static LabelAndCommandTextViewModel GetPleaseSelectPaperviewViewModel()
         {
-            return new PersonasGroupHeadingViewModel()
+            return new LabelAndCommandTextViewModel()
             {
                 LabelText = "Select Paperview:",
-                IconCharacter = "\uf196",
-                AddCommand = new Command(async() =>
+                CommandText = "new",
+                Command = new Command(async () =>
                 {
                     using (var scope = AppContainer.Container.BeginLifetimeScope())
                     {
@@ -214,13 +245,13 @@ namespace esperancephone.ViewModels
             };
         }
 
-        private PersonasGroupHeadingViewModel GetPaperviewAlreadySelectedViewModel()
+        private LabelAndCommandTextViewModel GetPaperviewAlreadySelectedViewModel()
         {
-            return new PersonasGroupHeadingViewModel()
+            return new LabelAndCommandTextViewModel()
             {
                 LabelText = "Selected Paperview:",
-                IconCharacter = "\uf147",
-                AddCommand = new Command(async () =>
+                CommandText = "remove",
+                Command = new Command(async () =>
                 {
                     using (var commandScope = AppContainer.Container.BeginLifetimeScope())
                     {
@@ -232,21 +263,22 @@ namespace esperancephone.ViewModels
                         var index = 2;
 
                         PersonaListItems.RemoveAt(index); // Label
-                        await Task.Delay(150);
+                            await Task.Delay(_listAnimationDelay);
                         PersonaListItems.RemoveAt(index); // Paperview item
-                        await Task.Delay(150);
+                            await Task.Delay(_listAnimationDelay);
                         PersonaListItems.Insert(index, GetPleaseSelectPaperviewHeadingRow());
 
                         var list = await BuildPaperviewViewModels();
 
                         foreach (var item in list)
                         {
-                            await Task.Delay(150);
+                            await Task.Delay(_listAnimationDelay);
                             PersonaListItems.Insert(++index, item);
                         }
 
                     }
                 })
+
             };
         }
 
@@ -263,7 +295,7 @@ namespace esperancephone.ViewModels
             return new LabelAndCommandTextViewModel()
             {
                 LabelText = displayName,
-                CommandText = "Clear",
+                CommandText = "clear",
                 Command = new Command(async() =>
                 {
                     using (var commandScope = AppContainer.Container.BeginLifetimeScope())
@@ -278,7 +310,7 @@ namespace esperancephone.ViewModels
 
                         while (PersonaListItems.Count != 0)
                         {
-                            await Task.Delay(150);
+                            await Task.Delay(_listAnimationDelay);
                             PersonaListItems.RemoveAt(PersonaListItems.Count - 1);
 
                         }
