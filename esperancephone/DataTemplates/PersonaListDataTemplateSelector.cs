@@ -13,6 +13,7 @@ namespace esperancephone.DataTemplates
         public PersonaListDataTemplateSelector()
         {
             this._personasGroupHeadingCell = new DataTemplate(typeof(PersonasGroupHeadingCell));
+            this._labelAndCommandTextCell = new DataTemplate(typeof(LabelAndCommandTextCell));
             this._displayNameCell = new DataTemplate(typeof(PersonaListCells.DisplayNameCell));
             this._phoneNumberCell = new DataTemplate(typeof(PhoneNumberCell));
             this._personaCell = new DataTemplate(typeof(PersonaListCell));
@@ -43,6 +44,9 @@ namespace esperancephone.DataTemplates
                 case PaperviewListItemType.PaperviewsGroupHeading:
                     response = _personasGroupHeadingCell;
                     break;
+                case PaperviewListItemType.LabelAndCommandText:
+                    response = _labelAndCommandTextCell;
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -51,6 +55,7 @@ namespace esperancephone.DataTemplates
         }
 
         private readonly DataTemplate _personasGroupHeadingCell;
+        private readonly DataTemplate _labelAndCommandTextCell;
         private readonly DataTemplate _displayNameCell;
         private readonly DataTemplate _phoneNumberCell;
         private readonly DataTemplate _personaCell;

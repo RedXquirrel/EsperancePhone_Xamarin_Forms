@@ -47,6 +47,9 @@
     <Compile Include="DataTemplates\PersonaListCells\DisplayNameCell.xaml.cs">
       <DependentUpon>DisplayNameCell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataTemplates\PersonaListCells\LabelAndCommandTextCell.xaml.cs">
+      <DependentUpon>LabelAndCommandTextCell.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataTemplates\PersonaListCells\PersonaListCell.xaml.cs">
       <DependentUpon>PersonaListCell.xaml</DependentUpon>
     </Compile>
@@ -204,6 +207,7 @@
     <Compile Include="ViewModels\RecentViewModel.cs" />
     <Compile Include="ViewModels\SelectPersonanceViewModel.cs" />
     <Compile Include="ViewModels\StandardViewModel.cs" />
+    <Compile Include="ViewModels\Shared\LabelAndCommandTextViewModel.cs" />
     <Compile Include="ViewModels\ToDoListViewModel.cs" />
     <Compile Include="Views\DiallerButtonView.xaml.cs">
       <DependentUpon>DiallerButtonView.xaml</DependentUpon>
@@ -474,6 +478,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\PaperviewManagerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataTemplates\PersonaListCells\LabelAndCommandTextCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

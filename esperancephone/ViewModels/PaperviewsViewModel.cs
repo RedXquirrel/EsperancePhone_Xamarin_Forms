@@ -96,8 +96,8 @@ namespace esperancephone.ViewModels
                     // Add DisplayName
                     listItems.Add(new PaperviewListItemViewModel()
                     {
-                        TemplateSelectorType = PaperviewListItemType.DisplayName,
-                        Data = GetDisplayNameViewModel()
+                        TemplateSelectorType = PaperviewListItemType.LabelAndCommandText,
+                        Data = GetLabelAndCommandLabelViewModel()
                     });
 
                     // Add PhoneNumber
@@ -133,18 +133,7 @@ namespace esperancephone.ViewModels
                 }
                 else // i.e. Paperview has not been selected
                 {
-                    // Add a heading to disp[lay ALL the Paperviews under
-                    listItems.Add(new PaperviewListItemViewModel()
-                    {
-                        TemplateSelectorType = PaperviewListItemType.PaperviewsGroupHeading,
-                        Data = GetPleaseSelectPaperviewViewModel()
-                    });
-
-                    // Add all the available Paperviews under the above heading
-                    foreach (var item in await BuildPaperviewViewModels())
-                    {
-                        listItems.Add(item);
-                    }
+                    await BuildAllPaperviewListItems(listItems);
                 }
 
                 if (_isCommSession)
@@ -176,6 +165,24 @@ namespace esperancephone.ViewModels
                 }
 
                 this.PersonaListItems = listItems;
+            }
+        }
+
+        private async Task BuildAllPaperviewListItems(ObservableCollection<PaperviewListItemViewModel> listItems)
+        {
+            await Task.Delay(150);
+            // Add a heading to disp[lay ALL the Paperviews under
+            listItems.Add(new PaperviewListItemViewModel()
+            {
+                TemplateSelectorType = PaperviewListItemType.PaperviewsGroupHeading,
+                Data = GetPleaseSelectPaperviewViewModel()
+            });
+
+            // Add all the available Paperviews under the above heading
+            foreach (var item in await BuildPaperviewViewModels())
+            {
+                await Task.Delay(150);
+                listItems.Add(item);
             }
         }
 
@@ -225,18 +232,58 @@ namespace esperancephone.ViewModels
                         var index = 2;
 
                         PersonaListItems.RemoveAt(index); // Label
-
+                        await Task.Delay(150);
                         PersonaListItems.RemoveAt(index); // Paperview item
-
+                        await Task.Delay(150);
                         PersonaListItems.Insert(index, GetPleaseSelectPaperviewHeadingRow());
 
                         var list = await BuildPaperviewViewModels();
 
                         foreach (var item in list)
                         {
+                            await Task.Delay(150);
                             PersonaListItems.Insert(++index, item);
                         }
 
+                    }
+                })
+            };
+        }
+
+        private LabelAndCommandTextViewModel GetLabelAndCommandLabelViewModel()
+        {
+            string displayName = string.Empty;
+
+            using (var commandScope = AppContainer.Container.BeginLifetimeScope())
+            {
+                var telecommunicationsService = commandScope.Resolve<ITeleCommunicationService>();
+                displayName = telecommunicationsService.CurrentSession.DisplayName;
+            }
+
+            return new LabelAndCommandTextViewModel()
+            {
+                LabelText = displayName,
+                CommandText = "Clear",
+                Command = new Command(async() =>
+                {
+                    using (var commandScope = AppContainer.Container.BeginLifetimeScope())
+                    {
+                        var telecommunicationService = commandScope.Resolve<ITeleCommunicationService>();
+
+                        telecommunicationService.CurrentSession = null;
+
+                        var paperviewService = commandScope.Resolve<IPaperviewService>();
+
+                        paperviewService.CurrentPaperview = null;
+
+                        while (PersonaListItems.Count != 0)
+                        {
+                            await Task.Delay(150);
+                            PersonaListItems.RemoveAt(PersonaListItems.Count - 1);
+
+                        }
+
+                        await BuildAllPaperviewListItems(PersonaListItems);
                     }
                 })
             };

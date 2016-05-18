@@ -16,7 +16,15 @@ namespace esperancephone.Pages
     {
         public PersonasPage()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            
 
             Setup();
         }

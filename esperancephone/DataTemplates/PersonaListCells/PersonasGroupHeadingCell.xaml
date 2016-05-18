@@ -5,7 +5,7 @@
              x:Class="esperancephone.DataTemplates.PersonaListCells.PersonasGroupHeadingCell"
              SelectionStyle="None"
              >
-  <Grid Padding="10">
+  <Grid Padding="10" BackgroundColor="White">
     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
         <Label Text="{Binding Data.LabelText}" FontSize="Large" FontAttributes="Bold" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" VerticalOptions="Center" HorizontalOptions="Start" />
         <views:Hamburger VerticalOptions="Center" IconCharacter="{Binding Data.IconCharacter}" IconColor="{StaticResource CaptainXamtasticBrandRedColor}" TappedCommand="{Binding Data.AddCommand}" HorizontalOptions="EndAndExpand" />

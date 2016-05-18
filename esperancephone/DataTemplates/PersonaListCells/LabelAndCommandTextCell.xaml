@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:SelectionStyleViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:esperancephone.Views;assembly=esperancephone"
+             x:Class="esperancephone.DataTemplates.PersonaListCells.LabelAndCommandTextCell"
+             SelectionStyle="None"                 
+             >
+  <Grid Padding="10">
+    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+      <Label Text="{Binding Data.LabelText}" FontSize="Large" FontAttributes="Bold" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" VerticalOptions="Center" HorizontalOptions="Start" />
+      <views:TappableGrid x:Name="TappableGrid" TappedCommand="{Binding Data.Command}" VerticalOptions="Center" HorizontalOptions="EndAndExpand">
+        <Label Text="{Binding Data.CommandText}" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" FontSize="Medium" />
+      </views:TappableGrid>
+    </StackLayout>
+  </Grid>
+</views:SelectionStyleViewCell>

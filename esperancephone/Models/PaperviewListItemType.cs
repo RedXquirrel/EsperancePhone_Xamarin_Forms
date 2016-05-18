@@ -3,6 +3,7 @@
     public enum PaperviewListItemType
     {
         PaperviewsGroupHeading,
+        LabelAndCommandText,
         DisplayName,
         PhoneNumber,
         Paperviews,
