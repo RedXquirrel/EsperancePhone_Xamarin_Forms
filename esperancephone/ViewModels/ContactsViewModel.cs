@@ -10,6 +10,7 @@ using esperancephone.Interfaces;
 using esperancephone.Ioc;
 using esperancephone.Models;
 using esperancephone.Pages;
+using esperancephone.ViewModels.Shared;
 using Xamarin.Forms;
 
 namespace esperancephone.ViewModels
@@ -25,6 +26,8 @@ namespace esperancephone.ViewModels
 
         public ICommand SelectedContactCommand => new Command<ContactsListItemViewModel>(async(item) =>
         {
+            if(item.Data != null) return; // Is not an actual Contact
+
             this.IsBusy = true;
             Debug.WriteLine($"INFORMATION: Selected Contact Display Name is {item.DisplayName}");
 
@@ -45,8 +48,8 @@ namespace esperancephone.ViewModels
             set { _selectedContact = value; RaisePropertyChanged(); }
         }
 
-        private IList<ContactsGroupDataSource> _contactGroups;
-        public IList<ContactsGroupDataSource> ContactGroups
+        private ObservableCollection<ContactsGroupDataSource> _contactGroups;
+        public ObservableCollection<ContactsGroupDataSource> ContactGroups
         {
             get { return _contactGroups; }
             set { _contactGroups = value; RaisePropertyChanged(); }
@@ -79,7 +82,54 @@ namespace esperancephone.ViewModels
             var _letterCache = _contacts.FirstOrDefault().DisplayName.Substring(0, 1).ToUpper();
 
             List<ContactsGroupDataSource> groups = new List<ContactsGroupDataSource>();
-            ContactsGroupDataSource group = new ContactsGroupDataSource(_letterCache, _letterCache, string.Empty);
+
+                using (var scope = AppContainer.Container.BeginLifetimeScope())
+                {
+                    var service = scope.Resolve<IPaperviewService>();
+
+                    if (service.CurrentPaperview != null)
+                    {
+                        ContactsGroupDataSource selectedPaperviewGroup =
+                            new ContactsGroupDataSource("Selected Paperview", string.Empty,
+                                "To send this, select a Contact or Dial!");
+                        selectedPaperviewGroup.Add(new ContactsListItemViewModel()
+                        {
+                            ListItemType = ContactsListItemItemTemplates.Paperview,
+                            Data = new LabelAndCommandTextViewModel() { IsSubItem = true, LabelText = service.CurrentPaperview.DisplayName, CommandText = "remove", Command = new Command(
+                                () =>
+                                {
+                                    this.ContactGroups.RemoveAt(0);
+                                    service.CurrentPaperview = null;
+                                    this.PersonanceCommand.Execute(null);
+                                })}
+                        });
+                        groups.Add(selectedPaperviewGroup);
+                    }
+
+                    ContactsGroupDataSource diallerGroup =
+                        new ContactsGroupDataSource("Direct Dial", string.Empty,
+                            "Dial the number directly into the keypad.");
+                    diallerGroup.Add(new ContactsListItemViewModel()
+                    {
+                        ListItemType = ContactsListItemItemTemplates.Dialler,
+                        Data = new LabelAndCommandIconViewModel()
+                        {
+                            IsSubItem = true,
+                            LabelText = "Dialler",
+                            IconCharacter = "\uf098",
+                            Command = new Command(
+                            () =>
+                            {
+                                DiallerCommand.Execute(null);
+                            })
+                        }
+                    });
+                    groups.Add(diallerGroup);
+
+
+                }
+
+                ContactsGroupDataSource group = new ContactsGroupDataSource(_letterCache, _letterCache, string.Empty);
 
             foreach (var contact in _contacts)
             {
@@ -92,7 +142,7 @@ namespace esperancephone.ViewModels
                         FirstName = contact.FirstName,
                         LastName = contact.LastName,
                         IconKey = "\uf007",
-                        IsPersonant = false
+                        ListItemType = ContactsListItemItemTemplates.NonPersonant
                     });
                 }
                 else
@@ -108,7 +158,7 @@ namespace esperancephone.ViewModels
                         FirstName = contact.FirstName,
                         LastName = contact.LastName,
                         IconKey = "\uf007",
-                        IsPersonant = false
+                        ListItemType = ContactsListItemItemTemplates.NonPersonant
                     });
                 }
             }
@@ -117,7 +167,7 @@ namespace esperancephone.ViewModels
 
 
 
-                ContactGroups = groups;
+                ContactGroups = new ObservableCollection<ContactsGroupDataSource>(groups);
             }
             catch (Exception ex)
             {

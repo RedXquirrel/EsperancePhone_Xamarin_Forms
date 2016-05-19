@@ -18,8 +18,8 @@ namespace esperancephone.Helpers
                 var contactsService = scope.Resolve<IContactsService>();
                 contactsService.CurrentContact = null;
 
-                var paperviewService = scope.Resolve<IPaperviewService>();
-                paperviewService.CurrentPaperview = null;
+                //var paperviewService = scope.Resolve<IPaperviewService>();
+                //paperviewService.CurrentPaperview = null;
             }
         }
 

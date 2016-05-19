@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Com.Xamtastic.Patterns.SmallestMvvm;
 
-namespace esperancephone.ViewModels
+namespace esperancephone.ViewModels.Shared
 {
-    public class LabelAndCommandTextViewModel : ViewModelBase
+    public class LabelAndCommandIconViewModel : ViewModelBase
     {
         private bool _isSubItem;
         public bool IsSubItem
@@ -24,15 +19,14 @@ namespace esperancephone.ViewModels
             set { _labelText = value; RaisePropertyChanged(); }
         }
 
-        private string _commandText;
-        public string CommandText
+        private string _iconCharacter;
+        public string IconCharacter
         {
-            get { return _commandText; }
-            set { _commandText = value; RaisePropertyChanged(); }
+            get { return _iconCharacter; }
+            set { _iconCharacter = value; RaisePropertyChanged(); }
         }
 
         private ICommand _command;
-
         public ICommand Command
         {
             get { return _command; }

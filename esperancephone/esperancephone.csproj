@@ -81,6 +81,9 @@
     </Compile>
     <Compile Include="DataTemplates\MasterDetailDataTemplateSelector.cs" />
     <Compile Include="DataTemplates\PersonaListDataTemplateSelector.cs" />
+    <Compile Include="DataTemplates\Shared\LabelAndCommandIconCell.xaml.cs">
+      <DependentUpon>LabelAndCommandIconCell.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EsperancePhoneFormsApplication.xaml.cs">
       <DependentUpon>EsperancePhoneFormsApplication.xaml</DependentUpon>
     </Compile>
@@ -206,6 +209,7 @@
     <Compile Include="ViewModels\PaperviewsViewModel.cs" />
     <Compile Include="ViewModels\RecentViewModel.cs" />
     <Compile Include="ViewModels\SelectPersonanceViewModel.cs" />
+    <Compile Include="ViewModels\Shared\LabelAndCommandIconViewModel.cs" />
     <Compile Include="ViewModels\StandardViewModel.cs" />
     <Compile Include="ViewModels\Shared\LabelAndCommandTextViewModel.cs" />
     <Compile Include="ViewModels\ToDoListViewModel.cs" />
@@ -484,6 +488,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DataTemplates\PersonaListCells\LabelAndCommandTextCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataTemplates\Shared\LabelAndCommandIconCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

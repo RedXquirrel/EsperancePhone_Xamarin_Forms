@@ -33,7 +33,7 @@ namespace esperancephone.DataSources
                 {
                     new ContactsListItemViewModel
                     {
-                        IsPersonant = false,
+                        ListItemType = ContactsListItemItemTemplates.NonPersonant,
                         IconKey = "\uf007",
                         DisplayName = "My Display Name",
                         FirstName = "My First Name",
@@ -44,7 +44,7 @@ namespace esperancephone.DataSources
                 {
                     new ContactsListItemViewModel
                     {
-                        IsPersonant = false,
+                        ListItemType = ContactsListItemItemTemplates.NonPersonant,
                         IconKey = "\uf007",
                         DisplayName = "My Display Name",
                         FirstName = "My First Name",

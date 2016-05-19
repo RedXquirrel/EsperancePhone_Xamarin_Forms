@@ -4,6 +4,13 @@ using esperancephone.Interfaces;
 
 namespace esperancephone.ViewModels
 {
+    public enum ContactsListItemItemTemplates
+    {
+        Personant,
+        NonPersonant,
+        Paperview,
+        Dialler
+    }
     public class ContactsListItemViewModel : ViewModelBase
     {
         public IContact Contact { get; set; }
@@ -48,17 +55,17 @@ namespace esperancephone.ViewModels
             set { _lastName = value; RaisePropertyChanged(); }
         }
 
-        private bool _isPersonant;
+        private ContactsListItemItemTemplates _listItemType;
         /// <summary>
         /// Does the contact have Personant artefacts
         /// </summary>
-        public bool IsPersonant
+        public ContactsListItemItemTemplates ListItemType
         {
-            get { return _isPersonant; }
-            set { _isPersonant = value; RaisePropertyChanged(); }
+            get { return _listItemType; }
+            set { _listItemType = value; RaisePropertyChanged(); }
         }
 
-
+        public object Data { get; set; }
 
     }
 }
