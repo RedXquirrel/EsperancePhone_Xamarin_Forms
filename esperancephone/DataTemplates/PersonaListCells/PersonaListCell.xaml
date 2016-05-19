@@ -8,7 +8,7 @@
   <ViewCell.ContextActions>
     <MenuItem  Text="View" />
   </ViewCell.ContextActions>  
-  <Grid Padding="10">
+  <Grid Padding="10" BackgroundColor="White">
     <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Padding="15,0,0,0">
       <Label Text="{Binding Data.Title}" FontSize="Large" VerticalOptions="Center" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" />
     </StackLayout>

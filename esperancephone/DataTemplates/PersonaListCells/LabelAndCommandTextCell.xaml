@@ -5,7 +5,7 @@
              x:Class="esperancephone.DataTemplates.PersonaListCells.LabelAndCommandTextCell"
              SelectionStyle="None"                 
              >
-  <Grid Padding="10">
+  <Grid Padding="10" BackgroundColor="White">
     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
       <Label Text="{Binding Data.LabelText}" FontSize="Large" FontAttributes="Bold" TextColor="{StaticResource CaptainXamtasticBrandRedColor}" VerticalOptions="Center" HorizontalOptions="Start" />
       <views:TappableGrid x:Name="TappableGrid" TappedCommand="{Binding Data.Command}" VerticalOptions="Center" HorizontalOptions="EndAndExpand">

@@ -23,6 +23,7 @@ namespace esperancephone.ViewModels
         private bool _isPaperviewSelected;
 
         private int _listAnimationDelay = 105;
+        private bool _isListUpdating;
 
         private PaperviewListItemViewModel _selectedListItem;
 
@@ -32,6 +33,8 @@ namespace esperancephone.ViewModels
 
             if (item.Data.GetType() == typeof (PaperviewViewModel))
             {
+                if (_isListUpdating) return;
+
                 using (var scope = AppContainer.Container.BeginLifetimeScope())
                 {
                     _selectedListItem = item;
@@ -56,6 +59,8 @@ namespace esperancephone.ViewModels
                     }
                     else
                     {
+                        _isListUpdating = true;
+
                         int lastX = 0;
                         for (var x = this.PersonaListItems.Count; x > 0; x--)
                         {
@@ -72,6 +77,8 @@ namespace esperancephone.ViewModels
                         this.PersonaListItems.Insert(lastX-2, GetAlreadySelectedHeadingListItem()); // Insert the new heading
                         await Task.Delay(_listAnimationDelay);
                         this.PersonaListItems.Insert(lastX-1, GetAlreadySelectedPaperviewListItem()); // Insert the newly selected item
+
+                        _isListUpdating = false;
                     }
                 }
             }
