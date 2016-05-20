@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Autofac;
 using Com.Xamtastic.Patterns.SmallestMvvm;
+using esperancephone.Helpers;
 using esperancephone.Interfaces;
 using esperancephone.Ioc;
 using esperancephone.Models;
@@ -275,11 +276,13 @@ namespace esperancephone.ViewModels
                 }
             });
 
+            this.SetCurrentPageCacheBottomBarSelection();
+
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
                 _settingsService = scope.Resolve<ISettingsService>();
-                var curr = _settingsService.CurrentPageCacheModel;
-                if(curr != null) this.BottomBarSelection = curr.BottomBarSelection;
+                var currentPageCacheModel = _settingsService.CurrentPageCacheModel;
+                if(currentPageCacheModel != null) this.BottomBarSelection = currentPageCacheModel.BottomBarSelection;
             }
         }
 

@@ -13,7 +13,7 @@
   <MasterDetailPage.Detail>
     <NavigationPage x:Name="MainNavigationPage" HasNavigationBar="False">
       <x:Arguments>
-        <pages:DiallerPage />
+        <pages:PersonasPage />
       </x:Arguments>
     </NavigationPage>
   </MasterDetailPage.Detail>

@@ -91,7 +91,7 @@ namespace esperancephone.ViewModels
                     {
                         ContactsGroupDataSource selectedPaperviewGroup =
                             new ContactsGroupDataSource("Selected Paperview", string.Empty,
-                                "To send this, select a Contact or Dial!");
+                                "To send this, select a Contact or Dial");
                         selectedPaperviewGroup.Add(new ContactsListItemViewModel()
                         {
                             ListItemType = ContactsListItemItemTemplates.Paperview,
@@ -108,7 +108,7 @@ namespace esperancephone.ViewModels
 
                     ContactsGroupDataSource diallerGroup =
                         new ContactsGroupDataSource("Direct Dial", string.Empty,
-                            "Dial the number directly into the keypad.");
+                            "Dial the number directly into the keypad");
                     diallerGroup.Add(new ContactsListItemViewModel()
                     {
                         ListItemType = ContactsListItemItemTemplates.Dialler,

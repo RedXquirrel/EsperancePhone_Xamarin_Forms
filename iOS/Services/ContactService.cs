@@ -19,6 +19,46 @@ namespace esperancephone.iOS.Services
         public ContactService()
         {
             _book = new Xamarin.Contacts.AddressBook();
+
+            LoadContacts();
+        }
+
+        private async Task LoadContacts()
+        {
+            var contacts = new List<Contact>();
+            try
+            {
+                await _book.RequestPermission().ContinueWith(t =>
+                {
+                    if (!t.Result)
+                    {
+                        Console.WriteLine("Sorry ! Permission was denied by user or manifest !");
+                        return;
+                    }
+
+                    foreach (var contact in _book.Where(c => c.Phones.Any()))
+                    {
+                        try
+                        {
+                            var phones = contact.Phones.Select(phone => new Phone() { Label = phone.Label, Number = phone.Number }).ToList();
+                            contacts.Add(new Contact() { DisplayName = contact.DisplayName, FirstName = contact.FirstName, LastName = contact.LastName, Phones = phones });
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+
+                    _contacts = contacts.OrderBy(c => c.DisplayName);
+
+                });
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
         }
 
         public List<IContact> Find(string searchTerm)
@@ -28,29 +68,6 @@ namespace esperancephone.iOS.Services
 
         public async Task<IEnumerable<IContact>> GetContacts()
         {
-            if (_contacts != null) return _contacts;
-
-            var contacts = new List<Contact>();
-
-            await _book.RequestPermission().ContinueWith(t =>
-            {
-                if (!t.Result)
-                {
-                    Console.WriteLine("Sorry ! Permission was denied by user or manifest !");
-                    return;
-                }
-
-                foreach (var contact in _book.Where(c => c.Phones.Any()))
-                {
-                    var phones = contact.Phones.Select(phone => new Phone() {Label = phone.Label, Number = phone.Number}).ToList();
-
-                    contacts.Add(new Contact() { DisplayName = contact.DisplayName, FirstName = contact.FirstName, LastName = contact.LastName, Phones = phones });
-                }
-
-                _contacts = contacts.OrderBy(c => c.DisplayName);
-
-            });
-
             return _contacts;
         }
     }

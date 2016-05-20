@@ -45,7 +45,7 @@ namespace esperancephone.Pages
                 var settingsService = scope.Resolve<ISettingsService>();
                 var currentPageCacheModel = settingsService.CurrentPageCacheModel;
 
-                if (currentPageCacheModel != null)
+                if (currentPageCacheModel != null && currentPageCacheModel.PageCache != null)
                 {
                     MainNavigationPage.Navigation.PushAsync(
                         (Page) Activator.CreateInstance(currentPageCacheModel.PageCache));
