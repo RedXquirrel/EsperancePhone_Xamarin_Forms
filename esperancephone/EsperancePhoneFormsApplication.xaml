@@ -13,6 +13,7 @@
     <converters:BindingContextConverter x:Key="BindingContextConverter" />
     <converters:HasKeyStackConverter x:Key="HasKeyStackConverter" />
     <converters:BottomBarSelectionToIsVisibleConverter x:Key="BottomBarSelectionToIsVisibleConverter" />
+    <converters:UserModeToBooleanConverter x:Key="UserModeToBooleanConverter" />
 
     <x:Double x:Key="StandardTitleFontSizeDoublePhone">18</x:Double>
     <x:Double x:Key="StandardTitleFontSizeDoubleTablet">40</x:Double>
@@ -151,6 +152,12 @@
         </Grid>
       </StackLayout>
     </ControlTemplate>
+
+    <Style TargetType="pages:SettingsPage" x:Key="SettingsPageStandardMasterDetailNavigationStyle">
+      <Style.Setters>
+        <Setter Property="ControlTemplate" Value="{StaticResource StandardMasterDetailNavigationTemplate}" />
+      </Style.Setters>
+    </Style>
 
     <Style TargetType="pages:PersonasPage" x:Key="PersonasPageStandardMasterDetailNavigationStyle">
       <Style.Setters>

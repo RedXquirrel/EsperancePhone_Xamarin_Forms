@@ -55,7 +55,8 @@ namespace esperancephone.ViewModels
                     if (telecommunicationService.CurrentSession == null)
                     {
                         var navigationService = scope.Resolve<INavigationService>();
-                        navigationService.CurrentPage.Navigation.PushAsync(new ContactsPage(), false);
+                        Helpers.Services.SetCurrentPageCacheBottomBarSelection(BottomBarSelection.Contacts);
+                        await navigationService.CurrentPage.Navigation.PushAsync(new ContactsPage(), false);
                     }
                     else
                     {

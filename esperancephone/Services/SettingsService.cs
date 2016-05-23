@@ -24,6 +24,12 @@ namespace esperancephone.Services
             set { Settings.UserId = value; }
         }
 
+        public UserMode UserMode
+        {
+            get { return Settings.UserMode; }
+            set { Settings.UserMode = value; }
+        }
+
         public string MobileServiceAuthenticationToken
         {
             get { return Settings.MobileServiceAuthenticationToken; }

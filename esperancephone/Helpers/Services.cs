@@ -43,7 +43,7 @@ namespace esperancephone.Helpers
             }
         }
 
-        public static void SetCurrentPageCacheBottomBarSelection(this StandardViewModel viewModel)
+        public static void SetCurrentPageCacheBottomBarSelection(this object viewModel)
         {
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {

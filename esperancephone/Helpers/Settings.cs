@@ -1,6 +1,7 @@
 // Helpers/Settings.cs
 
 using System.Diagnostics;
+using esperancephone.Models;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 
@@ -33,6 +34,10 @@ namespace esperancephone.Helpers
 
         private const string CurrentPageCacheModelKey = "currentpagecachemodel_key";
         private static readonly string CurrentPageCacheModelDefault = string.Empty;
+
+        private const string UserModeKey = "usermode_key";
+        private static readonly UserMode UserModeDefault = UserMode.Basic;
+
         #endregion
 
         public static string ApplicationName
@@ -58,6 +63,19 @@ namespace esperancephone.Helpers
             {
                 AppSettings.AddOrUpdateValue<string>(UserIdKey, value);
             }
+        }
+
+      public static UserMode UserMode
+      {
+          get
+          {
+                Debug.WriteLine($"INFORMATION: UserMode = {AppSettings.GetValueOrDefault<UserMode>(UserModeKey, UserModeDefault)}");
+                return AppSettings.GetValueOrDefault<UserMode>(UserModeKey, UserModeDefault);
+          }
+          set
+          {
+              AppSettings.AddOrUpdateValue<UserMode>(UserModeKey, value);
+          }
         }
 
         public static string MobileServiceAuthenticationToken

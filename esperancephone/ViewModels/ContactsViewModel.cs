@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Input;
 using Autofac;
 using esperancephone.DataSources;
+using esperancephone.Helpers;
 using esperancephone.Interfaces;
 using esperancephone.Ioc;
 using esperancephone.Models;
@@ -58,7 +59,7 @@ namespace esperancephone.ViewModels
         public ContactsViewModel()
         {
             this.Title = "Contacts";
-
+            this.SetCurrentPageCacheBottomBarSelection();
             GetContacts();
         }
 

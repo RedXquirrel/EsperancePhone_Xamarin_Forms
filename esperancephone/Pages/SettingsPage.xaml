@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dataTemplates="clr-namespace:esperancephone.DataTemplates;assembly=esperancephone"
+             xmlns:views="clr-namespace:esperancephone.Views;assembly=esperancephone"
+             xmlns:behaviors="clr-namespace:esperancephone.Behaviors;assembly=esperancephone"
+             x:Class="esperancephone.Pages.SettingsPage"
+             Style="{StaticResource SettingsPageStandardMasterDetailNavigationStyle}"
+             >
+  <ContentPage.Padding>
+    0,20,0,0
+  </ContentPage.Padding>
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <dataTemplates:SettingsListDataTemplateSelector x:Key="DataTemplateSelector" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.Content>
+    <Grid>
+      <views:PaneListView  x:Name="listView"
+        SeparatorVisibility="None"
+        HasUnevenRows="True"
+        IsGroupingEnabled="False"
+        ItemTemplate="{StaticResource DataTemplateSelector}"
+        SeparatorColor="{StaticResource CaptainXamtasticBrandRedColor}"
+        ItemsSource="{Binding SettingsListItems}"
+      >
+        <views:PaneListView.Behaviors>
+          <behaviors:ListViewItemTappedBehavior ItemTappedCommand="{Binding SelectedListItemCommand}" />
+        </views:PaneListView.Behaviors>
+      </views:PaneListView>
+      <Grid  HorizontalOptions="Center" VerticalOptions="Start" Padding="0,10,0,0">
+        <ActivityIndicator Color="Green" IsRunning="{Binding IsBusy}" HorizontalOptions="Center" VerticalOptions="Start" />
+      </Grid>
+    </Grid>
+  </ContentPage.Content>
+</ContentPage>

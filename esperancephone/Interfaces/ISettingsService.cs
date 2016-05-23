@@ -13,5 +13,6 @@ namespace esperancephone.Interfaces
         string UserId { get; set; }
         string MobileServiceAuthenticationToken { get; set; }
         CurrentPageCacheModel CurrentPageCacheModel { get; set; }
+        UserMode UserMode { get; set; }
     }
 }

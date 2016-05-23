@@ -42,6 +42,7 @@ namespace esperancephone.DataSources
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "About", PageType = typeof(AboutCaptainXamtasticPage) },
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "FAQ", PageType = typeof(FaqPage) },
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "Terms and Conditions", PageType = typeof(FaqPage) },
+                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf013", Title = "Settings", PageType = typeof(SettingsPage) },
                     new MasterPageIndexItemViewModel { IsPage = false, IconKey = "\uf08b", Title = "Logout", Action =
                         async() =>
                         {
