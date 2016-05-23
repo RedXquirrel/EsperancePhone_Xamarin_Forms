@@ -15,6 +15,8 @@ namespace esperancephone
 {
     public partial class EsperancePhoneFormsApplication : Application
     {
+        public static EsperancePhoneFormsApplication Application { get; set; }
+
         public static IAuthenticate Authenticator { get; private set; }
         public static bool Authenticated = false;
 
@@ -26,6 +28,8 @@ namespace esperancephone
         public EsperancePhoneFormsApplication()
         {
             InitializeComponent();
+
+            Application = this;
 
             using (var scope = AppContainer.Container.BeginLifetimeScope())
             {
@@ -51,7 +55,6 @@ namespace esperancephone
             {
                 MainPage = new NavigationPage(new LoginPage());
             }
-
         }
 
         protected override void OnStart()

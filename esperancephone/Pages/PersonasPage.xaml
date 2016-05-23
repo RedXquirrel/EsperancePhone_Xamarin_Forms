@@ -5,7 +5,7 @@
              xmlns:behaviors="clr-namespace:esperancephone.Behaviors;assembly=esperancephone"
              xmlns:views="clr-namespace:esperancephone.Views;assembly=esperancephone"
              x:Class="esperancephone.Pages.PersonasPage"
-             Style="{StaticResource PersonasPageStandardMasterDetailNavigationStyle}"
+             Style="{DynamicResource PageStyle}"
              >
   <ContentPage.Padding>
     0,20,0,0

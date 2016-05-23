@@ -33,6 +33,32 @@
     <Color x:Key="StandardBackgroundColorTablet">Green</Color>
     <Color x:Key="StandardBackgroundColorDesktop">Blue</Color>
 
+    <ControlTemplate x:Key="BasicMasterDetailNavigationTemplate">
+      <Grid BackgroundColor="{StaticResource CaptainXamtasticBrandRedColor}">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="1" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="1" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*" />
+          <RowDefinition Height="1" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.Column="1" BackgroundColor="{StaticResource CaptainXamtasticBrandRedColor}">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Grid Grid.Row="0" Padding="5">
+            <views:Hamburger HorizontalOptions="Start" IconColor="White" TappedCommand="{TemplateBinding Parent.CurrentPage.BindingContext.MasterDetailCommand, Mode=TwoWay}" />
+            <Label Text="{TemplateBinding Parent.CurrentPage.BindingContext.Title}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+          </Grid>
+          <ContentPresenter Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" />
+        </Grid>
+      </Grid>
+    </ControlTemplate>    
+
     <ControlTemplate x:Key="StandardMasterDetailNavigationTemplate">
       <Grid BackgroundColor="{StaticResource CaptainXamtasticBrandRedColor}">
         <Grid.ColumnDefinitions>
@@ -159,9 +185,21 @@
       </Style.Setters>
     </Style>
 
+    <Style TargetType="pages:SettingsPage" x:Key="SettingsPageBasicMasterDetailNavigationStyle">
+      <Style.Setters>
+        <Setter Property="ControlTemplate" Value="{StaticResource StandardMasterDetailNavigationTemplate}" />
+      </Style.Setters>
+    </Style>
+
     <Style TargetType="pages:PersonasPage" x:Key="PersonasPageStandardMasterDetailNavigationStyle">
       <Style.Setters>
         <Setter Property="ControlTemplate" Value="{StaticResource StandardMasterDetailNavigationTemplate}" />
+      </Style.Setters>
+    </Style>
+
+    <Style TargetType="pages:PersonasPage" x:Key="PersonasPageBasicMasterDetailNavigationStyle">
+      <Style.Setters>
+        <Setter Property="ControlTemplate" Value="{StaticResource BasicMasterDetailNavigationTemplate}" />
       </Style.Setters>
     </Style>
 

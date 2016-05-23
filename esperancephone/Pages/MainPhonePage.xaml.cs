@@ -121,6 +121,11 @@ namespace esperancephone.Pages
                 )
             {
                 Helpers.Services.SetCurrentPageCache(new CurrentPageCacheModel() { PageCache = item.PageType });
+                if (item.PageType == typeof (PersonasPage))
+                {
+                    Helpers.Services.SetCurrentPageCacheBottomBarSelection(BottomBarSelection.Paperviews);
+                }
+
             }
             else
             {

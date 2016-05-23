@@ -105,7 +105,7 @@ namespace esperancephone.ViewModels
         public PaperviewsViewModel()
         {
             this.Title = "Paperviews";
-
+            this.BottomBarSelection = BottomBarSelection.Paperviews;
             BuildDataItems();
         }
 

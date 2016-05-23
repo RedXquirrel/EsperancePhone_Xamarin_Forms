@@ -39,6 +39,7 @@ namespace esperancephone.DataSources
             {
                 new MasterDetailItemGroupDataSource("Esperance", string.Empty, "To reach out with especial personance")
                 {
+                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf015", Title = "Home", PageType = typeof(PersonasPage) },
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "About", PageType = typeof(AboutCaptainXamtasticPage) },
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "FAQ", PageType = typeof(FaqPage) },
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "Terms and Conditions", PageType = typeof(FaqPage) },

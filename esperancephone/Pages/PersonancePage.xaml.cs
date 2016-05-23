@@ -8,6 +8,7 @@ using Autofac;
 using esperancephone.Extensions;
 using esperancephone.Interfaces;
 using esperancephone.Ioc;
+using esperancephone.Models;
 using esperancephone.ViewModels;
 using Xamarin.Forms;
 
@@ -25,9 +26,23 @@ namespace esperancephone.Pages
             {
                 this.BindingContext = scope.Resolve<PersonanceViewModel>();
 
+                var settingsService = scope.Resolve<ISettingsService>();
+
+                switch (settingsService.UserMode)
+                {
+                    case UserMode.Basic:
+                        Resources["PageStyle"] = Resources["PersonasPageBasicMasterDetailNavigationStyle"];
+                        break;
+                    case UserMode.Advanced:
+                        Resources["PageStyle"] = Resources["PersonasPageStandardMasterDetailNavigationStyle"];
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
                 this.WriteLineInstanceAndInstanceId();
 
-                ((StandardViewModel)this.BindingContext).Navigator = (INavigation)this.Navigation;
+                ((StandardViewModel) this.BindingContext).Navigator = (INavigation) this.Navigation;
             }
         }
     }
