@@ -29,8 +29,8 @@
           <behaviors:ListViewItemTappedBehavior ItemTappedCommand="{Binding SelectedPaperviewListItemCommand}" />
         </views:PaneListView.Behaviors>
     </views:PaneListView>
-      <Grid  HorizontalOptions="Center" VerticalOptions="Start" Padding="0,10,0,0">
-        <ActivityIndicator Color="Green" IsRunning="{Binding IsBusy}" HorizontalOptions="Center" VerticalOptions="Start" />
+      <Grid HorizontalOptions="Center" VerticalOptions="Center" Padding="0,10,0,0">
+        <ActivityIndicator Color="{StaticResource CaptainXamtasticBrandRedColor}" IsRunning="{Binding IsBusy}" HorizontalOptions="Center" VerticalOptions="Center" />
       </Grid>      
     </Grid>
   </ContentPage.Content>

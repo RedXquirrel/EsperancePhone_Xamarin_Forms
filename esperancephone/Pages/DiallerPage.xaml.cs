@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using esperancephone.Extensions;
+using esperancephone.Helpers;
 using esperancephone.Interfaces;
 using esperancephone.Ioc;
 using esperancephone.ViewModels;
@@ -21,18 +22,31 @@ namespace esperancephone.Pages
 
             this.DiallerView.HostPage = this; // so that the DiallerView can call ActionSheets directly.
 
-            NavigationPage.SetHasNavigationBar(this, false);
 
-            using (var scope = AppContainer.Container.BeginLifetimeScope())
-            {
-                this.BindingContext = AppContainer.Container.Resolve<DiallerViewModel>();
-                var navigationService = AppContainer.Container.Resolve<INavigationService>();
-                navigationService.CurrentPage = this;
+            //NavigationPage.SetHasNavigationBar(this, false);
 
-                this.WriteLineInstanceAndInstanceId();
+            //using (var scope = AppContainer.Container.BeginLifetimeScope())
+            //{
+            //    this.BindingContext = AppContainer.Container.Resolve<DiallerViewModel>();
+            //    var navigationService = AppContainer.Container.Resolve<INavigationService>();
+            //    navigationService.CurrentPage = this;
 
-                ((StandardViewModel)this.BindingContext).Navigator = (INavigation)this.Navigation;
-            }
+            //    this.WriteLineInstanceAndInstanceId();
+
+            //    ((StandardViewModel)this.BindingContext).Navigator = (INavigation)this.Navigation;
+            //}
+            Setup();
+        }
+
+        private void Setup()
+        {
+            this.SetUpPage<DiallerViewModel>(false, "DiallerPageBasicMasterDetailNavigationStyle", "DiallerPageStandardMasterDetailNavigationStyle");
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            Setup();
         }
     }
 }

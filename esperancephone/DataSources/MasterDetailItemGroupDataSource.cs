@@ -40,9 +40,6 @@ namespace esperancephone.DataSources
                 new MasterDetailItemGroupDataSource("Esperance", string.Empty, "To reach out with especial personance")
                 {
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf015", Title = "Home", PageType = typeof(PersonasPage) },
-                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "About", PageType = typeof(AboutCaptainXamtasticPage) },
-                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "FAQ", PageType = typeof(FaqPage) },
-                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "Terms and Conditions", PageType = typeof(FaqPage) },
                     new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf013", Title = "Settings", PageType = typeof(SettingsPage) },
                     new MasterPageIndexItemViewModel { IsPage = false, IconKey = "\uf08b", Title = "Logout", Action =
                         async() =>
@@ -63,6 +60,10 @@ namespace esperancephone.DataSources
                                 Debug.WriteLine($"INFORMATION: Logged out at {DateTime.UtcNow} UTC");
                             }
                         } },
+                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "About", PageType = typeof(AboutCaptainXamtasticPage) },
+                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "FAQ", PageType = typeof(FaqPage) },
+                    new MasterPageIndexItemViewModel { IsPage = true, IconKey = "\uf005", Title = "Terms and Conditions", PageType = typeof(FaqPage) },
+
                 },
                 new MasterDetailItemGroupDataSource("Paperview", string.Empty, "Our universal distribution format")
                 {

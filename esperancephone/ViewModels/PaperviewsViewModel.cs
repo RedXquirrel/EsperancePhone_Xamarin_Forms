@@ -106,11 +106,13 @@ namespace esperancephone.ViewModels
         {
             this.Title = "Paperviews";
             this.BottomBarSelection = BottomBarSelection.Paperviews;
+
             BuildDataItems();
         }
 
         private async void BuildDataItems()
         {
+            this.IsBusy = true;
             // Declare the list to build. It's all about building this list !!!
             var listItems = new ObservableCollection<PaperviewListItemViewModel>();
 
@@ -187,6 +189,7 @@ namespace esperancephone.ViewModels
 
                 this.PersonaListItems = listItems;
             }
+            this.IsBusy = false;
         }
 
         private static PaperviewListItemViewModel GetAlreadySelectedPaperviewListItem()
@@ -385,7 +388,7 @@ namespace esperancephone.ViewModels
         {
             return new CommunicateViewModel()
             {
-                Label = "Deliver Paperview then Call",
+                Label = "Deliver-Then-Call",
                 CallCommand = new Command(async() =>
                 {
                     using (var commandScope = AppContainer.Container.BeginLifetimeScope())
@@ -417,7 +420,7 @@ namespace esperancephone.ViewModels
         {
             return new CommunicateViewModel()
             {
-                Label = "Send Paperview and Call",
+                Label = "Send-And-Call",
                 CallCommand = new Command(() =>
                 {
                     using (var commandScope = AppContainer.Container.BeginLifetimeScope())
@@ -445,7 +448,7 @@ namespace esperancephone.ViewModels
         {
             return new CommunicateViewModel()
             {
-                Label = "Send Paperview only",
+                Label = "Send-Only",
                 CallCommand = new Command(() =>
                 {
                     using (var commandScope = AppContainer.Container.BeginLifetimeScope())
@@ -472,7 +475,7 @@ namespace esperancephone.ViewModels
         {
             return new CommunicateViewModel()
             {
-                Label = "Call only",
+                Label = "Call-Only",
                 CallCommand = new Command(() =>
                 {
                     using (var commandScope = AppContainer.Container.BeginLifetimeScope())

@@ -125,7 +125,10 @@ namespace esperancephone.Pages
                 {
                     Helpers.Services.SetCurrentPageCacheBottomBarSelection(BottomBarSelection.Paperviews);
                 }
-
+                else if (item.PageType == typeof(DiallerPage))
+                {
+                    Helpers.Services.SetCurrentPageCacheBottomBarSelection(BottomBarSelection.Dialler);
+                }
             }
             else
             {

@@ -222,11 +222,17 @@
       </Style.Setters>
     </Style>
 
+    <Style TargetType="pages:DiallerPage" x:Key="DiallerPageBasicMasterDetailNavigationStyle">
+      <Style.Setters>
+        <Setter Property="ControlTemplate" Value="{StaticResource BasicMasterDetailNavigationTemplate}" />
+      </Style.Setters>
+    </Style>
+
     <Style TargetType="pages:DiallerPage" x:Key="DiallerPageStandardMasterDetailNavigationStyle">
       <Style.Setters>
         <Setter Property="ControlTemplate" Value="{StaticResource StandardMasterDetailNavigationTemplate}" />
       </Style.Setters>
-    </Style>
+    </Style>    
     
     <Style TargetType="pages:PersonancePage" x:Key="PersonancePageStandardMasterDetailNavigationStyle">
       <Style.Setters>

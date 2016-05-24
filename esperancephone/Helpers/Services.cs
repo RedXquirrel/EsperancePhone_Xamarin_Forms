@@ -1,9 +1,12 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
+using esperancephone.Extensions;
 using esperancephone.Interfaces;
 using esperancephone.Ioc;
 using esperancephone.Models;
 using esperancephone.Pages;
 using esperancephone.ViewModels;
+using Xamarin.Forms;
 
 namespace esperancephone.Helpers
 {
@@ -30,6 +33,41 @@ namespace esperancephone.Helpers
             {
                 var settingsService = scope.Resolve<ISettingsService>();
                 settingsService.CurrentPageCacheModel = cache;
+            }
+        }
+
+        public static void SetUpPage<T>(this ContentPage page, bool hasNavigationBar, string basicMasterDetailNavigationStyle, string standardMasterDetailNavigationStyle)
+        {
+            using (var scope = AppContainer.Container.BeginLifetimeScope())
+            {
+                NavigationPage.SetHasNavigationBar(page, hasNavigationBar);
+                page.BindingContext = scope.Resolve<T>();
+                if (page.Resources != null)
+                {
+                    var settingsService = scope.Resolve<ISettingsService>();
+                    switch (settingsService.UserMode)
+                    {
+                        case UserMode.Basic:
+                            page.Resources["PageStyle"] =
+                                EsperancePhoneFormsApplication.Application.Resources[
+                                    basicMasterDetailNavigationStyle];
+                            break;
+                        case UserMode.Advanced:
+                            page.Resources["PageStyle"] =
+                                EsperancePhoneFormsApplication.Application.Resources[
+                                    standardMasterDetailNavigationStyle];
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+                }
+
+                var navigationService = scope.Resolve<INavigationService>();
+                navigationService.CurrentPage = page;
+
+                page.WriteLineInstanceAndInstanceId();
+
+                ((StandardViewModel) page.BindingContext).Navigator = (INavigation) page.Navigation;
             }
         }
 
