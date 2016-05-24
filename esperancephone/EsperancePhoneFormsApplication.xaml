@@ -240,6 +240,12 @@
       </Style.Setters>
     </Style>
 
+    <Style TargetType="pages:ContactsPage" x:Key="ContactsPageBasicMasterDetailNavigationStyle">
+      <Style.Setters>
+        <Setter Property="ControlTemplate" Value="{StaticResource BasicMasterDetailNavigationTemplate}" />
+      </Style.Setters>
+    </Style>
+
     <Style TargetType="pages:ContactsPage" x:Key="ContactsPageStandardMasterDetailNavigationStyle">
       <Style.Setters>
         <Setter Property="ControlTemplate" Value="{StaticResource StandardMasterDetailNavigationTemplate}" />

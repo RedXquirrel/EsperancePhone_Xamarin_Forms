@@ -22,19 +22,6 @@ namespace esperancephone.Pages
 
             this.DiallerView.HostPage = this; // so that the DiallerView can call ActionSheets directly.
 
-
-            //NavigationPage.SetHasNavigationBar(this, false);
-
-            //using (var scope = AppContainer.Container.BeginLifetimeScope())
-            //{
-            //    this.BindingContext = AppContainer.Container.Resolve<DiallerViewModel>();
-            //    var navigationService = AppContainer.Container.Resolve<INavigationService>();
-            //    navigationService.CurrentPage = this;
-
-            //    this.WriteLineInstanceAndInstanceId();
-
-            //    ((StandardViewModel)this.BindingContext).Navigator = (INavigation)this.Navigation;
-            //}
             Setup();
         }
 

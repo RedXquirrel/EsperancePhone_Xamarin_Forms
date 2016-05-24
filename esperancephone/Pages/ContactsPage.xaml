@@ -4,7 +4,7 @@
              x:Class="esperancephone.Pages.ContactsPage"
              xmlns:dataTemplates="clr-namespace:esperancephone.DataTemplates;assembly=esperancephone"
              xmlns:behaviors="clr-namespace:esperancephone.Behaviors;assembly=esperancephone"
-             Style="{StaticResource ContactsPageStandardMasterDetailNavigationStyle}"
+             Style="{DynamicResource PageStyle}"
              >
   <ContentPage.Padding>
     0,20,0,0

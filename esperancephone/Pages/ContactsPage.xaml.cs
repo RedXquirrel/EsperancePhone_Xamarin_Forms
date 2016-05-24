@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Autofac;
 using esperancephone.DataSources;
 using esperancephone.Extensions;
+using esperancephone.Helpers;
 using esperancephone.Interfaces;
 using esperancephone.Ioc;
 using esperancephone.ViewModels;
@@ -25,25 +26,24 @@ namespace esperancephone.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            var a = this.BindingContext;
             Setup();
         }
 
         private void Setup()
         {
-            NavigationPage.SetHasNavigationBar(this, false);
+            this.SetUpPage<ContactsViewModel>(false, "ContactsPageBasicMasterDetailNavigationStyle", "ContactsPageStandardMasterDetailNavigationStyle");
 
-            using (var scope = AppContainer.Container.BeginLifetimeScope())
-            {
-                this.BindingContext = scope.Resolve<ContactsViewModel>();
+            //using (var scope = AppContainer.Container.BeginLifetimeScope())
+            //{
+            //    this.BindingContext = scope.Resolve<ContactsViewModel>();
 
-                this.WriteLineInstanceAndInstanceId();
+            //    this.WriteLineInstanceAndInstanceId();
 
-                ((StandardViewModel) this.BindingContext).Navigator = (INavigation) this.Navigation;
+            //    ((StandardViewModel) this.BindingContext).Navigator = (INavigation) this.Navigation;
 
-                var navigationService = scope.Resolve<INavigationService>();
-                navigationService.CurrentPage = this;
-            }
+            //    var navigationService = scope.Resolve<INavigationService>();
+            //    navigationService.CurrentPage = this;
+            //}
         }
     }
 }
